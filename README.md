@@ -6,10 +6,10 @@
 <title>Larizz Farm</title>
 
 <style>
-body {
+.body {
   margin: 0;
   font-family: Arial;
-  background-image: url('Background.png');
+  background-image: url('background.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -18,7 +18,7 @@ body {
 }
 
 /* HERO */
-hero{
+.hero{
   padding:30px 20px;
 }
 
