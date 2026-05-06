@@ -274,7 +274,7 @@ Via KAI Logistik (Kalog) & KI8 • Packing aman
 
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml?gid=0&single=true";
 
-const STOK_AWAL = 200;
+const STOK_AWAL = 300;
 let last = 0;
 
 async function loadData(){
@@ -282,7 +282,7 @@ async function loadData(){
     const res = await fetch(SHEET_URL);
     const text = await res.text();
 
-    const rows = (text.match(/<tr/gi)||[]).length - 1;
+    const rows = (text.match(/<tr/gi)||[]).length 10000;
 
     document.getElementById("counter").innerHTML =
       "🔥 " + rows + " orang sudah masuk antrian";
