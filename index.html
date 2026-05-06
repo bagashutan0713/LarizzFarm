@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Larizz Farm</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  text-align: center;
+}
+
+/* HERO */
+.hero {
+  padding: 30px 20px;
+}
+
+/* LOGO */
+.logo-wrap img {
+  width: 140px;
+  filter: drop-shadow(0 0 8px rgba(37,211,102,0.5));
+}
+
+/* BOX */
+.box {
+  background: rgba(0,0,0,0.55);
+  display: inline-block;
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-top: 10px;
+  max-width: 650px;
+}
+
+/* STOCK */
+.stock {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #ffeb3b;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 18px;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+/* KATALOG */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.card {
+  background: rgba(0,0,0,0.55);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+/* INFO */
+.info {
+  max-width: 700px;
+  margin: 20px auto;
+  background: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.info h2 {
+  text-align: center;
+  color: #25D366;
+}
+
+/* WA FLOAT */
+.wa {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  padding: 14px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+  <div class="logo-wrap">
+    <img src="logo.png" alt="Larizz Farm">
+  </div>
+
+  <div class="box">📦 Sistem Antrian Real-Time</div>
+
+  <div class="box stock" id="counter">Loading...</div>
+
+  <div class="box stock" id="stok">Loading stok...</div>
+
+  <a class="btn"
+  href="https://docs.google.com/forms/d/e/1FAIpQLScLEeD-S4K6UvEe5KLiWUR0lI3nZEwkvdDyB1ZcxzBSs1IWGg/viewform"
+  target="_blank">
+  📝 PESAN DOC SEKARANG
+  </a>
+
+</div>
+
+<!-- KATALOG -->
+<div class="grid">
+
+  <div class="card">🐔 Sengkuni</div>
+  <div class="card">🔥 Kuntara 4</div>
+  <div class="card">🥚 Elba</div>
+  <div class="card">⚫ Black Permud 3</div>
+  <div class="card">🐔 KUB 2</div>
+  <div class="card">🍗 Joper</div>
+
+</div>
+
+<!-- INFO -->
+<div class="info">
+
+<h2>📦 INFO PEMESANAN</h2>
+
+<p>💰 Harga ada di Google Form</p>
+
+<p>🚚 Senin: Box besar</p>
+<p>🐥 Kamis-Jumat: Ecer (min 10)</p>
+<p>🏙️ Sabtu-Minggu: COD Jabodetabek</p>
+<p>🚆 Luar Jawa: Kalog & KI8</p>
+
+</div>
+
+<!-- WA -->
+<a class="wa" href="https://wa.me/62811542398">
+💬 Chat WA
+</a>
+
+<script>
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml?gid=0&single=true";
+
+const STOK_AWAL = 200;
+
+async function loadData(){
+  try{
+    const res = await fetch(SHEET_URL);
+    const text = await res.text();
+
+    const rows = (text.match(/<tr/gi)||[]).length - 1;
+
+    document.getElementById("counter").innerHTML =
+      "🔥 " + rows + " orang antrian";
+
+    let sisa = STOK_AWAL - rows;
+    if(sisa < 0) sisa = 0;
+
+    document.getElementById("stok").innerHTML =
+      "⚠️ Sisa stok: " + sisa;
+
+  }catch(e){
+    document.getElementById("counter").innerHTML =
+      "⚠️ loading gagal";
+  }
+}
+
+loadData();
+setInterval(loadData, 10000);
+</script>
+
+</body>
+</html>
