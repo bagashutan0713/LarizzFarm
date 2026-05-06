@@ -8,8 +8,8 @@
 <style>
 body {
   margin: 0;
-  font-family: Arial;
-  background-image: url('Background.png');
+  font-family: Arial, sans-serif;
+  background-image: url('background.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -18,25 +18,26 @@ body {
 }
 
 /* HERO */
-hero{
-  padding:30px 20px;
+.hero {
+  padding: 30px 20px;
 }
 
-.logo-wrap img{
-  width:140px;
-  filter:drop-shadow(0 0 8px rgba(37,211,102,0.5));
+/* LOGO */
+.logo-wrap {
+  margin-bottom: 10px;
 }
 
-@keyframes fadeDown {
-  from {opacity:0; transform:translateY(-20px);}
-  to {opacity:1; transform:translateY(0);}
+.logo-wrap img {
+  width: 140px;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(37,211,102,0.5));
 }
 
 /* BOX */
 .box {
   background: rgba(0,0,0,0.55);
   display: inline-block;
-  padding: 15px 20px;
+  padding: 12px 18px;
   border-radius: 12px;
   margin-top: 10px;
   max-width: 650px;
@@ -59,68 +60,62 @@ hero{
   text-decoration: none;
   border-radius: 10px;
   font-weight: bold;
-  animation: pulse 1.5s infinite;
+  transition: 0.3s;
 }
 
-@keyframes pulse {
-  0% {transform: scale(1);}
-  50% {transform: scale(1.05);}
-  100% {transform: scale(1);}
+.btn:hover {
+  transform: scale(1.05);
 }
 
 /* KATALOG */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:15px;
-  padding:20px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
 }
 
-.card{
+.card {
   background: rgba(0,0,0,0.55);
-  display: inline-block;
-  padding: 15px 20px;
+  padding: 15px;
   border-radius: 12px;
-  margin-top: 10px;
-  max-width: 650px;
+  text-align: center;
 }
 
-.card img{
-  width:100%;
-  height:140px;
-  object-fit:cover;
+.badge {
+  background: #25D366;
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 6px;
+  margin-bottom: 5px;
 }
 
-.card-content{
-  padding:10px;
+.card h3 {
+  margin: 5px 0;
+  color: #25D366;
 }
 
-.badge{
-  background:#25D366;
-  display:inline-block;
-  padding:3px 8px;
-  font-size:12px;
-  border-radius:6px;
-}
-
-.card h3{
-  margin:5px 0;
-  color:#25D366;
-}
-
-/* INFO SECTION */
+/* INFO */
 .info {
-  text-align:center;
   max-width: 700px;
   margin: 20px auto;
   background: rgba(0,0,0,0.5);
   padding: 20px;
   border-radius: 12px;
+  text-align: left;
 }
 
 .info h2 {
   text-align: center;
   color: #25D366;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 10px 0;
 }
 
 /* WA FLOAT */
@@ -135,133 +130,96 @@ hero{
   color: white;
   font-weight: bold;
 }
-
-/* HR */
-hr {
-  border: 0;
-  height: 1px;
-  background: rgba(255,255,255,0.2);
-  margin: 10px 0;
-}
 </style>
 </head>
 
 <body>
 
+<!-- HERO -->
 <div class="hero">
 
-<div class="hero">
+  <!-- LOGO -->
+  <div class="logo-wrap">
+    <img src="logo.png" alt="Larizz Farm">
+  </div>
 
-<div class="logo-wrap">
-  <img src="logo.png">
-</div>
+  <div class="box">📦 Sistem Antrian Real-Time</div>
 
-<div class="box">
-📦 Sistem Antrian Real-Time
-</div>
+  <div class="box stock" id="counter">🔄 Loading data...</div>
 
-<div class="box stock" id="counter">
-🔄 Loading data...
-</div>
+  <div class="box stock" id="stok">🔥 Hitung stok...</div>
 
-<div class="box stock" id="stok">
-🔥 Hitung stok...
+  <!-- BUTTON ORDER (CENTER UTAMA) -->
+  <a class="btn"
+  href="https://docs.google.com/forms/d/e/1FAIpQLScLEeD-S4K6UvEe5KLiWUR0lI3nZEwkvdDyB1ZcxzBSs1IWGg/viewform"
+  target="_blank">
+  📝 PESAN DOC SEKARANG
+  </a>
+
 </div>
 
 <!-- KATALOG -->
-
 <div class="grid">
 
-<div class="card">
-<div class="badge">KAMPUNG</div>
-<h3>Sengkuni</h3>
-<p>Tahan cuaca, cocok pemula</p>
+  <div class="card">
+    <div class="badge">KAMPUNG</div>
+    <h3>Sengkuni</h3>
+    <p>Tahan cuaca & cocok pemula</p>
+  </div>
+
+  <div class="card">
+    <div class="badge">FAST GROW</div>
+    <h3>Kuntara 4</h3>
+    <p>Cepat besar & efisien pakan</p>
+  </div>
+
+  <div class="card">
+    <div class="badge">PETELUR</div>
+    <h3>Elba</h3>
+    <p>Produksi telur stabil</p>
+  </div>
+
+  <div class="card">
+    <div class="badge">PREMIUM</div>
+    <h3>Black Permud 3</h3>
+    <p>Nilai jual tinggi</p>
+  </div>
+
+  <div class="card">
+    <div class="badge">HEMAT</div>
+    <h3>KUB 2</h3>
+    <p>Tahan penyakit & hemat pakan</p>
+  </div>
+
+  <div class="card">
+    <div class="badge">PEDAGING</div>
+    <h3>Joper</h3>
+    <p>Cepat panen & bobot besar</p>
+  </div>
+
 </div>
 
-<div class="card">
-<div class="badge">FAST GROW</div>
-<h3>Kuntara 4</h3>
-<p>Cepat besar & efisien pakan</p>
-</div>
-
-<div class="card">
-<div class="badge">PETELUR</div>
-<h3>Elba</h3>
-<p>Produksi telur stabil</p>
-</div>
-
-<div class="card">
-<div class="badge">PREMIUM</div>
-<h3>Black Permud 3</h3>
-<p>Nilai jual tinggi</p>
-</div>
-
-<div class="card">
-<div class="badge">HEMAT</div>
-<h3>KUB 2</h3>
-<p>Tahan penyakit & hemat pakan</p>
-</div>
-
-<div class="card">
-<div class="badge">PEDAGING</div>
-<h3>Joper</h3>
-<p>Cepat panen & bobot besar</p>
-</div>
-
-</div>
-
-<!-- BUTTON ORDER -->
-<a class="btn"
-href="https://docs.google.com/forms/d/e/1FAIpQLScLEeD-S4K6UvEe5KLiWUR0lI3nZEwkvdDyB1ZcxzBSs1IWGg/viewform"
-target="_blank">
-📝 Pesan DOC Sekarang
-</a>
-
-<!-- INFO PEMESANAN -->
+<!-- INFO -->
 <div class="info">
 
 <h2>📦 INFO PEMESANAN & PENGIRIMAN</h2>
 
-<p>
-<b>💰 Harga Produk</b><br>
-Harga setiap DOC tertera langsung di Google Form pemesanan<br>
-👉 Isi form untuk pilih jenis & lihat harga
-</p>
+<p><b>💰 Harga</b><br>
+Ada di Google Form</p>
 
 <hr>
 
-<p><b>🚚 Sistem Pengiriman</b></p>
+<p><b>🚚 Pengiriman</b></p>
 
-<p>
-<b>📦 Box </b><br>
-Isi 100 + 2 Pengiriman di hari senin
-</p>
-
-<p>
-<b>🐥 Ecer</b><br>
-Minimal order 10 DOC Pengiriman di hari Kamis & Jumat
-</p>
-
-<p>
-<b>🏙️ Jabodetabek (COD)</b><br>
-Sabtu & Minggu • Bayar di tempat
-</p>
-
-<p>
-<b>🚆 Luar Jabodetabek</b><br>
-Via KAI Logistik (Kalog) & KI8 • Packing aman
-</p>
+<p>📦 Box: Senin (besar)</p>
+<p>🐥 Ecer: Kamis & Jumat (min 10 DOC)</p>
+<p>🏙️ COD: Sabtu & Minggu</p>
+<p>🚆 Luar Jawa: Kalog & KI8</p>
 
 <hr>
 
-<p>
-<b>⚠️ Catatan</b><br>
-• Stok terbatas setiap minggu<br>
-• Sistem antrian berlaku<br>
-• Prioritas dari Google Form
-</p>
-
-</div>
+<p><b>⚠️ Catatan</b><br>
+Stok terbatas • Sistem antrian aktif</p>
 
 </div>
 
@@ -275,7 +233,6 @@ Via KAI Logistik (Kalog) & KI8 • Packing aman
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml?gid=0&single=true";
 
 const STOK_AWAL = 200;
-let last = 0;
 
 async function loadData(){
   try{
