@@ -23,13 +23,8 @@ body {
 }
 
 /* LOGO */
-.logo-wrap {
-  margin-bottom: 10px;
-}
-
 .logo-wrap img {
   width: 140px;
-  height: auto;
   filter: drop-shadow(0 0 8px rgba(37,211,102,0.5));
 }
 
@@ -37,7 +32,7 @@ body {
 .box {
   background: rgba(0,0,0,0.55);
   display: inline-block;
-  padding: 12px 18px;
+  padding: 15px 20px;
   border-radius: 12px;
   margin-top: 10px;
   max-width: 650px;
@@ -60,17 +55,12 @@ body {
   text-decoration: none;
   border-radius: 10px;
   font-weight: bold;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  transform: scale(1.05);
 }
 
 /* KATALOG */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
   gap: 15px;
   padding: 20px;
 }
@@ -79,21 +69,6 @@ body {
   background: rgba(0,0,0,0.55);
   padding: 15px;
   border-radius: 12px;
-  text-align: center;
-}
-
-.badge {
-  background: #25D366;
-  display: inline-block;
-  padding: 3px 8px;
-  font-size: 12px;
-  border-radius: 6px;
-  margin-bottom: 5px;
-}
-
-.card h3 {
-  margin: 5px 0;
-  color: #25D366;
 }
 
 /* INFO */
@@ -109,13 +84,6 @@ body {
 .info h2 {
   text-align: center;
   color: #25D366;
-}
-
-hr {
-  border: 0;
-  height: 1px;
-  background: rgba(255,255,255,0.2);
-  margin: 10px 0;
 }
 
 /* WA FLOAT */
@@ -135,21 +103,18 @@ hr {
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
 
-  <!-- LOGO -->
   <div class="logo-wrap">
     <img src="logo.png" alt="Larizz Farm">
   </div>
 
   <div class="box">📦 Sistem Antrian Real-Time</div>
 
-  <div class="box stock" id="counter">🔄 Loading data...</div>
+  <div class="box stock" id="counter">Loading...</div>
 
-  <div class="box stock" id="stok">🔥 Hitung stok...</div>
+  <div class="box stock" id="stok">Loading stok...</div>
 
-  <!-- BUTTON ORDER (CENTER UTAMA) -->
   <a class="btn"
   href="https://docs.google.com/forms/d/e/1FAIpQLScLEeD-S4K6UvEe5KLiWUR0lI3nZEwkvdDyB1ZcxzBSs1IWGg/viewform"
   target="_blank">
@@ -161,75 +126,35 @@ hr {
 <!-- KATALOG -->
 <div class="grid">
 
-  <div class="card">
-    <div class="badge">KAMPUNG</div>
-    <h3>Sengkuni</h3>
-    <p>Tahan cuaca & cocok pemula</p>
-  </div>
-
-  <div class="card">
-    <div class="badge">FAST GROW</div>
-    <h3>Kuntara 4</h3>
-    <p>Cepat besar & efisien pakan</p>
-  </div>
-
-  <div class="card">
-    <div class="badge">PETELUR</div>
-    <h3>Elba</h3>
-    <p>Produksi telur stabil</p>
-  </div>
-
-  <div class="card">
-    <div class="badge">PREMIUM</div>
-    <h3>Black Permud 3</h3>
-    <p>Nilai jual tinggi</p>
-  </div>
-
-  <div class="card">
-    <div class="badge">HEMAT</div>
-    <h3>KUB 2</h3>
-    <p>Tahan penyakit & hemat pakan</p>
-  </div>
-
-  <div class="card">
-    <div class="badge">PEDAGING</div>
-    <h3>Joper</h3>
-    <p>Cepat panen & bobot besar</p>
-  </div>
+  <div class="card">🐔 Sengkuni</div>
+  <div class="card">🔥 Kuntara 4</div>
+  <div class="card">🥚 Elba</div>
+  <div class="card">⚫ Black Permud 3</div>
+  <div class="card">🐔 KUB 2</div>
+  <div class="card">🍗 Joper</div>
 
 </div>
 
 <!-- INFO -->
 <div class="info">
 
-<h2>📦 INFO PEMESANAN & PENGIRIMAN</h2>
+<h2>📦 INFO PEMESANAN</h2>
 
-<p><b>💰 Harga</b><br>
-Ada di Google Form</p>
+<p>💰 Harga ada di Google Form</p>
 
-<hr>
-
-<p><b>🚚 Pengiriman</b></p>
-
-<p>📦 Box: Senin (besar)</p>
-<p>🐥 Ecer: Kamis & Jumat (min 10 DOC)</p>
-<p>🏙️ COD: Sabtu & Minggu</p>
+<p>🚚 Senin: Box besar</p>
+<p>🐥 Kamis-Jumat: Ecer (min 10)</p>
+<p>🏙️ Sabtu-Minggu: COD Jabodetabek</p>
 <p>🚆 Luar Jawa: Kalog & KI8</p>
-
-<hr>
-
-<p><b>⚠️ Catatan</b><br>
-Stok terbatas • Sistem antrian aktif</p>
 
 </div>
 
-<!-- WA FLOAT -->
+<!-- WA -->
 <a class="wa" href="https://wa.me/62811542398">
 💬 Chat WA
 </a>
 
 <script>
-
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml?gid=0&single=true";
 
 const STOK_AWAL = 200;
@@ -242,23 +167,22 @@ async function loadData(){
     const rows = (text.match(/<tr/gi)||[]).length - 1;
 
     document.getElementById("counter").innerHTML =
-      "🔥 " + rows + " orang sudah masuk antrian";
+      "🔥 " + rows + " orang antrian";
 
     let sisa = STOK_AWAL - rows;
     if(sisa < 0) sisa = 0;
 
     document.getElementById("stok").innerHTML =
-      "⚠️ Sisa stok DOC: " + sisa + " ekor";
+      "⚠️ Sisa stok: " + sisa;
 
   }catch(e){
     document.getElementById("counter").innerHTML =
-      "⚠️ Data sedang update...";
+      "⚠️ loading gagal";
   }
 }
 
 loadData();
 setInterval(loadData, 10000);
-
 </script>
 
 </body>
