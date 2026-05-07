@@ -49,10 +49,19 @@ body::before{
 }
 
 /* STOCK */
-.stock{
-  font-size:22px;
-  color:#ffeb3b;
+.stock {
+  font-size: 22px;
+  color: #ffeb3b;
   display:block;
+}
+
+/* COUNTER WRAP */
+.counter-wrap{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:15px;
 }
 
 /* BUTTON */
@@ -228,21 +237,18 @@ hr{
 <div class="hero">
 
 <!-- LOGO -->
-<div class="logo-wrap">
-<img src="logo.png" alt="Larizz Farm">
-</div>
+<div class="counter-wrap">
 
-<!-- ANTRIAN -->
-<div class="box stock" id="counter">
-🔄 Loading pembeli...
-</div>
+  <div class="box stock" id="counter">
+    🔄 Loading pembeli...
+  </div>
 
-<div class="box stock" id="doc">
-🔄 Loading DOC...
+  <div class="box stock" id="doc">
+    🔄 Loading DOC...
+  </div>
+
 </div>
   
-</div>
-
 <!-- BUTTON -->
 <br>
 
