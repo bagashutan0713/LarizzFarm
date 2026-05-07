@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Larizz Farm</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background-image: url('background.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: white;
-  text-align: center;
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background-image:url('background.png');
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  color:white;
+  text-align:center;
 }
 
 /* HERO */
@@ -22,53 +24,50 @@ body {
   padding:30px 20px;
 }
 
+/* LOGO */
+.logo-wrap{
+  margin-bottom:20px;
+}
+
 .logo-wrap img{
   width:140px;
   filter:drop-shadow(0 0 8px rgba(37,211,102,0.5));
 }
 
-@keyframes fadeDown {
-  from {opacity:0; transform:translateY(-20px);}
-  to {opacity:1; transform:translateY(0);}
-}
-
 /* BOX */
-.box {
-  background: rgba(0,0,0,0.55);
-  display: inline-block;
-  padding: 15px 20px;
-  border-radius: 12px;
-  margin-top: 10px;
-  max-width: 650px;
+.box{
+  background:rgba(0,0,0,0.55);
+  display:inline-block;
+  padding:15px 20px;
+  border-radius:12px;
+  margin-top:10px;
+  max-width:650px;
 }
 
 /* STOCK */
-.stock {
-  font-size: 18px;
-  margin-top: 10px;
-  color: #ffeb3b;
+.stock{
+  font-size:18px;
+  color:#ffeb3b;
 }
 
 /* BUTTON */
-.btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 12px 18px;
-  background: #25D366;
-  color: white;
-  text-decoration: none;
-  border-radius: 10px;
-  font-weight: bold;
-  animation: pulse 1.5s infinite;
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:14px 22px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:bold;
+  transition:0.3s;
 }
 
-@keyframes pulse {
-  0% {transform: scale(1);}
-  50% {transform: scale(1.05);}
-  100% {transform: scale(1);}
+.btn:hover{
+  transform:scale(1.05);
 }
 
-/* KATALOG */
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
@@ -76,73 +75,76 @@ body {
   padding:20px;
 }
 
+/* CARD */
 .card{
-  background: rgba(0,0,0,0.55);
-  display: inline-block;
-  padding: 15px 20px;
-  border-radius: 12px;
-  margin-top: 10px;
-  max-width: 650px;
+  background:rgba(0,0,0,0.55);
+  border-radius:12px;
+  padding:20px;
 }
 
-.card img{
-  width:100%;
-  height:140px;
-  object-fit:cover;
-}
-
-.card-content{
-  padding:10px;
-}
-
+/* BADGE */
 .badge{
   background:#25D366;
   display:inline-block;
-  padding:3px 8px;
-  font-size:12px;
+  padding:4px 10px;
   border-radius:6px;
+  font-size:12px;
 }
 
+/* TITLE */
 .card h3{
-  margin:5px 0;
   color:#25D366;
 }
 
-/* INFO SECTION */
-.info {
-  text-align:center;
-  max-width: 700px;
-  margin: 20px auto;
-  background: rgba(0,0,0,0.5);
-  padding: 20px;
-  border-radius: 12px;
+/* INFO */
+.info{
+  max-width:700px;
+  margin:20px auto;
+  background:rgba(0,0,0,0.55);
+  padding:20px;
+  border-radius:12px;
+  text-align:left;
 }
 
-.info h2 {
-  text-align: center;
-  color: #25D366;
+.info h2{
+  text-align:center;
+  color:#25D366;
+}
+
+hr{
+  border:0;
+  height:1px;
+  background:rgba(255,255,255,0.2);
+  margin:15px 0;
 }
 
 /* WA FLOAT */
-.wa {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  padding: 14px;
-  border-radius: 50px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
+.wa{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  padding:14px 18px;
+  border-radius:50px;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* HR */
-hr {
-  border: 0;
-  height: 1px;
-  background: rgba(255,255,255,0.2);
-  margin: 10px 0;
+/* MOBILE */
+@media(max-width:600px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .logo-wrap img{
+    width:110px;
+  }
+
 }
+
 </style>
 </head>
 
@@ -150,38 +152,52 @@ hr {
 
 <div class="hero">
 
-<div class="hero">
-
+<!-- LOGO -->
 <div class="logo-wrap">
-  <img src="logo.png">
+<img src="logo.png" alt="Larizz Farm">
 </div>
 
+<!-- COUNTER -->
 <div class="box">
 📦 Sistem Antrian Real-Time
 </div>
+
+<br>
 
 <div class="box stock" id="counter">
 🔄 Loading data...
 </div>
 
+<br>
+
 <div class="box stock" id="stok">
-🔥 Hitung stok...
+🔥 Menghitung stok...
+</div>
+
+<br>
+
+<!-- BUTTON -->
+<a class="btn"
+href="https://docs.google.com/forms/d/e/1FAIpQLScLEeD-S4K6UvEe5KLiWUR0lI3nZEwkvdDyB1ZcxzBSs1IWGg/viewform"
+target="_blank">
+📝 Pesan DOC Sekarang
+</a>
+
 </div>
 
 <!-- KATALOG -->
-
 <div class="grid">
 
 <div class="card">
 <div class="badge">KAMPUNG</div>
 <h3>Sengkuni</h3>
-<p>Tahan cuaca, cocok pemula</p>
+<p>Tahan cuaca & cocok pemula</p>
 </div>
 
 <div class="card">
 <div class="badge">FAST GROW</div>
 <h3>Kuntara 4</h3>
-<p>Cepat besar & efisien pakan</p>
+<p>Cepat besar & efisiensi pakan</p>
 </div>
 
 <div class="card">
@@ -210,46 +226,36 @@ hr {
 
 </div>
 
-<!-- BUTTON ORDER -->
-<a class="btn"
-href="https://docs.google.com/forms/d/e/1FAIpQLScLEeD-S4K6UvEe5KLiWUR0lI3nZEwkvdDyB1ZcxzBSs1IWGg/viewform"
-target="_blank">
-📝 Pesan DOC Sekarang
-</a>
-
-<!-- INFO PEMESANAN -->
+<!-- INFO -->
 <div class="info">
 
 <h2>📦 INFO PEMESANAN & PENGIRIMAN</h2>
 
 <p>
 <b>💰 Harga Produk</b><br>
-Harga setiap DOC tertera langsung di Google Form pemesanan<br>
-👉 Isi form untuk pilih jenis & lihat harga
+Harga DOC tersedia di Google Form pemesanan
 </p>
 
 <hr>
 
-<p><b>🚚 Sistem Pengiriman</b></p>
-
 <p>
-<b>📦 Box </b><br>
-Isi 100 + 2 Pengiriman di hari senin
+<b>📦 Pengiriman Box</b><br>
+Isi 100 + 2 • Pengiriman hari Senin
 </p>
 
 <p>
-<b>🐥 Ecer</b><br>
-Minimal order 10 DOC Pengiriman di hari Kamis & Jumat
+<b>🐥 Pengiriman Ecer</b><br>
+Minimal 10 DOC • Kamis & Jumat
 </p>
 
 <p>
-<b>🏙️ Jabodetabek (COD)</b><br>
+<b>🏙️ Jabodetabek COD</b><br>
 Sabtu & Minggu • Bayar di tempat
 </p>
 
 <p>
 <b>🚆 Luar Jabodetabek</b><br>
-Via KAI Logistik (Kalog) & KI8 • Packing aman
+Via Kalog & KI8 • Packing aman
 </p>
 
 <hr>
@@ -263,43 +269,72 @@ Via KAI Logistik (Kalog) & KI8 • Packing aman
 
 </div>
 
-</div>
-
-<!-- WA FLOAT -->
-<a class="wa" href="https://wa.me/62811542398">
+<!-- WA -->
+<a class="wa"
+href="https://wa.me/62811542398"
+target="_blank">
 💬 Chat WA
 </a>
 
 <script>
 
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/1_Q8go-_XOqYIlZBbuMdVo7vv1LhJiRDLfVzzjzvTwbM/edit?usp=sharing";
+// LINK GOOGLE SHEETS PUBHTML
+const SHEET_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml?gid=0&single=true";
 
+// STOK AWAL
 const STOK_AWAL = 200;
-let last = 0;
 
 async function loadData(){
+
   try{
-    const res = await fetch(SHEET_URL);
-    const text = await res.text();
 
-    const rows = (text.match(/<tr/gi)||[]).length - 1;
+    const response = await fetch(SHEET_URL);
+    const html = await response.text();
 
+    // ubah html menjadi document
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    // ambil row tabel
+    const rows = doc.querySelectorAll("table tbody tr");
+
+    // hitung jumlah
+    let jumlah = rows.length;
+
+    // kurangi header
+    if(jumlah > 0){
+      jumlah = jumlah - 1;
+    }
+
+    // tampilkan counter
     document.getElementById("counter").innerHTML =
-      "🔥 " + rows + " orang sudah masuk antrian";
+      "🔥 " + jumlah + " orang sudah masuk antrian";
 
-    let sisa = STOK_AWAL - rows;
-    if(sisa < 0) sisa = 0;
+    // hitung stok
+    let sisa = STOK_AWAL - jumlah;
 
+    if(sisa < 0){
+      sisa = 0;
+    }
+
+    // tampilkan stok
     document.getElementById("stok").innerHTML =
       "⚠️ Sisa stok DOC: " + sisa + " ekor";
 
-  }catch(e){
+  }catch(error){
+
     document.getElementById("counter").innerHTML =
-      "⚠️ Data sedang update...";
+      "⚠️ Data gagal dimuat";
+
   }
+
 }
 
+// pertama kali load
 loadData();
+
+// refresh tiap 10 detik
 setInterval(loadData, 10000);
 
 </script>
