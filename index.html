@@ -279,7 +279,7 @@ target="_blank">
 <script>
 
 const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/gviz/tq?tqx=out:json";
+"https://docs.google.com/spreadsheets/d/1_Q8go-_XOqYIlZBbuMdVo7vv1LhJiRDLfVzzjzvTwbM/gviz/tq?tqx=out:json";
 
 const STOK_AWAL = 200;
 
@@ -290,15 +290,15 @@ async function loadData(){
     const response = await fetch(SHEET_URL);
     const text = await response.text();
 
-    // bersihkan format google
+    // parsing json google
     const json = JSON.parse(
-      text.substring(47).slice(0, -2)
+      text.substring(47).slice(0,-2)
     );
 
-    // ambil jumlah row asli
+    // jumlah row
     const rows = json.table.rows.length;
 
-    // tampilkan antrian
+    // tampilkan counter
     document.getElementById("counter").innerHTML =
       "🔥 " + rows + " orang sudah masuk antrian";
 
@@ -315,6 +315,8 @@ async function loadData(){
 
   }catch(error){
 
+    console.log(error);
+
     document.getElementById("counter").innerHTML =
       "⚠️ Data gagal dimuat";
 
@@ -322,11 +324,9 @@ async function loadData(){
 
 }
 
-// pertama kali load
 loadData();
 
-// refresh tiap 10 detik
-setInterval(loadData, 10000);
+setInterval(loadData,10000);
 
 </script>
 
