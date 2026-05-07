@@ -1,9 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Larizz Farm</title>
+
 <style>
 
-/* GRID KATALOG */
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:url('background.png');
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  color:white;
+  text-align:center;
+}
+
+/* OVERLAY */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:-1;
+}
+
+/* HERO */
+.hero{
+  padding:30px 20px;
+}
+
+/* LOGO */
+.logo-wrap img{
+  width:170px;
+  filter:drop-shadow(0 0 10px rgba(37,211,102,0.5));
+}
+
+/* BOX */
+.box{
+  background:rgba(0,0,0,0.55);
+  display:inline-block;
+  padding:15px 25px;
+  border-radius:14px;
+  margin-top:12px;
+  backdrop-filter:blur(5px);
+}
+
+/* STOCK */
+.stock{
+  font-size:22px;
+  color:#ffeb3b;
+  display:block;
+}
+
+/* BUTTON */
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:16px 28px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:bold;
+  font-size:20px;
+  transition:0.3s;
+  animation:pulse 1.5s infinite;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+  100%{transform:scale(1);}
+}
+
+/* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(3, 1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:20px;
   padding:20px;
   max-width:1200px;
@@ -13,7 +93,7 @@
 /* RESPONSIVE */
 @media(max-width:900px){
   .grid{
-    grid-template-columns:repeat(2, 1fr);
+    grid-template-columns:repeat(2,1fr);
   }
 }
 
@@ -25,7 +105,7 @@
 
 /* CARD */
 .card{
-  background: rgba(0,0,0,0.55);
+  background:rgba(0,0,0,0.55);
   border-radius:15px;
   overflow:hidden;
   backdrop-filter:blur(5px);
@@ -37,20 +117,17 @@
   transform:translateY(-5px);
 }
 
-/* GAMBAR */
 .card img{
   width:100%;
   height:220px;
   object-fit:cover;
 }
 
-/* ISI */
+/* CARD CONTENT */
 .card-content{
   padding:15px;
-  text-align:center;
 }
 
-/* BADGE */
 .badge{
   background:#25D366;
   display:inline-block;
@@ -61,23 +138,116 @@
   font-weight:bold;
 }
 
-/* JUDUL */
 .card h3{
   margin:5px 0;
   color:#25D366;
-  font-size:28px;
+  font-size:30px;
 }
 
-/* DESKRIPSI */
 .card p{
-  font-size:16px;
+  font-size:18px;
   line-height:1.5;
 }
 
+/* INFO */
+.info{
+  max-width:850px;
+  margin:30px auto;
+  background:rgba(0,0,0,0.55);
+  padding:25px;
+  border-radius:16px;
+  backdrop-filter:blur(5px);
+}
+
+.info h2{
+  color:#25D366;
+}
+
+hr{
+  border:none;
+  height:1px;
+  background:rgba(255,255,255,0.2);
+  margin:15px 0;
+}
+
+/* TESTIMONI */
+.testi-wrap{
+  overflow:hidden;
+  max-width:1000px;
+  margin:30px auto;
+}
+
+.testi-slider{
+  display:flex;
+  gap:20px;
+  width:max-content;
+  animation:slide 18s linear infinite;
+}
+
+.testi{
+  background:rgba(0,0,0,0.55);
+  padding:20px;
+  border-radius:15px;
+  min-width:280px;
+  backdrop-filter:blur(5px);
+}
+
+@keyframes slide{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+
+/* FLOAT WA */
+.wa{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:15px 18px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+  z-index:999;
+}
+
 </style>
+</head>
+
+<body>
+
+<div class="hero">
+
+<!-- LOGO -->
+<div class="logo-wrap">
+<img src="logo.png" alt="Larizz Farm">
+</div>
+
+<!-- ANTRIAN -->
+<div class="box">
+📦 Sistem Antrian Real-Time
+</div>
+
+<div class="box stock" id="counter">
+🔄 Loading data...
+</div>
+
+<div class="box stock" id="stok">
+🔥 Menghitung stok...
+</div>
+
+<!-- BUTTON -->
+<br>
+
+<a class="btn"
+href="https://docs.google.com/forms/d/e/1FAIpQLScLEeD-S4K6UvEe5KLiWUR0lI3nZEwkvdDyB1ZcxzBSs1IWGg/viewform"
+target="_blank">
+📝 Pesan DOC Sekarang
+</a>
+
+</div>
 
 <!-- KATALOG -->
-
 <div class="grid">
 
 <!-- SENGKUNI -->
@@ -110,7 +280,7 @@
 </div>
 </div>
 
-<!-- BLACK PERMUD -->
+<!-- BLACK -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a">
 <div class="card-content">
@@ -141,3 +311,135 @@
 </div>
 
 </div>
+
+<!-- TESTIMONI -->
+<div class="testi-wrap">
+
+<div class="testi-slider">
+
+<div class="testi">
+⭐⭐⭐⭐⭐<br><br>
+“DOC sehat & pengiriman aman sampai tujuan”
+<br><br>— Bagas, Bekasi
+</div>
+
+<div class="testi">
+⭐⭐⭐⭐⭐<br><br>
+“Sudah repeat order beberapa kali”
+<br><br>— Fariz, Bogor
+</div>
+
+<div class="testi">
+⭐⭐⭐⭐⭐<br><br>
+“Packing rapi & admin fast respon”
+<br><br>— Dedi, Bandung
+</div>
+
+<div class="testi">
+⭐⭐⭐⭐⭐<br><br>
+“DOC aktif & pertumbuhan bagus”
+<br><br>— Rian, Tangerang
+</div>
+
+</div>
+
+</div>
+
+<!-- INFO -->
+<div class="info">
+
+<h2>📦 INFO PEMESANAN & PENGIRIMAN</h2>
+
+<p>
+<b>💰 Harga Produk</b><br>
+Harga setiap DOC tertera langsung di Google Form pemesanan
+</p>
+
+<hr>
+
+<p>
+<b>📦 Pengiriman Box</b><br>
+Isi 100 + 2 • Pengiriman setiap hari Senin
+</p>
+
+<p>
+<b>🐥 Pembelian Ecer</b><br>
+Minimal 10 DOC • Pengiriman Kamis & Jumat
+</p>
+
+<p>
+<b>🏙️ Jabodetabek COD</b><br>
+Sabtu & Minggu • Bayar di tempat
+</p>
+
+<p>
+<b>🚆 Luar Jabodetabek</b><br>
+Via KAI Logistik (Kalog) & KI8
+</p>
+
+<hr>
+
+<p>
+⚠️ Stok terbatas setiap minggu<br>
+⚠️ Sistem antrian berlaku<br>
+⚠️ Prioritas dari Google Form
+</p>
+
+</div>
+
+<!-- FLOAT WA -->
+<a class="wa" href="https://wa.me/62811542398">
+💬 Chat WA
+</a>
+
+<script>
+
+/* GOOGLE SHEET */
+const SHEET_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml";
+
+const STOK_AWAL = 200;
+
+async function loadData(){
+
+  try{
+
+    const response = await fetch(SHEET_URL);
+    const html = await response.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html,"text/html");
+
+    const rows = doc.querySelectorAll("tbody tr").length;
+
+    document.getElementById("counter").innerHTML =
+    "🔥 " + rows + " orang sudah masuk antrian";
+
+    let sisa = STOK_AWAL - rows;
+
+    if(sisa < 0){
+      sisa = 0;
+    }
+
+    document.getElementById("stok").innerHTML =
+    "⚠️ Sisa stok DOC: " + sisa + " ekor";
+
+  }
+
+  catch(error){
+
+    document.getElementById("counter").innerHTML =
+    "⚠️ Data gagal dimuat";
+
+  }
+
+}
+
+loadData();
+
+setInterval(loadData,10000);
+
+</script>
+
+</body>
+</html>
