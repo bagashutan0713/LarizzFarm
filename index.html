@@ -34,14 +34,22 @@ body{
   filter:drop-shadow(0 0 8px rgba(37,211,102,0.5));
 }
 
+/* STATS */
+.stats{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
 /* BOX */
 .box{
   background:rgba(0,0,0,0.55);
-  display:inline-block;
   padding:15px 20px;
   border-radius:12px;
-  margin-top:10px;
-  max-width:650px;
+  min-width:220px;
+  backdrop-filter:blur(5px);
 }
 
 /* STOCK */
@@ -53,7 +61,7 @@ body{
 /* BUTTON */
 .btn{
   display:inline-block;
-  margin-top:20px;
+  margin-top:25px;
   padding:14px 22px;
   background:#25D366;
   color:white;
@@ -61,6 +69,7 @@ body{
   border-radius:10px;
   font-weight:bold;
   transition:0.3s;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
 
 .btn:hover{
@@ -70,16 +79,36 @@ body{
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:15px;
   padding:20px;
+  max-width:1200px;
+  margin:auto;
 }
 
 /* CARD */
 .card{
   background:rgba(0,0,0,0.55);
   border-radius:12px;
-  padding:20px;
+  overflow:hidden;
+  backdrop-filter:blur(5px);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+/* CARD IMAGE */
+.card img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+}
+
+/* CARD CONTENT */
+.card-content{
+  padding:15px;
 }
 
 /* BADGE */
@@ -89,21 +118,24 @@ body{
   padding:4px 10px;
   border-radius:6px;
   font-size:12px;
+  margin-bottom:8px;
 }
 
-/* TITLE */
+/* CARD TITLE */
 .card h3{
   color:#25D366;
+  margin:5px 0;
 }
 
 /* INFO */
 .info{
-  max-width:700px;
-  margin:20px auto;
+  max-width:800px;
+  margin:30px auto;
   background:rgba(0,0,0,0.55);
-  padding:20px;
+  padding:25px;
   border-radius:12px;
   text-align:left;
+  backdrop-filter:blur(5px);
 }
 
 .info h2{
@@ -130,10 +162,16 @@ hr{
   border-radius:50px;
   font-weight:bold;
   box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  z-index:999;
 }
 
 /* MOBILE */
 @media(max-width:600px){
+
+  .stats{
+    flex-direction:column;
+    align-items:center;
+  }
 
   .grid{
     grid-template-columns:1fr;
@@ -150,31 +188,30 @@ hr{
 
 <body>
 
+<!-- HERO -->
 <div class="hero">
 
 <!-- LOGO -->
 <div class="logo-wrap">
-<img src="logo.png" alt="Larizz Farm">
+  <img src="logo.png" alt="Larizz Farm">
 </div>
 
-<!-- COUNTER -->
-<div class="box">
-📦 Sistem Antrian Real-Time
+<!-- STATS -->
+<div class="stats">
+
+  <div class="box">
+    📦 Sistem Antrian Real-Time
+  </div>
+
+  <div class="box stock" id="counter">
+    🔄 Loading data...
+  </div>
+
+  <div class="box stock" id="stok">
+    🔥 Menghitung stok...
+  </div>
+
 </div>
-
-<br>
-
-<div class="box stock" id="counter">
-🔄 Loading data...
-</div>
-
-<br>
-
-<div class="box stock" id="stok">
-🔥 Menghitung stok...
-</div>
-
-<br>
 
 <!-- BUTTON -->
 <a class="btn"
@@ -188,40 +225,64 @@ target="_blank">
 <!-- KATALOG -->
 <div class="grid">
 
+<!-- SENGKUNI -->
 <div class="card">
-<div class="badge">KAMPUNG</div>
-<h3>Sengkuni</h3>
-<p>Tahan cuaca & cocok pemula</p>
+  <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7">
+  <div class="card-content">
+    <div class="badge">KAMPUNG</div>
+    <h3>Sengkuni</h3>
+    <p>Tahan cuaca & cocok untuk pemula</p>
+  </div>
 </div>
 
+<!-- KUNTARA -->
 <div class="card">
-<div class="badge">FAST GROW</div>
-<h3>Kuntara 4</h3>
-<p>Cepat besar & efisiensi pakan</p>
+  <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
+  <div class="card-content">
+    <div class="badge">FAST GROW</div>
+    <h3>Kuntara 4</h3>
+    <p>Cepat besar & efisiensi pakan</p>
+  </div>
 </div>
 
+<!-- ELBA -->
 <div class="card">
-<div class="badge">PETELUR</div>
-<h3>Elba</h3>
-<p>Produksi telur stabil</p>
+  <img src="https://images.unsplash.com/photo-1596733430284-f7437764b1a9">
+  <div class="card-content">
+    <div class="badge">PETELUR</div>
+    <h3>Elba</h3>
+    <p>Produksi telur stabil & konsisten</p>
+  </div>
 </div>
 
+<!-- BLACK PERMUD -->
 <div class="card">
-<div class="badge">PREMIUM</div>
-<h3>Black Permud 3</h3>
-<p>Nilai jual tinggi</p>
+  <img src="https://images.unsplash.com/photo-1604908177522-040cc0e6f1d4">
+  <div class="card-content">
+    <div class="badge">PREMIUM</div>
+    <h3>Black Permud 3</h3>
+    <p>Nilai jual tinggi & tampilan eksotis</p>
+  </div>
 </div>
 
+<!-- KUB -->
 <div class="card">
-<div class="badge">HEMAT</div>
-<h3>KUB 2</h3>
-<p>Tahan penyakit & hemat pakan</p>
+  <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a">
+  <div class="card-content">
+    <div class="badge">HEMAT</div>
+    <h3>KUB 2</h3>
+    <p>Hemat pakan & tahan penyakit</p>
+  </div>
 </div>
 
+<!-- JOPER -->
 <div class="card">
-<div class="badge">PEDAGING</div>
-<h3>Joper</h3>
-<p>Cepat panen & bobot besar</p>
+  <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b">
+  <div class="card-content">
+    <div class="badge">PEDAGING</div>
+    <h3>Joper</h3>
+    <p>Cepat panen & bobot besar</p>
+  </div>
 </div>
 
 </div>
@@ -233,19 +294,19 @@ target="_blank">
 
 <p>
 <b>💰 Harga Produk</b><br>
-Harga DOC tersedia di Google Form pemesanan
+Harga DOC tersedia langsung di Google Form pemesanan
 </p>
 
 <hr>
 
 <p>
 <b>📦 Pengiriman Box</b><br>
-Isi 100 + 2 • Pengiriman hari Senin
+Isi 100 + 2 • Pengiriman setiap hari Senin
 </p>
 
 <p>
 <b>🐥 Pengiriman Ecer</b><br>
-Minimal 10 DOC • Kamis & Jumat
+Minimal 10 DOC • Pengiriman Kamis & Jumat
 </p>
 
 <p>
@@ -269,7 +330,7 @@ Via Kalog & KI8 • Packing aman
 
 </div>
 
-<!-- WA -->
+<!-- WA FLOAT -->
 <a class="wa"
 href="https://wa.me/62811542398"
 target="_blank">
@@ -278,9 +339,11 @@ target="_blank">
 
 <script>
 
+// GOOGLE SHEETS JSON
 const SHEET_URL =
 "https://docs.google.com/spreadsheets/d/1_Q8go-_XOqYIlZBbuMdVo7vv1LhJiRDLfVzzjzvTwbM/gviz/tq?tqx=out:json";
 
+// STOK AWAL
 const STOK_AWAL = 200;
 
 async function loadData(){
@@ -290,26 +353,25 @@ async function loadData(){
     const response = await fetch(SHEET_URL);
     const text = await response.text();
 
-    // parsing json google
+    // PARSE JSON GOOGLE
     const json = JSON.parse(
       text.substring(47).slice(0,-2)
     );
 
-    // jumlah row
+    // JUMLAH ROW
     const rows = json.table.rows.length;
 
-    // tampilkan counter
+    // COUNTER
     document.getElementById("counter").innerHTML =
       "🔥 " + rows + " orang sudah masuk antrian";
 
-    // hitung stok
+    // STOK
     let sisa = STOK_AWAL - rows;
 
     if(sisa < 0){
       sisa = 0;
     }
 
-    // tampilkan stok
     document.getElementById("stok").innerHTML =
       "⚠️ Sisa stok DOC: " + sisa + " ekor";
 
@@ -324,8 +386,10 @@ async function loadData(){
 
 }
 
+// LOAD
 loadData();
 
+// REFRESH
 setInterval(loadData,10000);
 
 </script>
