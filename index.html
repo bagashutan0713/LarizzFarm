@@ -73,7 +73,16 @@ body::before{
 .btn:hover{
   transform:scale(1.05);
 }
-
+  
+/* STATS */
+.stats{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+  
 @keyframes pulse{
   0%{transform:scale(1);}
   50%{transform:scale(1.05);}
@@ -224,6 +233,8 @@ hr{
 </div>
 
 <!-- ANTRIAN -->
+<div class="stats">
+
 <div class="box">
 📦 Sistem Antrian Real-Time
 </div>
@@ -234,6 +245,8 @@ hr{
 
 <div class="box stock" id="stok">
 🔥 Menghitung stok...
+</div>
+
 </div>
 
 <!-- BUTTON -->
