@@ -278,11 +278,9 @@ target="_blank">
 
 <script>
 
-// LINK GOOGLE SHEETS PUBHTML
 const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml?gid=0&single=true";
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/gviz/tq?tqx=out:json";
 
-// STOK AWAL
 const STOK_AWAL = 200;
 
 async function loadData(){
@@ -290,29 +288,22 @@ async function loadData(){
   try{
 
     const response = await fetch(SHEET_URL);
-    const html = await response.text();
+    const text = await response.text();
 
-    // ubah html menjadi document
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
+    // bersihkan format google
+    const json = JSON.parse(
+      text.substring(47).slice(0, -2)
+    );
 
-    // ambil row tabel
-    const rows = doc.querySelectorAll("table tbody tr");
+    // ambil jumlah row asli
+    const rows = json.table.rows.length;
 
-    // hitung jumlah
-    let jumlah = rows.length;
-
-    // kurangi header
-    if(jumlah > 0){
-      jumlah = jumlah - 1;
-    }
-
-    // tampilkan counter
+    // tampilkan antrian
     document.getElementById("counter").innerHTML =
-      "🔥 " + jumlah + " orang sudah masuk antrian";
+      "🔥 " + rows + " orang sudah masuk antrian";
 
     // hitung stok
-    let sisa = STOK_AWAL - jumlah;
+    let sisa = STOK_AWAL - rows;
 
     if(sisa < 0){
       sisa = 0;
