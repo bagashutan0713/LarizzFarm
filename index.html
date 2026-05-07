@@ -394,48 +394,51 @@ Via KAI Logistik (Kalog) & KI8
 
 <script>
 
+// LINK GOOGLE SHEETS PUBHTML
 const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml";
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml?gid=0&single=true";
 
+// STOK AWAL
 const STOK_AWAL = 200;
 
 async function loadData(){
 
   try{
 
-    // anti cache
-    const url = SHEET_URL + "?t=" + new Date().getTime();
-
-    const response = await fetch(url,{
-      cache:"no-store"
-    });
-
+    const response = await fetch(SHEET_URL);
     const html = await response.text();
 
-    // parsing html google sheet
+    // ubah html menjadi document
     const parser = new DOMParser();
-    const doc = parser.parseFromString(html,"text/html");
+    const doc = parser.parseFromString(html, "text/html");
 
-    // ambil semua baris tbody
-    const rows = doc.querySelectorAll("tbody tr").length;
+    // ambil row tabel
+    const rows = doc.querySelectorAll("table tbody tr");
 
-    // tampilkan antrian
+    // hitung jumlah
+    let jumlah = rows.length;
+
+    // kurangi header
+    if(jumlah > 0){
+      jumlah = jumlah - 1;
+    }
+
+    // tampilkan counter
     document.getElementById("counter").innerHTML =
-      "🔥 " + rows + " orang sudah masuk antrian";
+      "🔥 " + jumlah + " orang sudah masuk antrian";
 
     // hitung stok
-    let sisa = STOK_AWAL - rows;
+    let sisa = STOK_AWAL - jumlah;
 
     if(sisa < 0){
       sisa = 0;
     }
 
+    // tampilkan stok
     document.getElementById("stok").innerHTML =
       "⚠️ Sisa stok DOC: " + sisa + " ekor";
 
-  }
-
-  catch(error){
+  }catch(error){
 
     document.getElementById("counter").innerHTML =
       "⚠️ Data gagal dimuat";
@@ -444,11 +447,11 @@ async function loadData(){
 
 }
 
-// pertama load
+// pertama kali load
 loadData();
 
-// refresh tiap 5 detik
-setInterval(loadData,5000);
+// refresh tiap 10 detik
+setInterval(loadData, 10000);
 
 </script>
 
