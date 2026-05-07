@@ -394,7 +394,6 @@ Via KAI Logistik (Kalog) & KI8
 
 <script>
 
-/* GOOGLE SHEET */
 const SHEET_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml";
 
@@ -404,17 +403,27 @@ async function loadData(){
 
   try{
 
-    const response = await fetch(SHEET_URL);
+    // anti cache
+    const url = SHEET_URL + "?t=" + new Date().getTime();
+
+    const response = await fetch(url,{
+      cache:"no-store"
+    });
+
     const html = await response.text();
 
+    // parsing html google sheet
     const parser = new DOMParser();
     const doc = parser.parseFromString(html,"text/html");
 
+    // ambil semua baris tbody
     const rows = doc.querySelectorAll("tbody tr").length;
 
+    // tampilkan antrian
     document.getElementById("counter").innerHTML =
-    "🔥 " + rows + " orang sudah masuk antrian";
+      "🔥 " + rows + " orang sudah masuk antrian";
 
+    // hitung stok
     let sisa = STOK_AWAL - rows;
 
     if(sisa < 0){
@@ -422,22 +431,24 @@ async function loadData(){
     }
 
     document.getElementById("stok").innerHTML =
-    "⚠️ Sisa stok DOC: " + sisa + " ekor";
+      "⚠️ Sisa stok DOC: " + sisa + " ekor";
 
   }
 
   catch(error){
 
     document.getElementById("counter").innerHTML =
-    "⚠️ Data gagal dimuat";
+      "⚠️ Data gagal dimuat";
 
   }
 
 }
 
+// pertama load
 loadData();
 
-setInterval(loadData,10000);
+// refresh tiap 5 detik
+setInterval(loadData,5000);
 
 </script>
 
