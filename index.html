@@ -233,20 +233,14 @@ hr{
 </div>
 
 <!-- ANTRIAN -->
-<div class="stats">
-
-<div class="box">
-📦 Sistem Antrian Real-Time
-</div>
-
 <div class="box stock" id="counter">
-🔄 Loading data...
+🔄 Loading pembeli...
 </div>
 
-<div class="box stock" id="stok">
-🔥 Menghitung stok...
+<div class="box stock" id="doc">
+🔄 Loading DOC...
 </div>
-
+  
 </div>
 
 <!-- BUTTON -->
@@ -361,46 +355,65 @@ target="_blank">
 <script>
 
 const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/1_Q8go-_XOqYIlZBbuMdVo7vv1LhJiRDLfVzzjzvTwbM/gviz/tq?tqx=out:json";
-
-const STOK_AWAL = 200;
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml";
 
 async function loadData(){
 
   try{
 
-    const response = await fetch(SHEET_URL);
-    const text = await response.text();
+    const url = SHEET_URL + "?t=" + new Date().getTime();
 
-    // parsing json google
-    const json = JSON.parse(
-      text.substring(47).slice(0,-2)
-    );
+    const response = await fetch(url,{
+      cache:"no-store"
+    });
 
-    // jumlah row
-    const rows = json.table.rows.length;
+    const html = await response.text();
 
-    // tampilkan counter
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html,"text/html");
+
+    const rows = doc.querySelectorAll("tbody tr");
+
+    // TOTAL PEMBELI
+    const totalPembeli = rows.length;
+
+    // TOTAL DOC
+    let totalDOC = 0;
+
+    rows.forEach(row => {
+
+      const cells = row.querySelectorAll("td");
+
+      // ECER
+      const ecerText = cells[5]?.innerText || "0";
+      const ecer = parseInt(ecerText);
+
+      if(!isNaN(ecer)){
+        totalDOC += ecer;
+      }
+
+      // BOX
+      const boxText = cells[7]?.innerText || "";
+
+      if(boxText.includes("Box")){
+        totalDOC += 102;
+      }
+
+    });
+
+    // TAMPILKAN
     document.getElementById("counter").innerHTML =
-      "🔥 " + rows + " orang sudah masuk antrian";
+      "🔥 Sudah dipercaya " + totalPembeli + " pembeli";
 
-    // hitung stok
-    let sisa = STOK_AWAL - rows;
+    document.getElementById("doc").innerHTML =
+      "🐥 Total DOC terjual: " + totalDOC + " ekor";
 
-    if(sisa < 0){
-      sisa = 0;
-    }
+  }
 
-    // tampilkan stok
-    document.getElementById("stok").innerHTML =
-      "⚠️ Sisa stok DOC: " + sisa + " ekor";
-
-  }catch(error){
-
-    console.log(error);
+  catch(error){
 
     document.getElementById("counter").innerHTML =
-      "⚠️ Data gagal dimuat";
+      "⚠️ Data sedang diperbarui";
 
   }
 
@@ -408,7 +421,7 @@ async function loadData(){
 
 loadData();
 
-setInterval(loadData,10000);
+setInterval(loadData,5000);
 
 </script>
 
