@@ -3,60 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Larizz Farm</title>
 
 <style>
 
+/* =========================
+   BODY
+========================= */
+
 body{
   margin:0;
-  font-family:Arial, sans-serif;
-  background:url('background.png');
-  background-size:cover;
-  background-position:center;
-  background-attachment:fixed;
+  font-family:Arial,sans-serif;
+  background:url('background.png') center/cover fixed;
   color:white;
   text-align:center;
+  overflow-x:hidden;
 }
 
-/* OVERLAY */
 body::before{
   content:"";
   position:fixed;
-  inset:0;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
   background:rgba(0,0,0,0.45);
   z-index:-1;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
+
 .hero{
   padding:30px 20px;
 }
 
-/* LOGO */
 .logo-wrap img{
-  width:170px;
-  filter:drop-shadow(0 0 10px rgba(37,211,102,0.5));
+  width:140px;
+  filter:drop-shadow(0 0 10px rgba(37,211,102,0.6));
 }
 
-/* BOX */
-.box{
+.title-box{
   background:rgba(0,0,0,0.55);
-  display:inline-block;
-  padding:15px 25px;
-  border-radius:14px;
-  margin-top:12px;
+  padding:20px;
+  border-radius:16px;
+  max-width:700px;
+  margin:15px auto;
   backdrop-filter:blur(5px);
 }
 
-/* STOCK */
-.stock {
-  font-size: 22px;
-  color: #ffeb3b;
-  display:block;
+.title-box h1{
+  margin:0;
+  color:#25D366;
 }
 
-/* COUNTER WRAP */
-.counter-wrap{
+/* HERO FLEX */
+
+.hero-flex{
   display:flex;
   justify-content:center;
   gap:15px;
@@ -64,17 +69,67 @@ body::before{
   margin-top:15px;
 }
 
-/* BUTTON */
+/* TITLE */
+
+.title-box{
+  background:rgba(0,0,0,0.55);
+  display:inline-block;
+  padding:20px 30px;
+  border-radius:18px;
+  margin-top:15px;
+  backdrop-filter:blur(5px);
+}
+
+.title-box h1{
+  margin:0;
+  color:#25D366;
+}
+
+/* HARGA */
+
+.harga-box{
+  margin-top:18px;
+}
+
+/* =========================
+   INFO BOX
+========================= */
+
+.box{
+  background:rgba(0,0,0,0.55);
+  display:inline-block;
+  padding:15px 20px;
+  border-radius:14px;
+  margin-top:12px;
+  backdrop-filter:blur(5px);
+}
+
+.stats{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.stock{
+  color:#ffeb3b;
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
 .btn{
   display:inline-block;
   margin-top:20px;
-  padding:16px 28px;
+  padding:14px 24px;
   background:#25D366;
   color:white;
   text-decoration:none;
   border-radius:12px;
   font-weight:bold;
-  font-size:20px;
   transition:0.3s;
   animation:pulse 1.5s infinite;
 }
@@ -82,53 +137,48 @@ body::before{
 .btn:hover{
   transform:scale(1.05);
 }
-  
-/* STATS */
-.stats{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-  margin-top:20px;
-}
-  
+
 @keyframes pulse{
   0%{transform:scale(1);}
   50%{transform:scale(1.05);}
   100%{transform:scale(1);}
 }
 
-/* GRID */
+/* =========================
+   GRID
+========================= */
+
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:20px;
   padding:20px;
-  max-width:1200px;
+  max-width:1100px;
   margin:auto;
 }
 
-/* RESPONSIVE */
-@media(max-width:900px){
+@media(max-width:768px){
   .grid{
     grid-template-columns:repeat(2,1fr);
   }
 }
 
-@media(max-width:600px){
+@media(max-width:500px){
   .grid{
     grid-template-columns:1fr;
   }
 }
 
-/* CARD */
+/* =========================
+   CARD
+========================= */
+
 .card{
   background:rgba(0,0,0,0.55);
-  border-radius:15px;
+  border-radius:16px;
   overflow:hidden;
-  backdrop-filter:blur(5px);
   transition:0.3s;
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  backdrop-filter:blur(5px);
 }
 
 .card:hover{
@@ -137,43 +187,44 @@ body::before{
 
 .card img{
   width:100%;
-  height:220px;
+  height:190px;
   object-fit:cover;
 }
 
-/* CARD CONTENT */
 .card-content{
   padding:15px;
 }
 
 .badge{
   background:#25D366;
-  display:inline-block;
   padding:5px 10px;
-  font-size:12px;
   border-radius:8px;
-  margin-bottom:10px;
-  font-weight:bold;
+  font-size:12px;
+  display:inline-block;
+  margin-bottom:8px;
 }
 
 .card h3{
   margin:5px 0;
   color:#25D366;
-  font-size:30px;
 }
 
 .card p{
-  font-size:18px;
+  font-size:14px;
   line-height:1.5;
 }
 
-/* INFO */
+/* =========================
+   INFO SECTION
+========================= */
+
 .info{
   max-width:850px;
-  margin:30px auto;
+  margin:25px auto;
   background:rgba(0,0,0,0.55);
   padding:25px;
   border-radius:16px;
+  text-align:center;
   backdrop-filter:blur(5px);
 }
 
@@ -185,44 +236,49 @@ hr{
   border:none;
   height:1px;
   background:rgba(255,255,255,0.2);
-  margin:15px 0;
+  margin:20px 0;
 }
 
-/* TESTIMONI */
-.testi-wrap{
+/* =========================
+   TESTIMONI
+========================= */
+
+.testimonial{
   overflow:hidden;
+  margin:40px auto;
   max-width:1000px;
-  margin:30px auto;
 }
 
-.testi-slider{
+.slide-track{
   display:flex;
-  gap:20px;
   width:max-content;
-  animation:slide 18s linear infinite;
+  animation:scroll 25s linear infinite;
 }
 
 .testi{
+  min-width:250px;
+  margin:10px;
+  padding:15px;
+  border-radius:12px;
   background:rgba(0,0,0,0.55);
-  padding:20px;
-  border-radius:15px;
-  min-width:280px;
-  backdrop-filter:blur(5px);
 }
 
-@keyframes slide{
+@keyframes scroll{
   0%{transform:translateX(0);}
   100%{transform:translateX(-50%);}
 }
 
-/* FLOAT WA */
+/* =========================
+   FLOAT WA
+========================= */
+
 .wa{
   position:fixed;
   bottom:20px;
   right:20px;
   background:#25D366;
   color:white;
-  padding:15px 18px;
+  padding:14px 18px;
   border-radius:50px;
   text-decoration:none;
   font-weight:bold;
@@ -234,159 +290,325 @@ hr{
 
 <body>
 
+<!-- =========================
+     HERO
+========================= -->
+
 <div class="hero">
 
 <!-- LOGO -->
-<div class="counter-wrap">
+<div class="logo-wrap">
+<img src="logo.png" alt="Larizz Farm">
+</div>
 
-  <div class="box stock" id="counter">
-    🔄 Loading pembeli...
-  </div>
+<!-- JUDUL -->
+<div class="title-box">
+<h1>🐔 Larizz Farm</h1>
+<p>Supplier DOC Ayam Kampung • Siap Kirim Pulau Jawa</p>
+</div>
 
-  <div class="box stock" id="doc">
-    🔄 Loading DOC...
-  </div>
+<!-- BOX SAMPINGAN -->
+<div class="stats">
+
+<div class="box stock" id="counter">
+🔄 Loading data...
+</div>
+
+<div class="box stock" id="doc">
+🐥 Menghitung DOC...
+</div>
 
 </div>
-  
-<!-- BUTTON -->
-<br>
 
+<!-- HARGA -->
+<div class="box harga-box">
+💰 Harga DOC mulai 13rb<br>
+📦 Harga BOX mulai 850rb
+</div>
+
+<!-- BUTTON -->
+<div>
 <a class="btn"
 href="https://docs.google.com/forms/d/e/1FAIpQLScLEeD-S4K6UvEe5KLiWUR0lI3nZEwkvdDyB1ZcxzBSs1IWGg/viewform"
 target="_blank">
-📝 Pesan DOC Sekarang
+📝 Lihat Harga & Pesan
 </a>
+</div>
 
 </div>
 
-<!-- KATALOG -->
+<!-- =========================
+     KATALOG
+========================= -->
+
+<h2>🐥 Katalog DOC</h2>
+
 <div class="grid">
 
-<!-- SENGKUNI -->
 <div class="card">
 <img src="sengkuni.png">
 <div class="card-content">
-<div class="badge">KAMPUNG</div>
+<span class="badge">KAMPUNG</span>
 <h3>Sengkuni</h3>
-<p>Tahan cuaca & cocok untuk pemula</p>
+<p>Tahan cuaca & cocok pemula</p>
 </div>
 </div>
 
-<!-- KUNTARA -->
 <div class="card">
 <img src="kuntara.png">
 <div class="card-content">
-<div class="badge">FAST GROW</div>
+<span class="badge">FAST GROW</span>
 <h3>Kuntara 4</h3>
-<p>Cepat besar & efisiensi pakan</p>
+<p>Pertumbuhan cepat & efisien</p>
 </div>
 </div>
 
-<!-- ELBA -->
 <div class="card">
 <img src="elba.png">
 <div class="card-content">
-<div class="badge">PETELUR</div>
+<span class="badge">PETELUR</span>
 <h3>Elba</h3>
-<p>Produksi telur stabil & konsisten</p>
+<p>Produksi telur stabil</p>
 </div>
 </div>
 
-<!-- BLACK -->
 <div class="card">
-<img src="black.png">
+<img src="blackpermud.png">
 <div class="card-content">
-<div class="badge">PREMIUM</div>
+<span class="badge">PREMIUM</span>
 <h3>Black Permud 3</h3>
-<p>Nilai jual tinggi & tampilan eksotis</p>
+<p>Nilai jual tinggi</p>
 </div>
 </div>
 
-<!-- KUB -->
 <div class="card">
 <img src="kub.png">
 <div class="card-content">
-<div class="badge">HEMAT</div>
+<span class="badge">HEMAT</span>
 <h3>KUB 2</h3>
 <p>Hemat pakan & tahan penyakit</p>
 </div>
 </div>
 
-<!-- JOPER -->
 <div class="card">
 <img src="joper.png">
 <div class="card-content">
-<div class="badge">PEDAGING</div>
+<span class="badge">PEDAGING</span>
 <h3>Joper</h3>
 <p>Cepat panen & bobot besar</p>
 </div>
 </div>
-  
+
 </div>
+
+<!-- =========================
+     PENGIRIMAN
+========================= -->
+
+<div class="info">
+
+<h2>🚚 Info Pemesanan & Pengiriman</h2>
+
+<hr>
+
+<p>
+📦 BOX → Pengiriman Hari Senin
+</p>
+
+<p>
+🐥 ECER → Minimal 10 DOC
+(Kamis & Jumat)
+</p>
+
+<p>
+🏙️ Jabodetabek → COD
+(Sabtu & Minggu)
+</p>
+
+<p>
+🚆 Luar Jabodetabek → Kalog & KI8
+</p>
+
+<p>
+📍 Pengiriman melayani kota di Pulau Jawa
+yang memiliki outlet KAI Logistik (Kalog)
+</p>
+
+<hr>
+
+<p>
+⚠️ Sistem antrian berlaku<br>
+Prioritas untuk yang sudah isi Google Form
+</p>
+
+</div>
+
+<!-- =========================
+     TESTIMONI
+========================= -->
+
+<h2>⭐ Testimoni Pembeli</h2>
+
+<div class="testimonial">
+
+<div class="slide-track">
+
+<div class="testi">
+⭐⭐⭐⭐⭐<br>
+"DOC sehat & aktif"<br>
+— Bekasi
+</div>
+
+<div class="testi">
+⭐⭐⭐⭐⭐<br>
+"Packing aman & rapi"<br>
+— Bogor
+</div>
+
+<div class="testi">
+⭐⭐⭐⭐⭐<br>
+"Admin fast respon"<br>
+— Depok
+</div>
+
+<div class="testi">
+⭐⭐⭐⭐⭐<br>
+"DOC sampai sehat"<br>
+— Tangerang
+</div>
+
+<div class="testi">
+⭐⭐⭐⭐⭐<br>
+"Repeat order terus"<br>
+— Bandung
+</div>
+
+<div class="testi">
+⭐⭐⭐⭐⭐<br>
+"Pengiriman cepat"<br>
+— Jakarta
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+     CTA AKHIR
+========================= -->
+
+<a class="btn"
+href="https://docs.google.com/forms/d/e/1FAIpQLScLEeD-S4K6UvEe5KLiWUR0lI3nZEwkvdDyB1ZcxzBSs1IWGg/viewform"
+target="_blank">
+🔥 Masuk Antrian Sekarang
+</a>
+
+<br><br><br>
+
+<!-- =========================
+     FLOAT WA
+========================= -->
+
+<a class="wa"
+href="https://wa.me/62811542398"
+target="_blank">
+💬 Chat WA
+</a>
+
+<!-- =========================
+     SCRIPT COUNTER
+========================= -->
 
 <script>
 
 const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTTgOzgy0TYrM4hMU0Vd5vi6rv4eyTWuz_Gelhz37c9XN7ZCmSi26ig4yIfRIgnF64VHwxvjd22Hnbl/pubhtml";
+"https://opensheet.elk.sh/17ESzewHNIp83zI_Xq1mLvwY6aXZV75v_NwvedPH00eU/Form%20Responses";
 
 async function loadData(){
 
   try{
 
-    const url = SHEET_URL + "?t=" + new Date().getTime();
+    const res = await fetch(SHEET_URL);
+    const data = await res.json();
 
-    const response = await fetch(url,{
-      cache:"no-store"
-    });
-
-    const html = await response.text();
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html,"text/html");
-
-    const rows = doc.querySelectorAll("tbody tr");
-
+    // =====================
     // TOTAL PEMBELI
-    const totalPembeli = rows.length;
+    // =====================
 
+    const totalPembeli = data.length;
+
+    document.getElementById("counter").innerHTML =
+      "🔥 " + totalPembeli + " orang sudah pesan";
+
+
+    // =====================
     // TOTAL DOC
+    // =====================
+
     let totalDOC = 0;
 
-    rows.forEach(row => {
+data.forEach(item => {
 
-      const cells = row.querySelectorAll("td");
+  Object.values(item).forEach(value => {
 
-      // ECER
-      const ecerText = cells[5]?.innerText || "0";
-      const ecer = parseInt(ecerText);
+    if(!value) return;
 
-      if(!isNaN(ecer)){
-        totalDOC += ecer;
+    const text = value.toString().toUpperCase();
+
+    // =====================
+    // BOX
+    // =====================
+
+    if(text.includes("1 BOX")) totalDOC += 100;
+    if(text.includes("2 BOX")) totalDOC += 200;
+    if(text.includes("3 BOX")) totalDOC += 300;
+    if(text.includes("4 BOX")) totalDOC += 400;
+    if(text.includes("5 BOX")) totalDOC += 500;
+
+    // =====================
+    // ECER
+    // =====================
+
+    const angka = parseInt(text);
+
+    if(!isNaN(angka)){
+
+      if(
+        angka == 10 ||
+        angka == 20 ||
+        angka == 30 ||
+        angka == 40 ||
+        angka == 50 ||
+        angka == 60 ||
+        angka == 70 ||
+        angka == 80 ||
+        angka == 90
+      ){
+
+        totalDOC += angka;
+
       }
 
-      // BOX
-      const boxText = cells[7]?.innerText || "";
+    }
 
-      if(boxText.includes("Box")){
-        totalDOC += 102;
-      }
+  });
 
-    });
-
-    // TAMPILKAN
-    document.getElementById("counter").innerHTML =
-      "🔥 Sudah dipercaya " + totalPembeli + " pembeli";
+});
 
     document.getElementById("doc").innerHTML =
-      "🐥 Total DOC terjual: " + totalDOC + " ekor";
+      "🐥 " + totalDOC + " DOC sudah terjual";
 
   }
 
   catch(error){
 
+    console.log(error);
+
     document.getElementById("counter").innerHTML =
-      "⚠️ Data sedang diperbarui";
+      "⚠️ Data gagal dimuat";
+
+    document.getElementById("doc").innerHTML =
+      "⚠️ DOC gagal dimuat";
 
   }
 
@@ -394,89 +616,9 @@ async function loadData(){
 
 loadData();
 
-setInterval(loadData,5000);
+setInterval(loadData,10000);
 
 </script>
 
-  <!-- INFO -->
-<div class="info">
-
-<h2>📦 INFO PEMESANAN & PENGIRIMAN</h2>
-
-<p>
-<b>💰 Harga Produk</b><br>
-Harga setiap DOC tertera langsung di Google Form pemesanan
-</p>
-
-<hr>
-
-<p>
-<b>📦 Pengiriman Box</b><br>
-Isi 100 + 2 • Pengiriman setiap hari Senin
-</p>
-
-<p>
-<b>🐥 Pembelian Ecer</b><br>
-Minimal 10 DOC • Pengiriman Kamis & Jumat
-</p>
-
-<p>
-<b>🏙️ Jabodetabek COD</b><br>
-Sabtu & Minggu • Bayar di tempat
-</p>
-
-<p>
-<b>🚆 Luar Jabodetabek</b><br>
-Via KAI Logistik (Kalog) & KI8
-</p>
-
-<hr>
-
-<p>
-⚠️ Stok terbatas setiap minggu<br>
-⚠️ Sistem antrian berlaku<br>
-⚠️ Prioritas dari Google Form
-</p>
-
-</div>
-
-  <!-- TESTIMONI -->
-<div class="testi-wrap">
-
-<div class="testi-slider">
-
-<div class="testi">
-⭐⭐⭐⭐⭐<br><br>
-“DOC sehat & pengiriman aman sampai tujuan”
-<br><br>— Bagas, Bekasi
-</div>
-
-<div class="testi">
-⭐⭐⭐⭐⭐<br><br>
-“Sudah repeat order beberapa kali”
-<br><br>— Fariz, Bogor
-</div>
-
-<div class="testi">
-⭐⭐⭐⭐⭐<br><br>
-“Packing rapi & admin fast respon”
-<br><br>— Dedi, Bandung
-</div>
-
-<div class="testi">
-⭐⭐⭐⭐⭐<br><br>
-“DOC aktif & pertumbuhan bagus”
-<br><br>— Rian, Tangerang
-</div>
-
-</div>
-
-</div>
-
-<!-- FLOAT WA -->
-<a class="wa" href="https://wa.me/62811542398">
-💬 Chat WA
-</a>
-  
 </body>
 </html>
