@@ -557,104 +557,73 @@ target="_blank">
 
 <script>
 
-const SHEET_URL =
-"https://opensheet.elk.sh/17ESzewHNIp83zI_Xq1mLvwY6aXZV75v_NwvedPH00eU/Form%20Responses";
+// 1. MEMPERBAIKI NAMA TAB MENJADI Form_Responses
+const SHEET_URL = "https://opensheet.elk.sh/17ESzewHNIp83zI_Xq1mLvwY6aXZV75v_NwvedPH00eU/Form_Responses";
 
 async function loadData(){
-
   try{
-
     const res = await fetch(SHEET_URL);
     const data = await res.json();
 
     // =====================
     // TOTAL PEMBELI
     // =====================
-
     const totalPembeli = data.length;
-
-    document.getElementById("counter").innerHTML =
-      "🔥 " + totalPembeli + " orang sudah pesan";
-
+    document.getElementById("counter").innerHTML = "🔥 " + totalPembeli + " orang sudah pesan";
 
     // =====================
     // TOTAL DOC
     // =====================
-
     let totalDOC = 0;
 
-data.forEach(item => {
+    data.forEach(item => {
+      // Kita langsung tembak nama kolomnya berdasarkan struktur Google Form Anda
+      
+      // A. PENYARINGAN UTK KOLOM BOX (Kolom M dan N di Sheet)
+      // Kita ambil properti yang mengandung kata 'BOX' di judul kolomnya
+      Object.keys(item).forEach(key => {
+        const kolomKunci = key.toUpperCase();
+        const isiData = item[key] ? item[key].toString().toUpperCase() : "";
 
-  Object.values(item).forEach(value => {
+        if(kolomKunci.includes("BOX")) {
+          if(isiData.includes("1 BOX")) totalDOC += 100;
+          if(isiData.includes("2 BOX")) totalDOC += 200;
+          if(isiData.includes("3 BOX")) totalDOC += 300;
+          if(isiData.includes("4 BOX")) totalDOC += 400;
+          if(isiData.includes("5 BOX")) totalDOC += 500;
+        } 
+        
+        // B. PENYARINGAN UTK KOLOM ECERAN (Kolom O dan P di Sheet)
+        // Yaitu kolom yang judulnya mengandung kata 'JUMLAH PESANAN' tapi BUKAN BOX
+        else if(kolomKunci.includes("JUMLAH PESANAN") || kolomKunci.includes("ECER")) {
+          // Pastikan data tersebut murni angka dan bukan teks kosong / teks 'BOX'
+          if(!isiData.includes("BOX") && isiData !== "") {
+            const angkaEcer = parseInt(isiData);
+            if(!isNaN(angkaEcer) && angkaEcer > 0 && angkaEcer < 100) {
+              totalDOC += angkaEcer;
+            }
+          }
+        }
+      });
+    });
 
-    if(!value) return;
-
-    const text = value.toString().toUpperCase();
-
-    // =====================
-    // BOX
-    // =====================
-
-    if(text.includes("1 BOX")) totalDOC += 100;
-    if(text.includes("2 BOX")) totalDOC += 200;
-    if(text.includes("3 BOX")) totalDOC += 300;
-    if(text.includes("4 BOX")) totalDOC += 400;
-    if(text.includes("5 BOX")) totalDOC += 500;
-
-    // =====================
-    // ECER
-    // =====================
-
-    const angka = parseInt(text);
-
-    if(!isNaN(angka)){
-
-      if(
-        angka == 10 ||
-        angka == 20 ||
-        angka == 30 ||
-        angka == 40 ||
-        angka == 50 ||
-        angka == 60 ||
-        angka == 70 ||
-        angka == 80 ||
-        angka == 90
-      ){
-
-        totalDOC += angka;
-
-      }
-
-    }
-
-  });
-
-});
-
-    document.getElementById("doc").innerHTML =
-      "🐥 " + totalDOC + " DOC sudah terjual";
+    document.getElementById("doc").innerHTML = "🐥 " + totalDOC.toLocaleString('id-ID') + " DOC sudah terjual";
 
   }
-
   catch(error){
-
     console.log(error);
-
-    document.getElementById("counter").innerHTML =
-      "⚠️ Data gagal dimuat";
-
-    document.getElementById("doc").innerHTML =
-      "⚠️ DOC gagal dimuat";
-
+    document.getElementById("counter").innerHTML = "⚠️ Data gagal dimuat";
+    document.getElementById("doc").innerHTML = "⚠️ DOC gagal dimuat";
   }
-
 }
 
+// Jalankan fungsi saat web dibuka
 loadData();
 
-setInterval(loadData,10000);
+// Cek update otomatis setiap 10 detik
+setInterval(loadData, 10000);
 
 </script>
-
+   
 </body>
 </html>
