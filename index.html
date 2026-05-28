@@ -572,26 +572,15 @@ data.forEach(item => {
     // ECER
     // =====================
 
-    const angka = parseInt(text);
+    const match = text.match(/\d+/g);
 
-    if(!isNaN(angka)){
-
-      if(
-        angka == 10 ||
-        angka == 20 ||
-        angka == 30 ||
-        angka == 40 ||
-        angka == 50 ||
-        angka == 60 ||
-        angka == 70 ||
-        angka == 80 ||
-        angka == 90
-      ){
-
-        totalDOC += angka;
-
-      }
-
+    if(match){
+      match.forEach(num => {
+        const angka = parseInt(num);
+        if(!isNaN(angka)){
+          totalDOC += angka;
+        }
+      });
     }
 
   });
