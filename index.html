@@ -576,27 +576,35 @@ data.forEach(item => {
 
     if(!isNaN(angka)){
 
-      // =====================
-// ECER (FIX)
-// =====================
+     // =====================
+    // ECER
+    // =====================
 
-const match = text.match(/\d+/g);
+    const angka = parseInt(text);
 
-if(match){
+    if(!isNaN(angka)){
 
-  match.forEach(num => {
+      if(
+        angka == 10 ||
+        angka == 20 ||
+        angka == 30 ||
+        angka == 40 ||
+        angka == 50 ||
+        angka == 60 ||
+        angka == 70 ||
+        angka == 80 ||
+        angka == 90
+      ){
 
-    const angka = parseInt(num);
+        totalDOC += angka;
 
-    // batasi biar ga bentrok sama BOX
-    if(angka > 0 && angka <= 200){
-      totalDOC += angka;
+      }
+
     }
 
   });
 
-}
-
+});
     
     document.getElementById("doc").innerHTML =
       "🐥 " + totalDOC + " DOC sudah terjual";
