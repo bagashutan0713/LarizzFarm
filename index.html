@@ -569,31 +569,34 @@ data.forEach(item => {
     if(text.includes("5 BOX")) totalDOC += 500;
 
     // =====================
-    // TOTAL DOC ECERAN
+    // ECER
     // =====================
-    let totalDOC = 0;
 
-    data.forEach(item => {
-      Object.values(item).forEach(value => {
-        if (!value) return;
+    const angka = parseInt(text);
 
-        // Ubah teks ke string dan bersihkan spasi
-        const text = value.toString().trim();
+    if(!isNaN(angka)){
 
-        // Ambil HANYA karakter angka dari dalam teks (misal: "10 ekor" menjadi "10")
-        const angkaBersih = text.replace(/[^0-9]/g, '');
+      if(
+        angka == 10 ||
+        angka == 20 ||
+        angka == 30 ||
+        angka == 40 ||
+        angka == 50 ||
+        angka == 60 ||
+        angka == 70 ||
+        angka == 80 ||
+        angka == 90
+      ){
 
-        // Jika ditemukan angka, konversi dan tambahkan ke total
-        if (angkaBersih !== '') {
-          const jumlahEcer = parseInt(angkaBersih);
-          
-          // Memastikan angka yang masuk adalah angka valid di atas 0
-          if (jumlahEcer > 0) {
-            totalDOC += jumlahEcer;
-          }
-        }
-      });
-    });
+        totalDOC += angka;
+
+      }
+
+    }
+
+  });
+
+});
 
     document.getElementById("doc").innerHTML =
       "🐥 " + totalDOC + " DOC sudah terjual";
