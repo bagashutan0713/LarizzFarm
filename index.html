@@ -569,28 +569,32 @@ data.forEach(item => {
     if(text.includes("5 BOX")) totalDOC += 500;
 
     // =====================
-// ECER FINAL FIX
-// =====================
+    // ECER
+    // =====================
 
-const ecerFields = [
-  item["JUMLAH PESANAN"],
-  item["JUMLAH PESANAN COD"]
-];
+    const angka = parseInt(text);
 
-ecerFields.forEach(val => {
+    if(!isNaN(angka)){
 
-  if(!val) return;
+      if(
+        angka == 10 ||
+        angka == 20 ||
+        angka == 30 ||
+        angka == 40 ||
+        angka == 50 ||
+        angka == 60 ||
+        angka == 70 ||
+        angka == 80 ||
+        angka == 90
+      ){
 
-  let text = val.toString().toUpperCase();
+        totalDOC += angka;
 
-  // 🔥 PERBAIKI 1O JADI 10
-  text = text.replace(/O/g, "0");
+      }
 
-  const angka = parseInt(text);
+    }
 
-  if(!isNaN(angka)){
-    totalDOC += angka;
-  }
+  });
 
 });
 
