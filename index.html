@@ -569,26 +569,35 @@ data.forEach(item => {
     if(text.includes("5 BOX")) totalDOC += 500;
 
     // =====================
-  // ECER
-  // =====================
+    // ECER
+    // =====================
 
-  const ecer1 = item["Jumlah Pesanan (Ecer)"];
-  const ecer2 = item["Jumlah Pesanan (Ecer COD)"];
-
-  [ecer1, ecer2].forEach(val => {
-
-    if(!val) return;
-
-    const angka = parseInt(val);
+    const angka = parseInt(text);
 
     if(!isNaN(angka)){
-      totalDOC += angka;
+
+      if(
+        angka == 10 ||
+        angka == 20 ||
+        angka == 30 ||
+        angka == 40 ||
+        angka == 50 ||
+        angka == 60 ||
+        angka == 70 ||
+        angka == 80 ||
+        angka == 90
+      ){
+
+        totalDOC += angka;
+
+      }
+
     }
 
   });
 
 });
-   
+
     document.getElementById("doc").innerHTML =
       "🐥 " + totalDOC + " DOC sudah terjual";
 
