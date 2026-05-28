@@ -569,24 +569,26 @@ data.forEach(item => {
     if(text.includes("5 BOX")) totalDOC += 500;
 
     // =====================
-    // ECER
-    // =====================
+  // ECER
+  // =====================
 
-    const match = text.match(/\d+/g);
+  const ecer1 = item["Jumlah Pesanan (Ecer)"];
+  const ecer2 = item["Jumlah Pesanan (Ecer COD)"];
 
-    if(match){
-      match.forEach(num => {
-        const angka = parseInt(num);
-        if(!isNaN(angka)){
-          totalDOC += angka;
-        }
-      });
+  [ecer1, ecer2].forEach(val => {
+
+    if(!val) return;
+
+    const angka = parseInt(val);
+
+    if(!isNaN(angka)){
+      totalDOC += angka;
     }
 
   });
 
 });
-
+   
     document.getElementById("doc").innerHTML =
       "🐥 " + totalDOC + " DOC sudah terjual";
 
