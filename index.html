@@ -151,8 +151,9 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
   <section class="bg-white border-b border-ivory-300 py-6 sm:py-8">
     <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
       
+      <!-- Brand & Circular Rooster Logo from Poster -->
       <div class="flex items-center gap-4 text-center md:text-left">
-        <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-gold-300 via-gold-400 to-gold-600 p-1 shadow-luxe flex-shrink-0">
+        <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-gold-300 via-gold-400 to-gold-600 p-1 shadow-luxe shrink-0">
           <div class="w-full h-full rounded-full bg-white flex items-center justify-center border-2 border-brand-900">
             <svg class="w-10 h-10 text-brand-900" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="24" cy="24" r="22" fill="#FAF9F6"/>
@@ -184,6 +185,7 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
         </div>
       </div>
 
+      <!-- Poster Main Badge: "Pilih Umur, Siap Pelihara!" -->
       <div class="text-center md:text-right">
         <div class="inline-block bg-brand-900 text-white px-6 py-3 rounded-2xl border-2 border-gold-400 shadow-luxe">
           <p class="text-[11px] font-bold tracking-widest text-gold-300 uppercase">Ayam Dwiguna Generasi Ke-2</p>
@@ -196,28 +198,29 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
     </div>
   </section>
 
-  <!-- HERO SECTION -->
+  <!-- HERO INTRODUCING AYAM KUBATA -->
   <section class="py-10 sm:py-14 bg-gradient-to-b from-white to-ivory-100 border-b border-ivory-300">
     <div class="max-w-5xl mx-auto px-4 text-center">
       
       <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-100 border border-gold-300 text-brand-950 font-bold text-xs shadow-sm mb-4">
         <i data-lucide="sparkles" class="w-4 h-4 text-gold-600"></i>
-        <span>KUB-2 Janaka — Bibit Ayam Dwiguna dengan Skema Harga Bertingkat</span>
+        <span>KUB-2 Janaka — Skema Harga Bertingkat Sesuai Jumlah Ekor</span>
       </span>
 
       <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-900 font-serif max-w-3xl mx-auto leading-tight text-balance">
-        Ternak Mudah, Hasil Maksimal dengan Skema Harga Transparan
+        Ternak Mudah, Hasil Maksimal dengan Bibit KUBATA Unggulan Cileungsi
       </h2>
 
       <p class="text-slate-600 text-xs sm:text-sm max-w-2xl mx-auto mt-3 leading-relaxed">
-        Bibit <strong>Ayam KUBATA (KUB-2 Janaka)</strong> tersedia mulai umur 3 hari hingga lebih dari 30 hari. Semakin banyak jumlah pemesanan Anda (50, 100, hingga 500+ ekor), semakin hemat harga per ekor yang Anda dapatkan!
+        <strong>Ayam KUBATA (KUB-2 Janaka)</strong> tersedia mulai umur 3 hari hingga lebih dari 30 hari. Semakin banyak jumlah pemesanan Anda (50, 100, hingga 500+ ekor), semakin hemat harga per ekor yang Anda dapatkan!
       </p>
 
+      <!-- Beginner Quick Finder Pills -->
       <div class="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold">
-        <span class="text-slate-500">Pilihan Cepat:</span>
+        <span class="text-slate-500">Panduan Pilihan Cepat:</span>
         <button onclick="quickSelectAge('3')" class="px-3 py-1.5 rounded-xl bg-white border border-ivory-300 hover:border-brand-700 transition">3 Hari (Mulai Rp 9.500)</button>
-        <button onclick="quickSelectAge('14')" class="px-3 py-1.5 rounded-xl bg-brand-900 text-gold-300 border border-gold-400 font-bold shadow-sm transition">14 Hari (Paling Aman)</button>
-        <button onclick="quickSelectAge('30')" class="px-3 py-1.5 rounded-xl bg-white border border-ivory-300 hover:border-brand-700 transition">>30 Hari (Siap Kandang Luar)</button>
+        <button onclick="quickSelectAge('14')" class="px-3 py-1.5 rounded-xl bg-brand-900 text-gold-300 border border-gold-400 font-bold shadow-sm transition">14 Hari (Paling Praktis)</button>
+        <button onclick="quickSelectAge('30')" class="px-3 py-1.5 rounded-xl bg-white border border-ivory-300 hover:border-brand-700 transition">>30 Hari (Siap Lanjut)</button>
       </div>
 
     </div>
@@ -229,126 +232,291 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       
       <div class="text-center max-w-2xl mx-auto mb-12">
         <span class="text-[10px] font-bold uppercase tracking-widest text-gold-600 bg-gold-100 px-3 py-1 rounded-full border border-gold-300">
-          6 Pilihan Fase Umur Bibit
+          6 Pilihan Fase Umur
         </span>
         <h3 class="text-2xl sm:text-3xl font-extrabold text-brand-900 mt-2 font-serif">
           Pilih Tingkat Umur KUBATA Sesuai Kesiapan Kandang
         </h3>
         <p class="text-slate-600 text-xs sm:text-sm mt-1">
-          Harga di bawah merupakan estimasi rentang (dari partai $\ge 500$ ekor s/d eceran < 50 ekor). Klik kartu untuk simulasi cepat.
+          Harga di kartu menampilkan rentang dari pemesanan partai besar (≥500 ekor) hingga eceran (<50 ekor).
         </p>
       </div>
 
       <!-- 6 CARDS GRID -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         
         <!-- CARD 1: 3 Hari -->
-        <div id="card-3" onclick="selectAge('3')" class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-ivory-300 hover:border-brand-700 transition flex flex-col justify-between shadow-card group">
+        <div 
+          id="card-3"
+          onclick="selectAge('3')"
+          class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-ivory-300 hover:border-brand-700 transition-all duration-300 flex flex-col justify-between shadow-card relative group"
+        >
           <div>
-            <div class="bg-brand-900 text-white rounded-xl py-2 px-3 text-center mb-2 shadow-sm">
-              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
-              <span class="text-lg font-black tracking-tight font-serif">DOC Umur 3 Hari</span>
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-ivory-200 mb-3 relative">
+              <img 
+                src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=500&q=80" 
+                alt="KUBATA DOC 3 Hari" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <span class="absolute top-2 left-2 bg-brand-950/80 backdrop-blur-sm text-gold-300 text-[10px] font-bold px-2.5 py-0.5 rounded-lg border border-gold-500/30">
+                3 HARI
+              </span>
             </div>
-            <p class="text-xs text-slate-600 text-center mt-2 font-medium">Tahap adaptasi pasca-tetas, sangat lincah.</p>
-            <div class="mt-3 p-3 bg-stone-50 rounded-xl text-[11px] space-y-1">
-              <div class="flex justify-between text-slate-500"><span>≥500 Ekor:</span> <strong class="text-brand-900">Rp 9.500</strong></div>
-              <div class="flex justify-between text-slate-500"><span>100 Ekor:</span> <strong class="text-brand-900">Rp 10.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>50 Ekor:</span> <strong class="text-brand-900">Rp 11.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>&lt;50 Ekor:</span> <strong class="text-brand-900">Rp 12.000</strong></div>
+
+            <div class="bg-brand-900 text-white rounded-xl py-1.5 px-2 text-center mb-2 shadow-sm">
+              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
+              <span class="text-lg font-black tracking-tight font-serif">DOC 3 Hari</span>
+            </div>
+
+            <div class="text-center pb-2 border-b border-ivory-200">
+              <span class="text-xs font-bold text-slate-800">3 Hari</span>
+              <p class="text-[11px] text-slate-600 mt-1 leading-snug font-medium">
+                “Tahap adaptasi awal pasca-tetas, aktif dan lincah.”
+              </p>
+            </div>
+
+            <div class="pt-2 text-[11px] text-slate-600 space-y-1 bg-stone-50 p-2.5 rounded-xl mt-2">
+              <div class="flex justify-between"><span>≥ 500 Ekor:</span><strong class="text-brand-900 font-bold">Rp 9.500</strong></div>
+              <div class="flex justify-between"><span>100 Ekor:</span><strong class="text-brand-900 font-bold">Rp 10.000</strong></div>
+              <div class="flex justify-between"><span>50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 11.000</strong></div>
+              <div class="flex justify-between"><span>&lt; 50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 12.000</strong></div>
             </div>
           </div>
-          <button class="w-full mt-4 py-2 rounded-xl bg-ivory-200 group-hover:bg-brand-900 group-hover:text-gold-300 text-brand-950 font-bold text-xs transition">Pilih Umur Ini</button>
+
+          <div class="mt-4 pt-3 border-t border-ivory-200 text-center">
+            <button class="w-full py-2 rounded-xl bg-ivory-200 group-hover:bg-brand-900 group-hover:text-gold-300 text-brand-950 font-bold text-xs transition">
+              Pilih Umur 3 Hari
+            </button>
+          </div>
         </div>
 
         <!-- CARD 2: 7 Hari -->
-        <div id="card-7" onclick="selectAge('7')" class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-ivory-300 hover:border-brand-700 transition flex flex-col justify-between shadow-card group">
+        <div 
+          id="card-7"
+          onclick="selectAge('7')"
+          class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-ivory-300 hover:border-brand-700 transition-all duration-300 flex flex-col justify-between shadow-card relative group"
+        >
           <div>
-            <div class="bg-brand-900 text-white rounded-xl py-2 px-3 text-center mb-2 shadow-sm">
-              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
-              <span class="text-lg font-black tracking-tight font-serif">DOC Umur 7 Hari</span>
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-ivory-200 mb-3 relative">
+              <img 
+                src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=500&q=80" 
+                alt="KUBATA 7 Hari" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <span class="absolute top-2 left-2 bg-brand-950/80 backdrop-blur-sm text-gold-300 text-[10px] font-bold px-2.5 py-0.5 rounded-lg border border-gold-500/30">
+                7 HARI
+              </span>
             </div>
-            <p class="text-xs text-slate-600 text-center mt-2 font-medium">Tahap starter awal, pertumbuhan stabil.</p>
-            <div class="mt-3 p-3 bg-stone-50 rounded-xl text-[11px] space-y-1">
-              <div class="flex justify-between text-slate-500"><span>≥500 Ekor:</span> <strong class="text-brand-900">Rp 12.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>100 Ekor:</span> <strong class="text-brand-900">Rp 13.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>50 Ekor:</span> <strong class="text-brand-900">Rp 14.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>&lt;50 Ekor:</span> <strong class="text-brand-900">Rp 15.000</strong></div>
+
+            <div class="bg-brand-900 text-white rounded-xl py-1.5 px-2 text-center mb-2 shadow-sm">
+              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
+              <span class="text-lg font-black tracking-tight font-serif">DOC 7 Hari</span>
+            </div>
+
+            <div class="text-center pb-2 border-b border-ivory-200">
+              <span class="text-xs font-bold text-slate-800">7 Hari</span>
+              <p class="text-[11px] text-slate-600 mt-1 leading-snug font-medium">
+                “Tahap starter, pertumbuhan awal yang optimal.”
+              </p>
+            </div>
+
+            <div class="pt-2 text-[11px] text-slate-600 space-y-1 bg-stone-50 p-2.5 rounded-xl mt-2">
+              <div class="flex justify-between"><span>≥ 500 Ekor:</span><strong class="text-brand-900 font-bold">Rp 12.000</strong></div>
+              <div class="flex justify-between"><span>100 Ekor:</span><strong class="text-brand-900 font-bold">Rp 13.000</strong></div>
+              <div class="flex justify-between"><span>50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 14.000</strong></div>
+              <div class="flex justify-between"><span>&lt; 50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 15.000</strong></div>
             </div>
           </div>
-          <button class="w-full mt-4 py-2 rounded-xl bg-ivory-200 group-hover:bg-brand-900 group-hover:text-gold-300 text-brand-950 font-bold text-xs transition">Pilih Umur Ini</button>
+
+          <div class="mt-4 pt-3 border-t border-ivory-200 text-center">
+            <button class="w-full py-2 rounded-xl bg-ivory-200 group-hover:bg-brand-900 group-hover:text-gold-300 text-brand-950 font-bold text-xs transition">
+              Pilih Umur 7 Hari
+            </button>
+          </div>
         </div>
 
-        <!-- CARD 3: 14 Hari (Rekomendasi) -->
-        <div id="card-14" onclick="selectAge('14')" class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-gold-400 ring-2 ring-gold-400/20 transition flex flex-col justify-between shadow-luxe group relative">
-          <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold-500 text-brand-950 text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md">★ Paling Aman Pemula</span>
+        <!-- CARD 3: 14 Hari (REKOMENDASI PEMULA) -->
+        <div 
+          id="card-14"
+          onclick="selectAge('14')"
+          class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-gold-400 ring-2 ring-gold-400/30 transition-all duration-300 flex flex-col justify-between shadow-luxe relative group transform -translate-y-1"
+        >
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold-500 text-brand-950 text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md tracking-wider whitespace-nowrap">
+            ★ Paling Aman Pemula
+          </span>
+
           <div>
-            <div class="bg-brand-900 text-white rounded-xl py-2 px-3 text-center mb-2 shadow-sm">
-              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
-              <span class="text-lg font-black tracking-tight font-serif text-gold-200">DOC Umur 14 Hari</span>
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-ivory-200 mb-3 relative">
+              <img 
+                src="https://images.unsplash.com/photo-1596797882870-8c33deeac224?auto=format&fit=crop&w=500&q=80" 
+                alt="KUBATA 14 Hari" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <span class="absolute top-2 left-2 bg-brand-950/90 text-gold-300 text-[10px] font-bold px-2.5 py-0.5 rounded-lg border border-gold-400">
+                14 HARI
+              </span>
             </div>
-            <p class="text-xs text-slate-700 text-center mt-2 font-semibold">Lebih kuat, aktif, lolos masa kritis brooding.</p>
-            <div class="mt-3 p-3 bg-amber-50/70 border border-gold-200 rounded-xl text-[11px] space-y-1">
-              <div class="flex justify-between text-slate-600"><span>≥500 Ekor:</span> <strong class="text-brand-900">Rp 15.000</strong></div>
-              <div class="flex justify-between text-slate-600"><span>100 Ekor:</span> <strong class="text-brand-900">Rp 16.000</strong></div>
-              <div class="flex justify-between text-slate-600"><span>50 Ekor:</span> <strong class="text-brand-900">Rp 17.000</strong></div>
-              <div class="flex justify-between text-slate-600"><span>&lt;50 Ekor:</span> <strong class="text-brand-900">Rp 18.000</strong></div>
+
+            <div class="bg-gradient-to-r from-brand-900 to-brand-850 text-white rounded-xl py-1.5 px-2 text-center mb-2 shadow-sm border border-gold-500/40">
+              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
+              <span class="text-xl font-black tracking-tight font-serif text-gold-200">14 Hari</span>
+            </div>
+
+            <div class="text-center pb-2 border-b border-ivory-200">
+              <span class="text-xs font-bold text-slate-800">14 Hari</span>
+              <p class="text-[11px] text-slate-700 mt-1 leading-snug font-semibold">
+                “Lebih kuat, aktif dan siap berkembang.”
+              </p>
+            </div>
+
+            <div class="pt-2 text-[11px] text-slate-700 space-y-1 bg-gold-50/70 border border-gold-200 p-2.5 rounded-xl mt-2">
+              <div class="flex justify-between"><span>≥ 500 Ekor:</span><strong class="text-brand-900 font-bold">Rp 15.000</strong></div>
+              <div class="flex justify-between"><span>100 Ekor:</span><strong class="text-brand-900 font-bold">Rp 16.000</strong></div>
+              <div class="flex justify-between"><span>50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 17.000</strong></div>
+              <div class="flex justify-between"><span>&lt; 50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 18.000</strong></div>
             </div>
           </div>
-          <button class="w-full mt-4 py-2 rounded-xl bg-brand-900 text-gold-300 font-bold text-xs transition">Pilih Umur Ini (Favorit)</button>
+
+          <div class="mt-4 pt-3 border-t border-ivory-200 text-center">
+            <button class="w-full py-2 rounded-xl bg-brand-900 text-gold-300 font-bold text-xs transition shadow-sm">
+              Dipilih (Favorit)
+            </button>
+          </div>
         </div>
 
         <!-- CARD 4: 21 Hari -->
-        <div id="card-21" onclick="selectAge('21')" class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-ivory-300 hover:border-brand-700 transition flex flex-col justify-between shadow-card group">
+        <div 
+          id="card-21"
+          onclick="selectAge('21')"
+          class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-ivory-300 hover:border-brand-700 transition-all duration-300 flex flex-col justify-between shadow-card relative group"
+        >
           <div>
-            <div class="bg-brand-900 text-white rounded-xl py-2 px-3 text-center mb-2 shadow-sm">
-              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
-              <span class="text-lg font-black tracking-tight font-serif">DOC Umur 21 Hari</span>
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-ivory-200 mb-3 relative">
+              <img 
+                src="https://images.unsplash.com/photo-1563281577-a7be47e20db9?auto=format&fit=crop&w=500&q=80" 
+                alt="KUBATA 21 Hari" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <span class="absolute top-2 left-2 bg-brand-950/80 backdrop-blur-sm text-gold-300 text-[10px] font-bold px-2.5 py-0.5 rounded-lg border border-gold-500/30">
+                21 HARI
+              </span>
             </div>
-            <p class="text-xs text-slate-600 text-center mt-2 font-medium">Fisik besar, nafsu makan tinggi, bulu mulai rata.</p>
-            <div class="mt-3 p-3 bg-stone-50 rounded-xl text-[11px] space-y-1">
-              <div class="flex justify-between text-slate-500"><span>≥500 Ekor:</span> <strong class="text-brand-900">Rp 18.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>100 Ekor:</span> <strong class="text-brand-900">Rp 19.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>50 Ekor:</span> <strong class="text-brand-900">Rp 20.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>&lt;50 Ekor:</span> <strong class="text-brand-900">Rp 21.000</strong></div>
+
+            <div class="bg-brand-900 text-white rounded-xl py-1.5 px-2 text-center mb-2 shadow-sm">
+              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
+              <span class="text-lg font-black tracking-tight font-serif">21 Hari</span>
+            </div>
+
+            <div class="text-center pb-2 border-b border-ivory-200">
+              <span class="text-xs font-bold text-slate-800">21 Hari</span>
+              <p class="text-[11px] text-slate-600 mt-1 leading-snug font-medium">
+                “Fisik lebih besar, nafsu makan stabil.”
+              </p>
+            </div>
+
+            <div class="pt-2 text-[11px] text-slate-600 space-y-1 bg-stone-50 p-2.5 rounded-xl mt-2">
+              <div class="flex justify-between"><span>≥ 500 Ekor:</span><strong class="text-brand-900 font-bold">Rp 18.000</strong></div>
+              <div class="flex justify-between"><span>100 Ekor:</span><strong class="text-brand-900 font-bold">Rp 19.000</strong></div>
+              <div class="flex justify-between"><span>50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 20.000</strong></div>
+              <div class="flex justify-between"><span>&lt; 50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 21.000</strong></div>
             </div>
           </div>
-          <button class="w-full mt-4 py-2 rounded-xl bg-ivory-200 group-hover:bg-brand-900 group-hover:text-gold-300 text-brand-950 font-bold text-xs transition">Pilih Umur Ini</button>
+
+          <div class="mt-4 pt-3 border-t border-ivory-200 text-center">
+            <button class="w-full py-2 rounded-xl bg-ivory-200 group-hover:bg-brand-900 group-hover:text-gold-300 text-brand-950 font-bold text-xs transition">
+              Pilih Umur 21 Hari
+            </button>
+          </div>
         </div>
 
         <!-- CARD 5: 28 Hari -->
-        <div id="card-28" onclick="selectAge('28')" class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-ivory-300 hover:border-brand-700 transition flex flex-col justify-between shadow-card group">
+        <div 
+          id="card-28"
+          onclick="selectAge('28')"
+          class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-ivory-300 hover:border-brand-700 transition-all duration-300 flex flex-col justify-between shadow-card relative group"
+        >
           <div>
-            <div class="bg-brand-900 text-white rounded-xl py-2 px-3 text-center mb-2 shadow-sm">
-              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
-              <span class="text-lg font-black tracking-tight font-serif">DOC Umur 28 Hari</span>
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-ivory-200 mb-3 relative">
+              <img 
+                src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=500&q=80" 
+                alt="KUBATA 28 Hari" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <span class="absolute top-2 left-2 bg-brand-950/80 backdrop-blur-sm text-gold-300 text-[10px] font-bold px-2.5 py-0.5 rounded-lg border border-gold-500/30">
+                28 HARI
+              </span>
             </div>
-            <p class="text-xs text-slate-600 text-center mt-2 font-medium">Bulu lengkap, lepas dari penghangat total.</p>
-            <div class="mt-3 p-3 bg-stone-50 rounded-xl text-[11px] space-y-1">
-              <div class="flex justify-between text-slate-500"><span>≥500 Ekor:</span> <strong class="text-brand-900">Rp 21.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>100 Ekor:</span> <strong class="text-brand-900">Rp 22.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>50 Ekor:</span> <strong class="text-brand-900">Rp 23.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>&lt;50 Ekor:</span> <strong class="text-brand-900">Rp 25.000</strong></div>
+
+            <div class="bg-brand-900 text-white rounded-xl py-1.5 px-2 text-center mb-2 shadow-sm">
+              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
+              <span class="text-lg font-black tracking-tight font-serif">28 Hari</span>
+            </div>
+
+            <div class="text-center pb-2 border-b border-ivory-200">
+              <span class="text-xs font-bold text-slate-800">28 Hari</span>
+              <p class="text-[11px] text-slate-600 mt-1 leading-snug font-medium">
+                “Bulu lengkap, lepas masa pemanas sepenuhnya.”
+              </p>
+            </div>
+
+            <div class="pt-2 text-[11px] text-slate-600 space-y-1 bg-stone-50 p-2.5 rounded-xl mt-2">
+              <div class="flex justify-between"><span>≥ 500 Ekor:</span><strong class="text-brand-900 font-bold">Rp 21.000</strong></div>
+              <div class="flex justify-between"><span>100 Ekor:</span><strong class="text-brand-900 font-bold">Rp 22.000</strong></div>
+              <div class="flex justify-between"><span>50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 23.000</strong></div>
+              <div class="flex justify-between"><span>&lt; 50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 25.000</strong></div>
             </div>
           </div>
-          <button class="w-full mt-4 py-2 rounded-xl bg-ivory-200 group-hover:bg-brand-900 group-hover:text-gold-300 text-brand-950 font-bold text-xs transition">Pilih Umur Ini</button>
+
+          <div class="mt-4 pt-3 border-t border-ivory-200 text-center">
+            <button class="w-full py-2 rounded-xl bg-ivory-200 group-hover:bg-brand-900 group-hover:text-gold-300 text-brand-950 font-bold text-xs transition">
+              Pilih Umur 28 Hari
+            </button>
+          </div>
         </div>
 
         <!-- CARD 6: >30 Hari -->
-        <div id="card-30" onclick="selectAge('30')" class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-ivory-300 hover:border-brand-700 transition flex flex-col justify-between shadow-card group">
+        <div 
+          id="card-30"
+          onclick="selectAge('30')"
+          class="age-card cursor-pointer bg-white rounded-3xl p-5 border-2 border-ivory-300 hover:border-brand-700 transition-all duration-300 flex flex-col justify-between shadow-card relative group"
+        >
           <div>
-            <div class="bg-brand-900 text-white rounded-xl py-2 px-3 text-center mb-2 shadow-sm">
-              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
-              <span class="text-lg font-black tracking-tight font-serif">DOC Umur >30 Hari</span>
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-ivory-200 mb-3 relative">
+              <img 
+                src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=500&q=80" 
+                alt="KUBATA >30 Hari" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <span class="absolute top-2 left-2 bg-brand-950/80 backdrop-blur-sm text-gold-300 text-[10px] font-bold px-2.5 py-0.5 rounded-lg border border-gold-500/30">
+                >30 HARI
+              </span>
             </div>
-            <p class="text-xs text-slate-600 text-center mt-2 font-medium">Siap pembesaran umbaran bebas & calon indukan.</p>
-            <div class="mt-3 p-3 bg-stone-50 rounded-xl text-[11px] space-y-1">
-              <div class="flex justify-between text-slate-500"><span>≥500 Ekor:</span> <strong class="text-brand-900">Rp 25.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>100 Ekor:</span> <strong class="text-brand-900">Rp 26.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>50 Ekor:</span> <strong class="text-brand-900">Rp 27.000</strong></div>
-              <div class="flex justify-between text-slate-500"><span>&lt;50 Ekor:</span> <strong class="text-brand-900">Rp 28.000</strong></div>
+
+            <div class="bg-brand-900 text-white rounded-xl py-1.5 px-2 text-center mb-2 shadow-sm">
+              <span class="text-[10px] font-bold tracking-wider uppercase block text-gold-300">KUBATA</span>
+              <span class="text-lg font-black tracking-tight font-serif">>30 Hari</span>
+            </div>
+
+            <div class="text-center pb-2 border-b border-ivory-200">
+              <span class="text-xs font-bold text-slate-800">>30 Hari</span>
+              <p class="text-[11px] text-slate-600 mt-1 leading-snug font-medium">
+                “Siap lanjut pembesaran atau calon indukan.”
+              </p>
+            </div>
+
+            <div class="pt-2 text-[11px] text-slate-600 space-y-1 bg-stone-50 p-2.5 rounded-xl mt-2">
+              <div class="flex justify-between"><span>≥ 500 Ekor:</span><strong class="text-brand-900 font-bold">Rp 25.000</strong></div>
+              <div class="flex justify-between"><span>100 Ekor:</span><strong class="text-brand-900 font-bold">Rp 26.000</strong></div>
+              <div class="flex justify-between"><span>50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 27.000</strong></div>
+              <div class="flex justify-between"><span>&lt; 50 Ekor:</span><strong class="text-brand-900 font-bold">Rp 28.000</strong></div>
             </div>
           </div>
-          <button class="w-full mt-4 py-2 rounded-xl bg-ivory-200 group-hover:bg-brand-900 group-hover:text-gold-300 text-brand-950 font-bold text-xs transition">Pilih Umur Ini</button>
+
+          <div class="mt-4 pt-3 border-t border-ivory-200 text-center">
+            <button class="w-full py-2 rounded-xl bg-ivory-200 group-hover:bg-brand-900 group-hover:text-gold-300 text-brand-950 font-bold text-xs transition">
+              Pilih Umur >30 Hari
+            </button>
+          </div>
         </div>
 
       </div>
@@ -375,7 +543,7 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
           </div>
           <div>
             <h4 class="font-bold text-xs sm:text-sm text-gold-200 font-serif">Penanganan Profesional</h4>
-            <p class="text-[11px] text-ivory-200/80 mt-0.5">Suhu & nutrisi sesuai tingkatan usia.</p>
+            <p class="text-[11px] text-ivory-200/80 mt-0.5">Perawatan nutrisi teratur tiap tahapan umur.</p>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row items-center gap-3">
@@ -393,14 +561,111 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
           </div>
           <div>
             <h4 class="font-bold text-xs sm:text-sm text-gold-200 font-serif">Siap Support Setiap Saat</h4>
-            <p class="text-[11px] text-ivory-200/80 mt-0.5">Bimbingan manajemen perawatan gratis.</p>
+            <p class="text-[11px] text-ivory-200/80 mt-0.5">Konsultasi brooding & manajemen kandang.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FORM PEMESANAN & KALKULATOR -->
+  <!-- KELEBIHAN KUBATA SECTION -->
+  <section class="py-16 bg-white border-b border-ivory-300">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        
+        <div class="md:col-span-7 space-y-4">
+          <div class="inline-block bg-gold-400 text-brand-950 font-black text-xs px-4 py-1 rounded-full uppercase tracking-wider">
+            Standar Mutu Farm KUBATA
+          </div>
+
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-brand-900 font-serif">
+            Kelebihan KUBATA Central Cileungsi
+          </h3>
+
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Menghadirkan galur Ayam KUB Generasi ke-2 (Janaka) yang telah disempurnakan untuk memberikan produktivitas maksimal, baik untuk peternak pedaging maupun petelur konsumsi.
+          </p>
+
+          <div class="space-y-3 pt-2">
+            <div class="flex items-start gap-3 p-3 rounded-2xl bg-ivory-100 border border-ivory-300">
+              <div class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-xs sm:text-sm font-bold text-brand-900">Bibit KUB-2 Janaka Asli</p>
+                <p class="text-[11px] text-slate-500">Kualitas bibit terjamin dari indukan terseleksi.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-2xl bg-ivory-100 border border-ivory-300">
+              <div class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-xs sm:text-sm font-bold text-brand-900">Penanganan & Perawatan Terukur</p>
+                <p class="text-[11px] text-slate-500">Pakan dan perawatan mengikuti SOP nutrisi teratur.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-2xl bg-gold-50 border border-gold-300">
+              <div class="w-6 h-6 rounded-full bg-gold-500 text-brand-950 flex items-center justify-center shrink-0 mt-0.5 font-bold">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-xs sm:text-sm font-bold text-brand-900">Mortalitas Rendah (±5%)</p>
+                <p class="text-[11px] text-slate-600">Bibit sehat dengan daya hidup tinggi saat tiba di kandang.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-2xl bg-ivory-100 border border-ivory-300">
+              <div class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-xs sm:text-sm font-bold text-brand-900">Harga Bertingkat Kompetitif</p>
+                <p class="text-[11px] text-slate-500">Bisa eceran (mulai 10 ekor), 50 ekor, 100 ekor, hingga partai 500+ ekor.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="md:col-span-5">
+          <div class="bg-gradient-to-br from-brand-950 via-brand-900 to-brand-850 p-7 rounded-3xl text-white border-2 border-gold-400 shadow-luxe space-y-6 text-center relative overflow-hidden">
+            <div class="relative z-10 space-y-4">
+              <div class="inline-block px-3 py-1 rounded-full bg-brand-800 text-gold-300 text-[10px] font-bold tracking-widest uppercase border border-gold-500/30">
+                Prinsip Kemitraan KUBATA
+              </div>
+
+              <h4 class="text-2xl sm:text-3xl font-extrabold font-serif text-gold-300 leading-tight">
+                “Ternak Mudah <br>Hasil Maksimal”
+              </h4>
+
+              <div class="w-16 h-0.5 bg-gold-400 mx-auto"></div>
+
+              <p class="text-xs text-ivory-200 leading-relaxed max-w-xs mx-auto">
+                KUBATA hadir mendukung percepatan sukses peternakan Anda di Bogor, Depok, Bekasi, Jakarta, dan seluruh Jawa Barat.
+              </p>
+
+              <div class="p-3 bg-brand-800/80 rounded-2xl border border-gold-500/30 text-xs font-semibold text-gold-200">
+                🌿 Tumbuh Bersama, Sukses Bersama
+              </div>
+
+              <a 
+                href="#kalkulator" 
+                class="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-brand-950 font-bold text-xs transition shadow-luxe"
+              >
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                <span>Order Sekarang — Stok Terbatas</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER SEKARANG: KALKULATOR TIERING -->
   <section id="kalkulator" class="py-16 sm:py-20 bg-ivory-100 border-b border-ivory-300">
     <div class="max-w-4xl mx-auto px-4">
       
@@ -409,10 +674,10 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
           Formulir Pemesanan Resmi KUBATA
         </span>
         <h3 class="text-2xl sm:text-3xl font-extrabold text-brand-900 mt-2 font-serif">
-          Hitung Estimasi Harga & Order
+          Hitung Estimasi & Order Sekarang
         </h3>
         <p class="text-slate-600 text-xs sm:text-sm mt-1">
-          Harga otomatis menyesuaikan tier jumlah ekor yang Anda inputkan.
+          Harga satuan otomatis turun mengikuti tier kuantitas (<50, 50, 100, atau ≥500 ekor).
         </p>
       </div>
 
@@ -422,13 +687,13 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
           <!-- Input Controls (7 Cols) -->
           <div class="lg:col-span-7 space-y-6">
             
-            <!-- Step 1: Age Selection -->
+            <!-- Step 1: Age Selection (6 Buttons) -->
             <div>
               <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
                 1. Pilih Tingkat Umur KUBATA:
               </label>
               <div class="grid grid-cols-3 sm:grid-cols-6 gap-2" id="calcAgeButtons">
-                <!-- Diisi otomatis oleh JavaScript -->
+                <!-- Diisi via JavaScript -->
               </div>
             </div>
 
@@ -464,8 +729,8 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
                 <span class="text-[11px] text-slate-400 mr-1">Tier:</span>
                 <button type="button" onclick="setQty(20)" class="px-2.5 py-1 rounded-lg bg-ivory-100 hover:bg-ivory-200 text-xs font-semibold border border-ivory-300">20 (<50 Ekor)</button>
                 <button type="button" onclick="setQty(50)" class="px-2.5 py-1 rounded-lg bg-ivory-100 hover:bg-ivory-200 text-xs font-semibold border border-ivory-300">50 Ekor</button>
-                <button type="button" onclick="setQty(100)" class="px-2.5 py-1 rounded-lg bg-gold-100 text-brand-950 text-xs font-bold border border-gold-300">100 Ekor</button>
-                <button type="button" onclick="setQty(500)" class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-950 text-xs font-bold border border-emerald-300">500 Ekor (Termurah)</button>
+                <button type="button" onclick="setQty(100)" class="px-2.5 py-1 rounded-lg bg-gold-100 text-brand-950 text-xs font-bold border border-gold-300">100 (Grosir)</button>
+                <button type="button" onclick="setQty(500)" class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-950 text-xs font-bold border border-emerald-300">500 (Termurah)</button>
               </div>
             </div>
 
@@ -495,13 +760,13 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
             <!-- Step 4: Buyer Details -->
             <div class="space-y-2">
               <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">
-                4. Data Pemesan:
+                4. Data Pemesan (Opsional):
               </label>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <input 
                   type="text" 
                   id="buyerName" 
-                  placeholder="Nama Pemesan / Peternak" 
+                  placeholder="Nama Lengkap / Nama Farm" 
                   class="w-full text-xs font-medium py-2.5 px-3.5 rounded-xl border border-ivory-300 bg-ivory-50 focus:bg-white focus:border-brand-700 outline-none"
                 >
                 <input 
@@ -522,7 +787,7 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
               <div class="flex items-center justify-between pb-3 border-b border-ivory-300">
                 <span class="font-bold uppercase tracking-wider text-slate-500">Ringkasan Biaya</span>
                 <span id="sumBadgeAge" class="font-bold px-2 py-0.5 rounded bg-brand-900 text-gold-300 text-[11px]">
-                  7 Hari
+                  14 Hari
                 </span>
               </div>
 
@@ -532,18 +797,18 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
               </div>
               <div class="flex justify-between text-slate-600">
                 <span>Fase Umur:</span>
-                <span id="sumAgeName" class="font-bold text-brand-900">DOC Umur 7 Hari</span>
+                <span id="sumAgeName" class="font-bold text-brand-900">DOC Umur 14 Hari</span>
               </div>
               <div class="flex justify-between text-slate-600">
-                <span>Kategori Tier:</span>
-                <span id="sumTierName" class="font-bold text-emerald-700">Tier 100 Ekor</span>
+                <span>Skema Tier:</span>
+                <span id="sumTierName" class="font-bold text-emerald-800">Tier 100 Ekor</span>
               </div>
               <div class="flex justify-between text-slate-600">
                 <span>Harga Satuan:</span>
-                <span id="sumUnitPrice" class="font-bold text-brand-900">Rp 13.000 / ekor</span>
+                <span id="sumUnitPrice" class="font-bold text-brand-900">Rp 16.000 / ekor</span>
               </div>
               <div class="flex justify-between text-slate-600">
-                <span>Jumlah:</span>
+                <span>Jumlah Pemesanan:</span>
                 <span id="sumQty" class="font-bold text-brand-900">100 ekor</span>
               </div>
               <div class="flex justify-between text-slate-600">
@@ -553,9 +818,9 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
 
               <div class="pt-3 border-t border-ivory-300">
                 <span class="text-[11px] font-semibold text-slate-500 uppercase block">Total Perkiraan Biaya:</span>
-                <p id="sumTotal" class="text-3xl font-extrabold text-brand-900 font-serif mt-0.5">Rp 1.300.000</p>
+                <p id="sumTotal" class="text-3xl font-extrabold text-brand-900 font-serif mt-0.5">Rp 1.600.000</p>
                 <p class="text-[10px] text-slate-500 mt-1 leading-relaxed">
-                  *Sudah termasuk boks berlubang ventilasi dan gratis konsultasi perawatan sampai panen.
+                  *Sudah termasuk boks berventilasi standar peternakan dan konsultasi pemeliharaan.
                 </p>
               </div>
 
@@ -588,19 +853,19 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
     </div>
   </section>
 
-  <!-- SECTION STOK SHEET -->
+  <!-- KUBATA PROFESSIONAL 2.0 (STOK SHEET LIVE) -->
   <section id="stok-jadwal" class="k2-section py-16 sm:py-20">
     <div class="max-w-6xl mx-auto px-4">
       <div class="max-w-2xl mb-8">
         <div class="k2-eyebrow">Ketersediaan</div>
         <h2 class="k2-title mt-2">Stok Batch & Jadwal Ready</h2>
-        <p class="k2-muted mt-3">Disinkronkan langsung dari Google Sheet kontrol stok kandang Cileungsi.</p>
+        <p class="k2-muted mt-3">Informasi disinkronkan langsung dari Google Sheet kontrol stok kandang Cileungsi.</p>
       </div>
       <div class="k2-card overflow-x-auto">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
           <div>
             <b class="text-white">Ketersediaan Batch Kandang</b>
-            <p class="k2-muted mt-1">Stok dan status batch otomatis terupdate.</p>
+            <p class="k2-muted mt-1">Stok dan jadwal ready disinkronkan dari Google Sheet stok DOC kandang.</p>
           </div>
           <div class="flex items-center gap-2">
             <span id="stockLastUpdated" class="k2-badge k2-pre">Menghubungkan Sheet…</span>
@@ -612,6 +877,12 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
           <tbody id="stockTableBody"></tbody>
         </table>
       </div>
+      <div class="k2-grid mt-6">
+        <div class="k2-card"><div class="text-2xl">🐣</div><b class="text-white">Pilih Umur</b><p class="k2-muted mt-1">Sesuaikan umur bibit dengan kemampuan pemeliharaan.</p></div>
+        <div class="k2-card"><div class="text-2xl">📅</div><b class="text-white">Pesan Jadwal</b><p class="k2-muted mt-1">Pre-order membantu menyiapkan batch sesuai kebutuhan.</p></div>
+        <div class="k2-card"><div class="text-2xl">📦</div><b class="text-white">Pickup / Kirim</b><p class="k2-muted mt-1">Metode pengambilan dikonfirmasi saat order.</p></div>
+        <div class="k2-card"><div class="text-2xl">💬</div><b class="text-white">Konfirmasi WA</b><p class="k2-muted mt-1">Admin memvalidasi stok dan jadwal sebelum transaksi.</p></div>
+      </div>
     </div>
   </section>
 
@@ -622,12 +893,12 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
         <div class="lg:col-span-3">
           <div class="k2-eyebrow">Mini Checkout</div>
           <h2 class="k2-title mt-2">Siapkan Pesanan dalam 1 Menit</h2>
-          <p class="k2-muted mt-3 mb-6">Pilih umur bibit, tentukan kuantitas, dan lanjutkan komunikasi langsung dengan pengelola kandang via WhatsApp.</p>
+          <p class="k2-muted mt-3 mb-6">Gunakan kalkulator harga yang sudah tersedia di halaman ini. Bagian ini menjadi ringkasan sebelum pelanggan diarahkan ke WhatsApp.</p>
           <div class="k2-grid">
-            <div class="k2-card"><div class="text-2xl mb-3">01</div><b class="text-white">Pilih umur</b><p class="k2-muted mt-1">3 s/d >30 hari.</p></div>
-            <div class="k2-card"><div class="text-2xl mb-3">02</div><b class="text-white">Pilih jumlah</b><p class="k2-muted mt-1">Harga makin hemat di 50, 100, & 500+.</p></div>
-            <div class="k2-card"><div class="text-2xl mb-3">03</div><b class="text-white">Data lokasi</b><p class="k2-muted mt-1">Untuk estimasi jemput atau antar.</p></div>
-            <div class="k2-card"><div class="text-2xl mb-3">04</div><b class="text-white">Kirim WA</b><p class="k2-muted mt-1">Format pesanan rapi seketika.</p></div>
+            <div class="k2-card"><div class="text-2xl mb-3">01</div><b class="text-white">Pilih fase umur</b><p class="k2-muted mt-1">3 hari sampai >30 hari.</p></div>
+            <div class="k2-card"><div class="text-2xl mb-3">02</div><b class="text-white">Tentukan jumlah</b><p class="k2-muted mt-1">Harga makin hemat di 50, 100, dan ≥500 ekor.</p></div>
+            <div class="k2-card"><div class="text-2xl mb-3">03</div><b class="text-white">Isi data</b><p class="k2-muted mt-1">Nama dan kota membantu admin menyiapkan pesanan.</p></div>
+            <div class="k2-card"><div class="text-2xl mb-3">04</div><b class="text-white">Kirim ke WA</b><p class="k2-muted mt-1">Ringkasan order otomatis dibawa ke WhatsApp admin.</p></div>
           </div>
         </div>
         <div class="lg:col-span-2 k2-card k2-checkout">
@@ -637,43 +908,152 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
           </div>
           <div class="mt-5 space-y-3 text-sm">
             <div class="flex justify-between gap-4"><span class="text-slate-400">Produk</span><b id="miniProduct" class="text-white">KUB-2 Janaka</b></div>
-            <div class="flex justify-between gap-4"><span class="text-slate-400">Umur</span><b id="miniAge" class="text-white">7 Hari</b></div>
+            <div class="flex justify-between gap-4"><span class="text-slate-400">Umur</span><b id="miniAge" class="text-white">14 Hari</b></div>
             <div class="flex justify-between gap-4"><span class="text-slate-400">Jumlah</span><b id="miniQty" class="text-white">100 ekor</b></div>
-            <div class="flex justify-between gap-4"><span class="text-slate-400">Harga Satuan</span><b id="miniUnitPrice" class="text-white">Rp 13.000</b></div>
+            <div class="flex justify-between gap-4"><span class="text-slate-400">Harga/ekor</span><b id="miniUnitPrice" class="text-white">Rp 16.000</b></div>
             <div class="flex justify-between gap-4"><span class="text-slate-400">Metode</span><b id="miniMethod" class="text-white text-right">Ambil di Kandang</b></div>
           </div>
           <div class="border-t border-white/10 my-5"></div>
           <div class="flex items-end justify-between gap-4">
             <span class="k2-muted">Estimasi total</span>
-            <strong id="miniTotal" class="text-2xl text-white">Rp 1.300.000</strong>
+            <strong id="miniTotal" class="text-2xl text-white">Rp 1.600.000</strong>
           </div>
-          <a href="#kalkulator" class="block mt-5 text-center rounded-xl py-3 font-extrabold" style="background:var(--k-gold);color:#111827">Ubah Jumlah / Umur</a>
+          <div class="mt-3 p-3 rounded-xl bg-white/5 border border-white/10">
+            <div class="flex justify-between gap-3 text-xs"><span class="text-slate-400">Batch</span><b id="miniBatch" class="text-white">BATCH-2026-002</b></div>
+            <div class="flex justify-between gap-3 text-xs mt-2"><span class="text-slate-400">Jadwal ready</span><b id="miniReady" class="text-white text-right">Ready Siap Kirim</b></div>
+          </div>
+          <p id="miniNote" class="k2-muted mt-4">Pilih umur dan jumlah pada kalkulator. Ringkasan ini akan mengikuti pilihan secara realtime.</p>
+          <a href="#kalkulator" class="block mt-5 text-center rounded-xl py-3 font-extrabold" style="background:var(--k-gold);color:#111827">Edit Pesanan</a>
           <button type="button" onclick="sendWhatsAppOrder()" class="w-full mt-2 rounded-xl py-3 font-extrabold border border-white/10 text-white">Lanjut ke WhatsApp</button>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- GALERI -->
+  <section id="galeri" class="k2-section py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="max-w-2xl mb-8"><div class="k2-eyebrow">Dokumentasi</div><h2 class="k2-title mt-2">Galeri Farm</h2><p class="k2-muted mt-3">Dokumentasi asli aktivitas KUBATA dalam proses pemeliharaan dan penanganan bibit.</p></div>
+      <div class="k2-gallery">
+        <div class="ph"><img src="assets/farm-01.jpg" alt="Farm KUBATA" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='FOTO FARM<br>assets/farm-01.jpg';"></div>
+        <div class="ph"><img src="assets/farm-02.jpg" alt="Brooding KUBATA" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='FOTO BROODING<br>assets/farm-02.jpg';"></div>
+        <div class="ph"><img src="assets/farm-03.jpg" alt="KUBATA umur 1 minggu" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='FOTO KUB 1 MINGGU<br>assets/farm-03.jpg';"></div>
+        <div class="ph"><img src="assets/farm-04.jpg" alt="KUBATA umur 2 minggu" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='FOTO KUB 2 MINGGU<br>assets/farm-04.jpg';"></div>
+        <div class="ph"><img src="assets/farm-05.jpg" alt="KUBATA umur 3 minggu" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='FOTO KUB 3 MINGGU<br>assets/farm-05.jpg';"></div>
+        <div class="ph"><img src="assets/farm-06.jpg" alt="Packing KUBATA" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='FOTO PACKING<br>assets/farm-06.jpg';"></div>
+        <div class="ph"><img src="assets/farm-07.jpg" alt="Serah terima KUBATA" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='FOTO SERAH TERIMA<br>assets/farm-07.jpg';"></div>
+        <div class="ph"><img src="assets/farm-08.jpg" alt="Aktivitas tim KUBATA" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='FOTO AKTIVITAS<br>assets/farm-08.jpg';"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section id="testimoni" class="k2-section py-16 sm:py-20 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="max-w-2xl mb-8"><div class="k2-eyebrow">Kepercayaan</div><h2 class="k2-title mt-2">Cerita Pelanggan</h2><p class="k2-muted mt-3">Pengalaman peternak mitra bersama KUBATA Central Cileungsi.</p></div>
+      <div class="k2-grid">
+        <div class="k2-card"><div class="text-amber-300 tracking-widest">★★★★★</div><p class="text-slate-300 mt-3 text-sm">“Bibit umur 14 hari lincah sekali, adaptasi cepat dan tidak ada yang lemas.”</p><p class="text-slate-500 text-xs mt-4">— Pak Hartono, Bekasi</p></div>
+        <div class="k2-card"><div class="text-amber-300 tracking-widest">★★★★★</div><p class="text-slate-300 mt-3">“Pengiriman tepat waktu ke Depok, kemasan boks rapi berlubang sirkulasi aman.”</p><p class="text-slate-500 text-xs mt-4">— Ibu Rini, Depok</p></div>
+        <div class="k2-card"><div class="text-amber-300 tracking-widest">★★★★★</div><p class="text-slate-300 mt-3">“Ambil langsung 100 ekor di kandang Cileungsi, dilayani ramah dan diberi tips pakan.”</p><p class="text-slate-500 text-xs mt-4">— Mas Dian, Cibubur</p></div>
+        <div class="k2-card"><div class="text-amber-300 tracking-widest">★★★★★</div><p class="text-slate-300 mt-3">“Sudah repeat order batch ketiga, performa pertumbuhan ayam seragam.”</p><p class="text-slate-500 text-xs mt-4">— Kelompok Ternak Mandiri, Bogor</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="k2-section py-16 sm:py-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-9"><div class="k2-eyebrow">FAQ</div><h2 class="k2-title mt-2">Pertanyaan yang Sering Ditanyakan</h2></div>
+      <div class="space-y-3">
+        <div class="k2-faq"><button type="button" onclick="this.parentElement.classList.toggle('open')">Berapa minimal pemesanan? <span class="float-right">+</span></button><p>Pemesanan bisa mulai dari 10 atau 20 ekor (skala coba pemula), hingga ribuan ekor untuk partai besar.</p></div>
+        <div class="k2-faq"><button type="button" onclick="this.parentElement.classList.toggle('open')">Bagaimana skema diskon harganya? <span class="float-right">+</span></button><p>Harga otomatis semakin murah berjenjang pada tier kuantitas 50 ekor, 100 ekor, dan harga terendah di 500+ ekor.</p></div>
+        <div class="k2-faq"><button type="button" onclick="this.parentElement.classList.toggle('open')">Apakah tersedia pengiriman? <span class="float-right">+</span></button><p>Bisa kirim dengan armada khusus se-Jabodetabek atau diambil langsung ke kandang di Cileungsi.</p></div>
+        <div class="k2-faq"><button type="button" onclick="this.parentElement.classList.toggle('open')">Bagaimana cara order? <span class="float-right">+</span></button><p>Pilih umur, tentukan jumlah di kalkulator, isi nama/kota, lalu klik pesan via WhatsApp untuk konfirmasi stok live.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOKASI -->
+  <section id="lokasi" class="k2-section py-16 sm:py-20 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-7">
+        <div>
+          <div class="k2-eyebrow">Lokasi</div><h2 class="k2-title mt-2">KUBATA Central Cileungsi</h2>
+          <p class="k2-muted mt-3">Cileungsi, Kabupaten Bogor, Jawa Barat. Untuk kunjungan pengambilan langsung, harap konfirmasi terlebih dahulu melalui WhatsApp agar batch siap disortir.</p>
+          <div class="flex flex-wrap gap-3 mt-6">
+            <a href="https://www.google.com/maps/search/?api=1&query=KUBATA+Central+Cileungsi" target="_blank" rel="noopener" class="px-5 py-3 rounded-xl font-extrabold" style="background:var(--k-gold);color:#111827">Buka Google Maps</a>
+            <a href="#checkout-mini" class="px-5 py-3 rounded-xl font-extrabold border border-white/10 text-white">Mulai Order</a>
+          </div>
+        </div>
+        <div class="k2-card min-h-[230px] flex items-center justify-center text-center">
+          <div><div class="text-5xl mb-3">📍</div><b class="text-white text-lg">Kandang Utama Cileungsi</b><p class="k2-muted mt-2">Kabupaten Bogor, Jawa Barat. Siap melayani ambil di tempat & pengiriman.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY MOBILE NAV -->
+  <div class="k2-sticky">
+    <a href="#kalkulator" class="secondary">PILIH UMUR</a>
+    <a href="#checkout-mini" class="primary">PESAN SEKARANG</a>
+  </div>
+
   <!-- FOOTER -->
   <footer class="bg-brand-950 text-ivory-200 py-12 text-xs border-t border-brand-900">
-    <div class="max-w-6xl mx-auto px-4 text-center sm:text-left">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div>
-          <span class="font-bold text-white text-sm">KUBATA CENTRAL CILEUNGSI</span>
-          <p class="text-slate-400 text-xs mt-1">Pusat Distribusi Resmi Ayam KUB-2 Janaka</p>
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-brand-900">
+        
+        <div class="md:col-span-6 space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-gold-400 text-brand-950 flex items-center justify-center font-bold">
+              K
+            </div>
+            <div>
+              <span class="font-bold text-white tracking-wider text-sm font-serif">KUBATA CENTRAL CILEUNGSI</span>
+              <span class="text-[10px] text-gold-400 block font-medium">Pusat Penjualan & Distribusi Bibit KUBATA (KUB-2 Janaka)</span>
+            </div>
+          </div>
+          <p class="text-slate-400 leading-relaxed max-w-md text-xs">
+            Menghadirkan bibit Ayam KUB-2 Janaka berkualitas tinggi untuk mendukung kemajuan usaha peternakan dwiguna di Indonesia.
+          </p>
+          <p class="text-gold-300 font-serif italic text-sm">
+            “Tumbuh Bersama, Sukses Bersama — Bersama Mengembangkan Peternakan Indonesia”
+          </p>
         </div>
-        <p class="text-gold-400 font-medium">“Tumbuh Bersama, Sukses Bersama”</p>
+
+        <div class="md:col-span-6 space-y-2">
+          <p class="font-bold text-white text-xs uppercase tracking-wider mb-2 font-serif">Kontak & Lokasi Farm Cileungsi</p>
+          <p class="text-slate-400 flex items-start gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-gold-400 shrink-0 mt-0.5"></i>
+            <span>Cileungsi, Kab. Bogor, Jawa Barat</span>
+          </p>
+          <p class="text-slate-400 flex items-center gap-2">
+            <i data-lucide="message-square" class="w-4 h-4 text-gold-400 shrink-0"></i>
+            <span>WhatsApp Admin / Konsultasi: +62 812-3456-7890</span>
+          </p>
+          <p class="text-slate-400 flex items-center gap-2">
+            <i data-lucide="clock" class="w-4 h-4 text-gold-400 shrink-0"></i>
+            <span>Buka Setiap Hari: 08.00 – 17.00 WIB (Kunjungan Harap Konfirmasi Terlebih Dahulu)</span>
+          </p>
+        </div>
+
       </div>
-      <p class="mt-6 text-slate-500 text-[11px]">&copy; 2026 KUBATA Central Cileungsi. All rights reserved.</p>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500 text-[11px]">
+        <p>&copy; 2026 KUBATA Central Cileungsi. Hak Cipta Dilindungi.</p>
+        <p class="text-gold-400/80 font-medium">KUB-2 Janaka • Ketersediaan batch dikonfirmasi sebelum transaksi</p>
+      </div>
+
     </div>
   </footer>
 
-  <!-- FLOATING WA BUTTON -->
+  <!-- FLOATING WHATSAPP CTA -->
   <a 
-    href="https://wa.me/6281234567890?text=Halo%20Admin%20KUBATA%20Cileungsi,%20saya%20ingin%20tanya%20bibit%20Ayam%20KUBATA."
+    href="https://wa.me/6281234567890?text=Halo%20Admin%20KUBATA%20Cileungsi,%20saya%20ingin%20tanya%20bibit%20Ayam%20KUBATA%20(KUB-2%20Janaka)."
     target="_blank" 
     rel="noopener"
     class="fixed bottom-6 right-6 z-50 bg-emerald-600 hover:bg-emerald-700 text-white p-3.5 rounded-full shadow-2xl flex items-center gap-2 transition transform hover:scale-105 border-2 border-white"
+    title="Hubungi Admin WhatsApp KUBATA"
   >
     <i data-lucide="message-circle" class="w-5 h-5"></i>
     <span class="text-xs font-bold pr-1 hidden sm:inline">Chat Admin KUBATA</span>
@@ -681,7 +1061,7 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
 
   <!-- SCRIPT LOGIKA PERHITUNGAN TIER BARU & SYNC SHEET -->
   <script>
-    // DATA SPESIFIK TIER HARGA BERDASARKAN KUANTITAS
+    // DATA SPESIFIK TIER HARGA BERDASARKAN KUANTITAS SESUAI PERMINTAAN
     const KUBATA_STAGES = {
       '3': {
         id: '3',
@@ -689,9 +1069,9 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
         short: '3 Hari',
         label: '3 Hari',
         prices: {
-          tier500: 9500,  // >= 500 ekor
-          tier100: 10000, // 100 - 499 ekor
-          tier50:  11000, // 50 - 99 ekor
+          tier500: 9500,    // >= 500 ekor
+          tier100: 10000,   // 100 - 499 ekor
+          tier50:  11000,   // 50 - 99 ekor
           tierRetail: 12000 // < 50 ekor
         }
       },
@@ -757,17 +1137,18 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       }
     };
 
-    let currentAge = '7'; // Default awal 7 Hari
-    let currentQty = 100; // Default awal 100 ekor
+    let currentAge = '14'; // Default 14 Hari (Rekomendasi)
+    let currentQty = 100; // Default 100 ekor
     let currentShipping = 'pickup';
-    const WA_NUMBER = '6281234567890'; // Silakan sesuaikan dengan nomor WA admin
+    const WA_NUMBER = '6281234567890'; // Ganti dengan nomor WhatsApp aktif admin
 
     // KONEKSI GOOGLE SHEET KANDANG
     const SHEET_ID = '1QxbF-IqZahYgtUIkx85HvjDIw1XNQaXA7JQil6YXbfc';
     const SHEET_GID = '461405527';
     const SHEET_RANGE = 'C23:F28';
+    const STOCK_SYNC_INTERVAL = 60000;
 
-    // Data cadangan stok live kandang (sesuai foto mutasi)
+    // Data cadangan lokal persis sesuai spreadsheet kandang Anda
     let stockData = [
       { batch: 'BATCH-2026-004', age: '3', label: 'DOC Umur 3 Hari', stock: 408, ready: 'Ready Siap Kirim' },
       { batch: 'BATCH-2026-003', age: '7', label: 'DOC Umur 7 Hari', stock: 268, ready: 'Ready Siap Kirim' },
@@ -791,10 +1172,10 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
 
     // FUNGSI MENDAPATKAN LABEL NAMA TIER
     function getTierLabel(qty) {
-      if (qty >= 500) return 'Tier 500+ Ekor (Partai Besar)';
+      if (qty >= 500) return 'Tier ≥500 Ekor (Partai Besar)';
       if (qty >= 100) return 'Tier 100 Ekor (Grosir)';
       if (qty >= 50) return 'Tier 50 Ekor';
-      return 'Eceran (< 50 Ekor)';
+      return 'Eceran (<50 Ekor)';
     }
 
     // SYNC DATA STOK DARI GOOGLE SHEET KANDANG
@@ -878,7 +1259,7 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
           <td>${statusBadge}</td>
           <td>
             <button type="button" onclick="selectBatch('${item.age}')" class="text-amber-400 font-bold hover:underline text-xs">
-              Pilih Umur
+              Pilih
             </button>
           </td>
         `;
@@ -896,7 +1277,7 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       if (!KUBATA_STAGES[ageKey]) return;
       currentAge = ageKey;
 
-      // Update Highlight Kartu Umur
+      // Update Highlight Kartu Umur di Katalog
       ['3', '7', '14', '21', '28', '30'].forEach(key => {
         const card = document.getElementById('card-' + key);
         if (!card) return;
@@ -956,8 +1337,9 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       const unitPrice = getUnitPrice(currentAge, currentQty);
       const finalTotal = currentQty * unitPrice;
       const tierLabel = getTierLabel(currentQty);
+      const stockItem = stockData.find(d => d.age === currentAge);
 
-      // Update badge tier di input
+      // Update badge tier di input kuantitas
       const badge = document.getElementById('tierBadge');
       if (badge) {
         badge.innerText = tierLabel;
@@ -979,11 +1361,14 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       if (document.getElementById('sumMethod')) document.getElementById('sumMethod').innerText = currentShipping === 'pickup' ? 'Ambil di Kandang Cileungsi' : 'Kirim Armada';
       if (document.getElementById('sumTotal')) document.getElementById('sumTotal').innerText = formatRp(finalTotal);
 
-      // Mini Checkout
+      // Update Mini Live Checkout
       if (document.getElementById('miniAge')) document.getElementById('miniAge').innerText = stage.label;
       if (document.getElementById('miniQty')) document.getElementById('miniQty').innerText = `${currentQty.toLocaleString('id-ID')} ekor`;
       if (document.getElementById('miniUnitPrice')) document.getElementById('miniUnitPrice').innerText = formatRp(unitPrice);
       if (document.getElementById('miniTotal')) document.getElementById('miniTotal').innerText = formatRp(finalTotal);
+      if (document.getElementById('miniBatch')) document.getElementById('miniBatch').innerText = stockItem ? stockItem.batch : '-';
+      if (document.getElementById('miniReady')) document.getElementById('miniReady').innerText = stockItem ? stockItem.ready : '-';
+      if (document.getElementById('miniMethod')) document.getElementById('miniMethod').innerText = currentShipping === 'pickup' ? 'Ambil di Kandang' : 'Kirim Armada';
     }
 
     function formatRp(num) {
@@ -992,6 +1377,16 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
 
     function setShippingMode(mode) {
       currentShipping = mode;
+      const optPickup = document.getElementById('optPickup');
+      const optDelivery = document.getElementById('optDelivery');
+
+      if (mode === 'pickup') {
+        optPickup.className = "flex items-center gap-3 p-3 rounded-2xl border-2 border-brand-900 bg-brand-50/60 cursor-pointer transition";
+        optDelivery.className = "flex items-center gap-3 p-3 rounded-2xl border border-ivory-300 hover:border-slate-400 cursor-pointer transition";
+      } else {
+        optDelivery.className = "flex items-center gap-3 p-3 rounded-2xl border-2 border-brand-900 bg-brand-50/60 cursor-pointer transition";
+        optPickup.className = "flex items-center gap-3 p-3 rounded-2xl border border-ivory-300 hover:border-slate-400 cursor-pointer transition";
+      }
       calculateOrder();
     }
 
@@ -1027,29 +1422,32 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
 
       const buyerName = document.getElementById('buyerName') ? document.getElementById('buyerName').value.trim() || 'Sahabat Peternak' : 'Sahabat Peternak';
       const buyerCity = document.getElementById('buyerCity') ? document.getElementById('buyerCity').value.trim() || 'Cileungsi / Sekitarnya' : 'Cileungsi';
-      const methodText = currentShipping === 'pickup' ? 'Ambil di Kandang Cileungsi' : `Kirim Armada ke Alamat (${buyerCity})`;
+      const methodText = currentShipping === 'pickup' ? 'Ambil Langsung ke Kandang Cileungsi' : `Kirim Armada ke Alamat (${buyerCity})`;
 
       return `*FORMULIR PEMESANAN KUBATA CENTRAL CILEUNGSI*
-_Pusat Penjualan & Distribusi Bibit KUB-2 Janaka_
+_Pusat Penjualan & Distribusi Bibit KUBATA (KUB-2 Janaka)_
+_"Pilih Umur, Siap Pelihara!"_
 
 Halo Admin KUBATA Cileungsi, saya ingin memesan:
 • Nama: ${buyerName}
-• Kota / Lokasi: ${buyerCity}
+• Domisili/Kota: ${buyerCity}
+• Komoditas: *Ayam KUBATA (KUB-2 Janaka)*
 • Fase Umur: *${stage.name}*
 • Batch Kandang: ${stockItem ? stockItem.batch : '-'}
 • Jumlah Order: *${currentQty.toLocaleString('id-ID')} ekor*
-• Skema Harga: *${tierLabel}*
+• Skema Tier: *${tierLabel}*
 • Harga Satuan: *${formatRp(unitPrice)} / ekor*
 • Estimasi Total Biaya: *${formatRp(grandTotal)}*
-• Metode Pengambilan: ${methodText}
-• Ketersediaan Stok Kandang: ${stockItem ? stockItem.stock : 0} ekor (${stockItem ? stockItem.ready : '-'})
+• Metode: ${methodText}
+• Status Stok Website: ${stockItem ? stockItem.stock : 0} ekor (${stockItem ? stockItem.ready : '-'})
 
-Mohon konfirmasi pesanan dan jadwal pengambilannya. Terima kasih!`;
+Mohon konfirmasi ketersediaan batch KUBATA dan jadwal pengambilannya. Terima kasih!`;
     }
 
     function sendWhatsAppOrder() {
       const text = getOrderMessageText();
       const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+      showToast('Membuka WhatsApp Admin KUBATA...');
       window.open(url, '_blank');
     }
 
@@ -1083,7 +1481,7 @@ Mohon konfirmasi pesanan dan jadwal pengambilannya. Terima kasih!`;
       renderCalcAgeButtons();
       calculateOrder();
       syncStockFromSheet(false);
-      setInterval(() => syncStockFromSheet(false), 60000);
+      setInterval(() => syncStockFromSheet(false), STOCK_SYNC_INTERVAL);
     });
   </script>
 </body>
