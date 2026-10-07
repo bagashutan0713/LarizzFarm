@@ -1082,7 +1082,7 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
   </a>
 
   <script>
-    // DATA KATEGORI UMUR & HARGA SESUAI TABEL KANDANG (Baris 23 - 26)
+    // 6 KATEGORI UMUR KUBATA SESUAI SHEET TERBARU (Baris 23 s/d 28)
     const KUBATA_STAGES = {
       '3': {
         id: '3',
@@ -1091,7 +1091,7 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
         label: '3 Hari',
         retailPrice: 8500,
         bulkPrice: 8000,
-        desc: 'Masa adaptasi awal kandang, lincah dan sehat.'
+        desc: 'Tahap adaptasi awal pasca-tetas, aktif dan lincah.'
       },
       '7': {
         id: '7',
@@ -1118,32 +1118,52 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
         label: '21 Hari',
         retailPrice: 13000,
         bulkPrice: 12500,
-        desc: 'Fisik lebih besar, nafsu makan stabil, bulu mulai lengkap.'
+        desc: 'Fisik lebih besar, nafsu makan stabil, bulu sayap lengkap.'
+      },
+      '28': {
+        id: '28',
+        name: 'DOC Umur 28 Hari',
+        short: '28 Hari',
+        label: '28 Hari',
+        retailPrice: 15000,
+        bulkPrice: 14500,
+        desc: 'Mendekati masa lepas brooding total, daya tahan tinggi.'
+      },
+      '30': {
+        id: '30',
+        name: 'DOC Umur >30 Hari',
+        short: '>30 Hari',
+        label: '>30 Hari',
+        retailPrice: 18000,
+        bulkPrice: 17500,
+        desc: 'Siap lanjut pembesaran / calon indukan kandang umbaran.'
       }
     };
 
-    let currentAge = '7';
+    let currentAge = '7'; // Default awal
     let currentQty = 100;
     let currentShipping = 'pickup';
-    const WA_NUMBER = '6281234567890'; // Ganti dengan nomor WhatsApp aktif admin
+    const WA_NUMBER = '6281234567890'; // Nomor WA Admin
 
-    // ==========================================
-    // PENGATURAN KONEKSI GOOGLE SHEET
-    // ==========================================
+    // Parameter Google Sheet Anda
     const SHEET_ID = '1QxbF-IqZahYgtUIkx85HvjDIw1XNQaXA7JQil6YXbfc';
     const SHEET_GID = '461405527';
-    
-    // Default data awal persis sesuai Google Sheet Anda (Screenshot)
+    // Rentang tabel baru: Baris 23 s/d 28
+    const SHEET_RANGE = 'C23:F28';
+
+    // Data cadangan lokal persis sesuai spreadsheet terbaru Anda
     let stockData = [
       { batch: 'BATCH-2026-004', age: '3', label: 'DOC Umur 3 Hari', stock: 408, price: 8500, ready: 'Ready Siap Kirim' },
       { batch: 'BATCH-2026-003', age: '7', label: 'DOC Umur 7 Hari', stock: 268, price: 9500, ready: 'Ready Siap Kirim' },
       { batch: 'BATCH-2026-002', age: '14', label: 'DOC Umur 14 Hari', stock: 0, price: 11000, ready: 'Habis (Pre-Order)' },
-      { batch: 'BATCH-2026-001/002', age: '21', label: 'DOC Umur 21 Hari', stock: 423, price: 13000, ready: 'Ready Siap Kirim' }
+      { batch: 'BATCH-2026-002', age: '21', label: 'DOC Umur 21 Hari', stock: 367, price: 13000, ready: 'Ready Siap Kirim' },
+      { batch: 'BATCH-2026-001', age: '28', label: 'DOC Umur 28 Hari', stock: 0, price: 15000, ready: 'Habis (Pre-Order)' },
+      { batch: 'BATCH-2026-001', age: '30', label: 'DOC Umur >30 Hari', stock: 56, price: 18000, ready: 'Ready Siap Kirim' }
     ];
 
-    let STOCK_UPDATED = 'Tersinkronisasi Kandang';
+    let STOCK_UPDATED = 'Tersinkron Sheet';
 
-    // Ambil data langsung dari Google Sheet via JSONP / Google Visualization API
+    // Fungsi membaca Google Sheet secara Realtime (Google Visualization API)
     async function syncStockFromSheet(showToastAlert = false) {
       const badge = document.getElementById('stockLastUpdated');
       if (badge) {
@@ -1151,32 +1171,31 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
         badge.textContent = 'Menghubungkan Sheet…';
       }
 
-      // Mengambil Range C23:F26 (Kolom C: Kategori Umur, D: Harga, E: HPP, F: Stok)
-      const gvizUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}&range=C23:F26&timestamp=${Date.now()}`;
+      const gvizUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}&range=${SHEET_RANGE}&timestamp=${Date.now()}`;
 
       try {
-        const response = await fetch(gvizUrl);
-        const text = await response.text();
-
-        // Bersihkan pembungkus google.visualization.Query.setResponse(...)
-        const jsonString = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
-        const json = JSON.parse(jsonString);
+        const res = await fetch(gvizUrl);
+        const text = await res.text();
+        const jsonStr = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+        const json = JSON.parse(jsonStr);
 
         if (json && json.table && json.table.rows && json.table.rows.length > 0) {
           json.table.rows.forEach(r => {
             const cells = r.c;
             if (!cells || !cells[0]) return;
 
-            const categoryName = cells[0].v ? String(cells[0].v) : '';
+            const categoryName = cells[0].v ? String(cells[0].v).toLowerCase() : '';
             const harga = cells[1] && cells[1].v ? Number(cells[1].v) : 0;
-            const stok = cells[3] && cells[3].v ? Number(cells[3].v) : 0;
+            const stok = cells[3] && cells[3].v !== null ? Number(cells[3].v) : 0;
 
-            // Identifikasi Umur
+            // Deteksi umur dari teks kategori
             let ageKey = '';
-            if (categoryName.includes('3')) ageKey = '3';
+            if (categoryName.includes('3') && !categoryName.includes('30')) ageKey = '3';
             else if (categoryName.includes('7')) ageKey = '7';
             else if (categoryName.includes('14')) ageKey = '14';
             else if (categoryName.includes('21')) ageKey = '21';
+            else if (categoryName.includes('28')) ageKey = '28';
+            else if (categoryName.includes('>30') || categoryName.includes('30')) ageKey = '30';
 
             if (ageKey && KUBATA_STAGES[ageKey]) {
               const item = stockData.find(d => d.age === ageKey);
@@ -1195,17 +1214,16 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
           STOCK_UPDATED = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
           if (badge) {
             badge.className = 'k2-badge k2-ready';
-            badge.textContent = `● Tersinkron Jam ${STOCK_UPDATED}`;
+            badge.textContent = `● Live Sheet: ${STOCK_UPDATED}`;
           }
-          if (showToastAlert) showToast('Data stok live berhasil diperbarui dari Google Sheet!');
+          if (showToastAlert) showToast('Data stok 6 kategori umur berhasil disinkronkan!');
         }
       } catch (err) {
-        console.warn('Menggunakan data lokal sinkron kandang:', err);
+        console.warn('Gagal membaca API live, menggunakan data kandang:', err);
         if (badge) {
           badge.className = 'k2-badge k2-ready';
-          badge.textContent = `● Aktif (Data Kandang Cileungsi)`;
+          badge.textContent = `● Aktif (Data Kandang)`;
         }
-        if (showToastAlert) showToast('Data stok aktif dari pencatatan kandang.');
       }
 
       renderStockTable();
@@ -1251,19 +1269,6 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       if (!KUBATA_STAGES[ageKey]) return;
       currentAge = ageKey;
 
-      // Update Highlight Kartu Umur
-      ['3', '7', '14', '21'].forEach(key => {
-        const card = document.getElementById('card-' + key);
-        if (!card) return;
-        if (key === ageKey) {
-          card.classList.remove('border-ivory-300');
-          card.classList.add('border-brand-900', 'ring-2', 'ring-brand-900/20');
-        } else {
-          card.classList.remove('border-brand-900', 'ring-2', 'ring-brand-900/20');
-          card.classList.add('border-ivory-300');
-        }
-      });
-
       renderCalcAgeButtons();
       calculateOrder();
       showToast(`Fase ${KUBATA_STAGES[ageKey].name} dipilih`);
@@ -1283,15 +1288,15 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.onclick = () => selectAge(key);
-        btn.className = `p-2.5 rounded-xl border text-center transition flex flex-col justify-between items-center ${
+        btn.className = `p-2 rounded-xl border text-center transition flex flex-col justify-between items-center ${
           isSelected 
-            ? 'bg-brand-900 text-white border-brand-900 shadow-md' 
+            ? 'bg-brand-900 text-white border-brand-900 shadow-md ring-2 ring-gold-400/50' 
             : 'bg-white hover:bg-ivory-200 text-slate-800 border-ivory-300'
         }`;
         btn.innerHTML = `
           <span class="text-xs font-bold block ${isSelected ? 'text-amber-300' : 'text-brand-900'}">${stage.short}</span>
           <span class="text-[10px] mt-0.5 ${isSelected ? 'text-white' : 'text-slate-500'}">${formatRp(stage.retailPrice)}</span>
-          <span class="text-[9px] mt-0.5 ${sisaStok > 0 ? 'text-emerald-500 font-bold' : 'text-amber-500'}">Stok: ${sisaStok}</span>
+          <span class="text-[9px] mt-0.5 font-bold ${sisaStok > 0 ? 'text-emerald-500' : 'text-amber-500'}">${sisaStok > 0 ? sisaStok + ' ekor' : 'PO'}</span>
         `;
         container.appendChild(btn);
       });
@@ -1307,9 +1312,8 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       const finalTotal = currentQty * unitPrice;
       const discount = normalTotal - finalTotal;
 
-      const currentStockItem = stockData.find(d => d.age === currentAge);
+      const stockItem = stockData.find(d => d.age === currentAge);
 
-      // Label Ringkasan
       if (document.getElementById('sumBadgeAge')) document.getElementById('sumBadgeAge').innerText = stage.short;
       if (document.getElementById('sumAgeName')) document.getElementById('sumAgeName').innerText = stage.name;
       if (document.getElementById('sumUnitPrice')) document.getElementById('sumUnitPrice').innerText = `${formatRp(unitPrice)} / ekor`;
@@ -1318,14 +1322,14 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       if (document.getElementById('sumMethod')) document.getElementById('sumMethod').innerText = currentShipping === 'pickup' ? 'Ambil di Kandang Cileungsi' : 'Kirim Armada';
       if (document.getElementById('sumTotal')) document.getElementById('sumTotal').innerText = formatRp(finalTotal);
 
-      // Mini Checkout
+      // Mini Checkout Synchronizer
       if (document.getElementById('miniAge')) document.getElementById('miniAge').innerText = stage.label;
       if (document.getElementById('miniQty')) document.getElementById('miniQty').innerText = `${currentQty.toLocaleString('id-ID')} ekor`;
       if (document.getElementById('miniUnitPrice')) document.getElementById('miniUnitPrice').innerText = formatRp(unitPrice);
       if (document.getElementById('miniDiscount')) document.getElementById('miniDiscount').innerText = discount ? `- ${formatRp(discount)}` : 'Rp 0';
       if (document.getElementById('miniTotal')) document.getElementById('miniTotal').innerText = formatRp(finalTotal);
-      if (document.getElementById('miniBatch')) document.getElementById('miniBatch').innerText = currentStockItem ? currentStockItem.batch : 'BATCH-KUB';
-      if (document.getElementById('miniReady')) document.getElementById('miniReady').innerText = currentStockItem ? currentStockItem.ready : 'Konfirmasi';
+      if (document.getElementById('miniBatch')) document.getElementById('miniBatch').innerText = stockItem ? stockItem.batch : '-';
+      if (document.getElementById('miniReady')) document.getElementById('miniReady').innerText = stockItem ? stockItem.ready : '-';
     }
 
     function formatRp(num) {
@@ -1369,20 +1373,20 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       const buyerCity = document.getElementById('buyerCity') ? document.getElementById('buyerCity').value.trim() || 'Cileungsi / Sekitarnya' : 'Cileungsi';
       const methodText = currentShipping === 'pickup' ? 'Ambil di Kandang Cileungsi' : `Kirim Armada ke Alamat (${buyerCity})`;
 
-      return `*FORM PEMESANAN KUBATA CENTRAL CILEUNGSI*
+      return `*FORMULIR PEMESANAN KUBATA CENTRAL CILEUNGSI*
 _Pusat Penjualan & Distribusi Bibit KUB-2 Janaka_
 
-Halo Admin KUBATA, saya ingin memesan:
+Halo Admin KUBATA Cileungsi, saya ingin memesan:
 • Nama: ${buyerName}
 • Kota / Lokasi: ${buyerCity}
 • Fase Umur: *${stage.name}*
 • Batch Kandang: ${stockItem ? stockItem.batch : '-'}
 • Jumlah Order: *${currentQty.toLocaleString('id-ID')} ekor*
 • Estimasi Biaya: *${formatRp(grandTotal)}* (@ ${formatRp(unitPrice)})
-• Metode: ${methodText}
-• Ketersediaan Stok Saat Ini: ${stockItem ? stockItem.stock : 0} ekor (${stockItem ? stockItem.ready : '-'})
+• Metode Pengambilan: ${methodText}
+• Status Stok Kandang: ${stockItem ? stockItem.stock : 0} ekor (${stockItem ? stockItem.ready : '-'})
 
-Mohon konfirmasi pesanan dan ketersediaan slot pengambilan. Terima kasih!`;
+Mohon konfirmasi pesanan dan ketersediaan slotnya. Terima kasih!`;
     }
 
     function sendWhatsAppOrder() {
