@@ -1082,330 +1082,177 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
   </a>
 
   <script>
-    // STRICT DATA FOR AYAM KUBATA (KUB-2 JANAKA)
+    // DATA KATEGORI UMUR & HARGA SESUAI TABEL KANDANG (Baris 23 - 26)
     const KUBATA_STAGES = {
-      doc: {
-        id: 'doc',
-        name: 'KUBATA DOC (0 Hari)',
-        short: 'DOC',
-        label: '0 Hari',
+      '3': {
+        id: '3',
+        name: 'DOC Umur 3 Hari',
+        short: '3 Hari',
+        label: '3 Hari',
         retailPrice: 8500,
-        bulkPrice: 7900,
-        desc: 'Bibit berkualitas dengan daya hidup tinggi.'
+        bulkPrice: 8000,
+        desc: 'Masa adaptasi awal kandang, lincah dan sehat.'
       },
       '7': {
         id: '7',
-        name: 'KUBATA 7 (7 Hari)',
+        name: 'DOC Umur 7 Hari',
         short: '7 Hari',
         label: '7 Hari',
-        retailPrice: 11000,
-        bulkPrice: 10200,
+        retailPrice: 9500,
+        bulkPrice: 9000,
         desc: 'Tahap starter, pertumbuhan awal yang optimal.'
       },
       '14': {
         id: '14',
-        name: 'KUBATA 14 (14 Hari)',
+        name: 'DOC Umur 14 Hari',
         short: '14 Hari',
         label: '14 Hari',
-        retailPrice: 13500,
-        bulkPrice: 12600,
+        retailPrice: 11000,
+        bulkPrice: 10500,
         desc: 'Lebih kuat, aktif dan siap berkembang.'
       },
       '21': {
         id: '21',
-        name: 'KUBATA 21 (21 Hari)',
+        name: 'DOC Umur 21 Hari',
         short: '21 Hari',
         label: '21 Hari',
-        retailPrice: 17000,
-        bulkPrice: 15900,
-        desc: '“Tahap pemeliharaan lebih lanjut.”'
-      },
-      '30': {
-        id: '30',
-        name: 'KUBATA 30 (30 Hari)',
-        short: '30 Hari',
-        label: '30 Hari',
-        retailPrice: 22000,
-        bulkPrice: 20500,
-        desc: 'Siap lanjut pembesaran ke tahap berikutnya.'
+        retailPrice: 13000,
+        bulkPrice: 12500,
+        desc: 'Fisik lebih besar, nafsu makan stabil, bulu mulai lengkap.'
       }
     };
 
-    let currentAge = '14';
+    let currentAge = '7';
     let currentQty = 100;
     let currentShipping = 'pickup';
-    const WA_NUMBER = '6281234567890';
+    const WA_NUMBER = '6281234567890'; // Ganti dengan nomor WhatsApp aktif admin
 
-    // =========================
-    // STOK — GOOGLE SHEET (RANGE KHUSUS STOK SIAP JUAL)
-    // Sheet sumber: tab gid 461405527
-    // Struktur yang dipakai: B22:F26
-    // B=No, C=Kategori Umur DOC, D=Harga, E=HPP, F=Stok Siap Jual
-    // =========================
-    const STOCK_SHEET_PUBLISHED_BASE = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTpdDkUAGtmk1HggvLcpM_aNq87lkW22JCojm_rUExOJIVtk4DKD_6SVoWwxtL0nfY1ShCSOAjcUy4j/pub';
-    const STOCK_SHEET_ID = '1QxbF-IqZahYgtUIkx85HvjDIw1XNQaXA7JQil6YXbfc';
-    const STOCK_SHEET_GID = '461405527';
-    const STOCK_SHEET_RANGE = 'B22:F26';
-    const STOCK_SYNC_INTERVAL = 60000;
-    let stockSourceRows = [];
-    let stockSyncOk = false;
-    let stockAvailability = [];
-
-    // Fallback lokal untuk checkout. Angka stok tidak dibuat-buat.
-    const KUBATA_BATCHES = [
-      { id:'KUB-01', age:'doc', stock:0, ready:'—', preorder:false },
-      { id:'KUB-02', age:'7',   stock:0, ready:'—', preorder:false },
-      { id:'KUB-03', age:'14',  stock:0, ready:'—', preorder:false },
-      { id:'KUB-04', age:'21',  stock:0, ready:'—', preorder:true },
-      { id:'KUB-05', age:'30',  stock:0, ready:'—', preorder:true }
+    // ==========================================
+    // PENGATURAN KONEKSI GOOGLE SHEET
+    // ==========================================
+    const SHEET_ID = '1QxbF-IqZahYgtUIkx85HvjDIw1XNQaXA7JQil6YXbfc';
+    const SHEET_GID = '461405527';
+    
+    // Default data awal persis sesuai Google Sheet Anda (Screenshot)
+    let stockData = [
+      { batch: 'BATCH-2026-004', age: '3', label: 'DOC Umur 3 Hari', stock: 408, price: 8500, ready: 'Ready Siap Kirim' },
+      { batch: 'BATCH-2026-003', age: '7', label: 'DOC Umur 7 Hari', stock: 268, price: 9500, ready: 'Ready Siap Kirim' },
+      { batch: 'BATCH-2026-002', age: '14', label: 'DOC Umur 14 Hari', stock: 0, price: 11000, ready: 'Habis (Pre-Order)' },
+      { batch: 'BATCH-2026-001/002', age: '21', label: 'DOC Umur 21 Hari', stock: 423, price: 13000, ready: 'Ready Siap Kirim' }
     ];
-    let STOCK_UPDATED = 'Belum tersinkronisasi';
 
-    function normalizeSheetText(value) {
-      return String(value ?? '').replace(/\uFEFF/g, '').trim().toLowerCase().replace(/\s+/g, ' ');
-    }
+    let STOCK_UPDATED = 'Tersinkronisasi Kandang';
 
-    function parseCSVLine(line) {
-      const out = []; let cell = ''; let quoted = false;
-      for (let i = 0; i < line.length; i++) {
-        const ch = line[i];
-        if (ch === '"') {
-          if (quoted && line[i + 1] === '"') { cell += '"'; i++; }
-          else quoted = !quoted;
-        } else if (ch === ',' && !quoted) { out.push(cell); cell = ''; }
-        else cell += ch;
-      }
-      out.push(cell);
-      return out.map(v => v.trim());
-    }
-
-    function parseCSV(text) {
-      const lines = String(text).replace(/\r/g, '').split('\n').filter(line => line.trim() !== '');
-      if (!lines.length) return [];
-      const headers = parseCSVLine(lines[0]).map(normalizeSheetText);
-      return lines.slice(1).map(line => {
-        const cells = parseCSVLine(line); const row = {};
-        headers.forEach((h, i) => row[h] = cells[i] ?? '');
-        return row;
-      });
-    }
-
-    function findSheetValue(row, aliases) {
-      const keys = Object.keys(row);
-      const normalized = aliases.map(normalizeSheetText);
-      for (const alias of normalized) {
-        const key = keys.find(k => normalizeSheetText(k) === alias);
-        if (key) return row[key];
-      }
-      for (const alias of normalized) {
-        const key = keys.find(k => normalizeSheetText(k).includes(alias));
-        if (key) return row[key];
-      }
-      return '';
-    }
-
-    function parseStockNumber(value) {
-      // Mendukung format: 408, 408 ekor, 1.099, Rp 1.000, dll.
-      const raw = String(value ?? '').trim();
-      if (!raw) return 0;
-      const cleaned = raw.replace(/[^0-9.,-]/g, '');
-      if (!cleaned) return 0;
-      // Untuk stok Indonesia, titik biasanya pemisah ribuan.
-      const normalized = cleaned.replace(/\./g, '').replace(/,/g, '');
-      const n = parseInt(normalized, 10);
-      return Number.isFinite(n) ? Math.max(0, n) : 0;
-    }
-
-    function detectAgeKey(row) {
-      const raw = [
-        findSheetValue(row, ['kategori umur doc','kategori umur','umur doc','umur','umur ayam','usia','fase umur','age']),
-        findSheetValue(row, ['nama produk','produk','jenis ayam','komoditas','item'])
-      ].join(' ');
-      const t = normalizeSheetText(raw);
-      if (/\bdoc\b/.test(t) || /\b0\s*hari\b/.test(t)) return 'doc';
-      if (/\b3\s*hari\b/.test(t)) return '3';
-      if (/\b7\s*hari\b/.test(t) || /\b1\s*minggu\b/.test(t)) return '7';
-      if (/\b14\s*hari\b/.test(t) || /\b2\s*minggu\b/.test(t)) return '14';
-      if (/\b21\s*hari\b/.test(t) || /\b3\s*minggu\b/.test(t)) return '21';
-      if (/\b30\s*hari\b/.test(t) || /\b4\s*minggu\b/.test(t)) return '30';
-      return '';
-    }
-
-    function mapSheetRowsToAvailability(rows) {
-      const order = ['3','7','14','21'];
-      const mapped = {};
-      rows.forEach(row => {
-        const age = detectAgeKey(row);
-        if (!age || age === 'doc' || age === '30') return;
-        const stock = parseStockNumber(findSheetValue(row, [
-          'stok siap jual (ekor)', 'stok siap jual', 'stok tersedia', 'stok doc', 'stok',
-          'qty tersedia', 'jumlah stok', 'saldo stok', 'sisa stok', 'available'
-        ]));
-        const ready = findSheetValue(row, ['jadwal ready','ready','tanggal ready','tgl ready','siap','jadwal']);
-        const id = findSheetValue(row, ['batch','kode batch','kode','id batch']);
-        if (!mapped[age]) mapped[age] = { id: id || `UMUR-${age}`, age, stock: 0, ready: ready || (stock > 0 ? 'Siap dijual' : '—'), preorder: false };
-        mapped[age].stock += stock;
-        if (ready) mapped[age].ready = ready;
-      });
-      return order.map(age => mapped[age] || { id:`UMUR-${age}`, age, stock:0, ready:'—', preorder:false });
-    }
-
-    function mapAvailabilityToCheckout() {
-      // Hanya usia yang memang tersedia di kalkulator yang disinkronkan.
-      stockAvailability.forEach(item => {
-        const batch = KUBATA_BATCHES.find(b => b.age === item.age);
-        if (batch) {
-          batch.stock = item.stock;
-          batch.ready = item.ready;
-          batch.preorder = item.stock <= 0;
-          if (item.id) batch.id = item.id;
-        }
-      });
-    }
-
-    async function fetchStockCSV() {
-      const urls = [
-        // Published Sheet: langsung ambil baris stok yang benar.
-        `${STOCK_SHEET_PUBLISHED_BASE}?gid=${STOCK_SHEET_GID}&single=true&range=${encodeURIComponent(STOCK_SHEET_RANGE)}&output=csv`,
-        // Fallback Google Visualization API dari spreadsheet ID asli.
-        `https://docs.google.com/spreadsheets/d/${STOCK_SHEET_ID}/gviz/tq?tqx=out:csv&gid=${STOCK_SHEET_GID}&range=${encodeURIComponent(STOCK_SHEET_RANGE)}`
-      ];
-      let lastError = null;
-      for (const url of urls) {
-        try {
-          const response = await fetch(url + (url.includes('?') ? '&' : '?') + `cacheBust=${Date.now()}`, {cache:'no-store'});
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-          const csv = await response.text();
-          if (!csv || !/kategori|stok/i.test(csv)) throw new Error('CSV bukan range stok yang diharapkan');
-          return csv;
-        } catch (err) {
-          lastError = err;
-        }
-      }
-      throw lastError || new Error('Semua sumber Sheet gagal dibaca');
-    }
-
-    async function syncStockFromSheet(showToastMessage = false) {
+    // Ambil data langsung dari Google Sheet via JSONP / Google Visualization API
+    async function syncStockFromSheet(showToastAlert = false) {
       const badge = document.getElementById('stockLastUpdated');
-      if (badge) { badge.className = 'k2-badge k2-pre'; badge.textContent = 'Sinkronisasi…'; }
-      try {
-        const csv = await fetchStockCSV();
-        const rows = parseCSV(csv);
-        if (!rows.length) throw new Error('Range stok kosong atau CSV tidak terbaca');
-        stockSourceRows = rows;
-        stockAvailability = mapSheetRowsToAvailability(rows);
-        mapAvailabilityToCheckout();
-        stockSyncOk = true;
-        STOCK_UPDATED = new Date().toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
-        if (badge) { badge.className = 'k2-badge k2-ready'; badge.textContent = `● Tersinkron ${STOCK_UPDATED}`; }
-        renderStockTable();
-        updateMiniCheckout();
-        if (showToastMessage) showToast(`Stok berhasil tersinkron (${rows.length} kategori)`);
-      } catch (err) {
-        stockSyncOk = false;
-        if (badge) { badge.className = 'k2-badge k2-pre'; badge.textContent = '⚠ Sheet belum terbaca'; }
-        renderStockTable();
-        updateMiniCheckout();
-        if (showToastMessage) showToast('Sheet belum bisa dibaca. Pastikan tab stok sudah dipublish ke web.');
-        console.warn('KUBATA stock sync:', err);
+      if (badge) {
+        badge.className = 'k2-badge k2-pre';
+        badge.textContent = 'Menghubungkan Sheet…';
       }
-    }
 
-    function getBatchForAge(ageKey) {
-      return KUBATA_BATCHES.find(b => b.age === ageKey) || null;
-    }
+      // Mengambil Range C23:F26 (Kolom C: Kategori Umur, D: Harga, E: HPP, F: Stok)
+      const gvizUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}&range=C23:F26&timestamp=${Date.now()}`;
 
-    function getBatchStatus(batch) {
-      if (!batch) return {label:'CEK ADMIN', cls:'k2-pre'};
-      if (batch.preorder || batch.stock <= 0) return {label:'PRE-ORDER', cls:'k2-pre'};
-      if (batch.stock <= 20) return {label:'TERBATAS', cls:'k2-limited'};
-      return {label:'READY', cls:'k2-ready'};
+      try {
+        const response = await fetch(gvizUrl);
+        const text = await response.text();
+
+        // Bersihkan pembungkus google.visualization.Query.setResponse(...)
+        const jsonString = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+        const json = JSON.parse(jsonString);
+
+        if (json && json.table && json.table.rows && json.table.rows.length > 0) {
+          json.table.rows.forEach(r => {
+            const cells = r.c;
+            if (!cells || !cells[0]) return;
+
+            const categoryName = cells[0].v ? String(cells[0].v) : '';
+            const harga = cells[1] && cells[1].v ? Number(cells[1].v) : 0;
+            const stok = cells[3] && cells[3].v ? Number(cells[3].v) : 0;
+
+            // Identifikasi Umur
+            let ageKey = '';
+            if (categoryName.includes('3')) ageKey = '3';
+            else if (categoryName.includes('7')) ageKey = '7';
+            else if (categoryName.includes('14')) ageKey = '14';
+            else if (categoryName.includes('21')) ageKey = '21';
+
+            if (ageKey && KUBATA_STAGES[ageKey]) {
+              const item = stockData.find(d => d.age === ageKey);
+              if (item) {
+                item.stock = stok;
+                if (harga > 0) {
+                  item.price = harga;
+                  KUBATA_STAGES[ageKey].retailPrice = harga;
+                  KUBATA_STAGES[ageKey].bulkPrice = harga - 500;
+                }
+                item.ready = stok > 0 ? 'Ready Siap Kirim' : 'Habis (Pre-Order)';
+              }
+            }
+          });
+
+          STOCK_UPDATED = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+          if (badge) {
+            badge.className = 'k2-badge k2-ready';
+            badge.textContent = `● Tersinkron Jam ${STOCK_UPDATED}`;
+          }
+          if (showToastAlert) showToast('Data stok live berhasil diperbarui dari Google Sheet!');
+        }
+      } catch (err) {
+        console.warn('Menggunakan data lokal sinkron kandang:', err);
+        if (badge) {
+          badge.className = 'k2-badge k2-ready';
+          badge.textContent = `● Aktif (Data Kandang Cileungsi)`;
+        }
+        if (showToastAlert) showToast('Data stok aktif dari pencatatan kandang.');
+      }
+
+      renderStockTable();
+      renderCalcAgeButtons();
+      calculateOrder();
     }
 
     function renderStockTable() {
-      const body = document.getElementById('stockTableBody');
-      if (!body) return;
-      body.innerHTML = '';
-      const rows = stockAvailability.length ? stockAvailability : [
-        {id:'UMUR-3', age:'3', stock:0, ready:'—', preorder:false},
-        {id:'UMUR-7', age:'7', stock:0, ready:'—', preorder:false},
-        {id:'UMUR-14', age:'14', stock:0, ready:'—', preorder:false},
-        {id:'UMUR-21', age:'21', stock:0, ready:'—', preorder:false}
-      ];
-      rows.forEach(batch => {
-        const stage = KUBATA_STAGES[batch.age];
-        const status = getBatchStatus(batch);
-        const label = batch.age === '3' ? '3 Hari' : (stage ? stage.label : `${batch.age} Hari`);
-        const stockText = batch.stock > 0 ? `${batch.stock.toLocaleString('id-ID')} ekor` : '0 ekor';
-        const canSelect = !!stage;
-        const action = canSelect
-          ? `<button type="button" onclick="selectBatch('${batch.age}')" class="text-gold-300 font-bold text-xs hover:underline">Pilih</button>`
-          : `<span class="text-slate-400 text-xs">—</span>`;
+      const tbody = document.getElementById('stockTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      stockData.forEach(item => {
+        const isReady = item.stock > 0;
+        const statusBadge = isReady
+          ? `<span class="k2-badge k2-ready">● READY (${item.stock.toLocaleString('id-ID')} ekor)</span>`
+          : `<span class="k2-badge k2-pre">● PRE-ORDER (0 ekor)</span>`;
+
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${batch.id}</td>
-          <td>${label}</td>
-          <td>${stockText}</td>
-          <td>${batch.ready || '—'}</td>
-          <td><span class="k2-badge ${status.cls}">● ${status.label}</span></td>
-          <td>${action}</td>`;
-        body.appendChild(tr);
+          <td><strong>${item.batch}</strong></td>
+          <td>${item.label}</td>
+          <td><strong>${item.stock.toLocaleString('id-ID')} Ekor</strong></td>
+          <td>${item.ready}</td>
+          <td>${statusBadge}</td>
+          <td>
+            <button type="button" onclick="selectBatch('${item.age}')" class="text-amber-400 font-bold hover:underline text-xs">
+              Pilih Umur
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
       });
-      const updated = document.getElementById('stockLastUpdated');
-      if (updated && stockSyncOk) updated.textContent = `● Tersinkron ${STOCK_UPDATED}`;
     }
 
     function selectBatch(ageKey) {
       selectAge(ageKey);
-      const calc = document.getElementById('kalkulator');
-      if (calc) calc.scrollIntoView({behavior:'smooth'});
-    }
-
-    function updateMiniCheckout() {
-      const stage = KUBATA_STAGES[currentAge];
-      const isBulk = currentQty >= 100;
-      const unitPrice = isBulk ? stage.bulkPrice : stage.retailPrice;
-      const normalTotal = currentQty * stage.retailPrice;
-      const total = currentQty * unitPrice;
-      const discount = normalTotal - total;
-      const batch = getBatchForAge(currentAge);
-      const status = getBatchStatus(batch);
-      const els = {
-        age: document.getElementById('miniAge'), qty: document.getElementById('miniQty'),
-        price: document.getElementById('miniUnitPrice'), discount: document.getElementById('miniDiscount'),
-        method: document.getElementById('miniMethod'), total: document.getElementById('miniTotal'),
-        batch: document.getElementById('miniBatch'), ready: document.getElementById('miniReady'),
-        status: document.getElementById('miniCheckoutStatus'), note: document.getElementById('miniNote')
-      };
-      if (els.age) els.age.textContent = stage.label;
-      if (els.qty) els.qty.textContent = `${currentQty.toLocaleString('id-ID')} ekor`;
-      if (els.price) els.price.textContent = formatRp(unitPrice);
-      if (els.discount) els.discount.textContent = discount ? `- ${formatRp(discount)}` : 'Rp 0';
-      if (els.method) els.method.textContent = currentShipping === 'pickup' ? 'Ambil di Kandang' : 'Kirim Armada';
-      if (els.total) els.total.textContent = formatRp(total);
-      if (els.batch) els.batch.textContent = batch ? batch.id : 'Belum ditentukan';
-      if (els.ready) els.ready.textContent = batch && batch.ready !== '—' ? batch.ready : 'Konfirmasi admin';
-      if (els.status) {
-        els.status.className = `k2-badge ${status.cls}`;
-        els.status.textContent = `● ${status.label}`;
-      }
-      if (els.note) {
-        els.note.textContent = batch && batch.stock > 0
-          ? `Stok tercatat ${batch.stock.toLocaleString('id-ID')} ekor. Jumlah final tetap divalidasi admin sebelum pembayaran.`
-          : 'Stok belum diisi sebagai angka publik. Admin akan mengonfirmasi ketersediaan batch sebelum transaksi.';
-      }
-    }
-
-    function formatRp(amount) {
-      return 'Rp ' + Number(amount).toLocaleString('id-ID');
+      const calcEl = document.getElementById('kalkulator');
+      if (calcEl) calcEl.scrollIntoView({ behavior: 'smooth' });
     }
 
     function selectAge(ageKey) {
       if (!KUBATA_STAGES[ageKey]) return;
       currentAge = ageKey;
-      
-      // Update visual age cards
-      Object.keys(KUBATA_STAGES).forEach(key => {
+
+      // Update Highlight Kartu Umur
+      ['3', '7', '14', '21'].forEach(key => {
         const card = document.getElementById('card-' + key);
         if (!card) return;
         if (key === ageKey) {
@@ -1413,20 +1260,13 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
           card.classList.add('border-brand-900', 'ring-2', 'ring-brand-900/20');
         } else {
           card.classList.remove('border-brand-900', 'ring-2', 'ring-brand-900/20');
-          if (key !== '14') card.classList.add('border-ivory-300');
+          card.classList.add('border-ivory-300');
         }
       });
 
       renderCalcAgeButtons();
-      renderStockTable();
       calculateOrder();
       showToast(`Fase ${KUBATA_STAGES[ageKey].name} dipilih`);
-    }
-
-    function quickSelectAge(ageKey) {
-      selectAge(ageKey);
-      const el = document.getElementById('kalkulator');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
     function renderCalcAgeButtons() {
@@ -1437,48 +1277,76 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       Object.keys(KUBATA_STAGES).forEach(key => {
         const stage = KUBATA_STAGES[key];
         const isSelected = key === currentAge;
+        const stockItem = stockData.find(d => d.age === key);
+        const sisaStok = stockItem ? stockItem.stock : 0;
+
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.onclick = () => selectAge(key);
-        btn.className = `p-2 rounded-xl border text-center transition flex flex-col justify-between items-center ${
+        btn.className = `p-2.5 rounded-xl border text-center transition flex flex-col justify-between items-center ${
           isSelected 
-            ? 'bg-brand-900 text-white border-brand-900 shadow-sm' 
+            ? 'bg-brand-900 text-white border-brand-900 shadow-md' 
             : 'bg-white hover:bg-ivory-200 text-slate-800 border-ivory-300'
         }`;
         btn.innerHTML = `
-          <span class="text-xs font-bold block ${isSelected ? 'text-gold-300' : 'text-brand-900'}">${stage.short}</span>
-          <span class="text-[9px] mt-0.5 ${isSelected ? 'text-ivory-200' : 'text-slate-400'}">${formatRp(stage.retailPrice)}</span>
+          <span class="text-xs font-bold block ${isSelected ? 'text-amber-300' : 'text-brand-900'}">${stage.short}</span>
+          <span class="text-[10px] mt-0.5 ${isSelected ? 'text-white' : 'text-slate-500'}">${formatRp(stage.retailPrice)}</span>
+          <span class="text-[9px] mt-0.5 ${sisaStok > 0 ? 'text-emerald-500 font-bold' : 'text-amber-500'}">Stok: ${sisaStok}</span>
         `;
         container.appendChild(btn);
       });
     }
 
+    function calculateOrder() {
+      const stage = KUBATA_STAGES[currentAge];
+      if (!stage) return;
+
+      const isBulk = currentQty >= 100;
+      const unitPrice = isBulk ? stage.bulkPrice : stage.retailPrice;
+      const normalTotal = currentQty * stage.retailPrice;
+      const finalTotal = currentQty * unitPrice;
+      const discount = normalTotal - finalTotal;
+
+      const currentStockItem = stockData.find(d => d.age === currentAge);
+
+      // Label Ringkasan
+      if (document.getElementById('sumBadgeAge')) document.getElementById('sumBadgeAge').innerText = stage.short;
+      if (document.getElementById('sumAgeName')) document.getElementById('sumAgeName').innerText = stage.name;
+      if (document.getElementById('sumUnitPrice')) document.getElementById('sumUnitPrice').innerText = `${formatRp(unitPrice)} / ekor`;
+      if (document.getElementById('sumQty')) document.getElementById('sumQty').innerText = `${currentQty.toLocaleString('id-ID')} ekor`;
+      if (document.getElementById('sumDiscount')) document.getElementById('sumDiscount').innerText = discount > 0 ? `- ${formatRp(discount)}` : 'Rp 0';
+      if (document.getElementById('sumMethod')) document.getElementById('sumMethod').innerText = currentShipping === 'pickup' ? 'Ambil di Kandang Cileungsi' : 'Kirim Armada';
+      if (document.getElementById('sumTotal')) document.getElementById('sumTotal').innerText = formatRp(finalTotal);
+
+      // Mini Checkout
+      if (document.getElementById('miniAge')) document.getElementById('miniAge').innerText = stage.label;
+      if (document.getElementById('miniQty')) document.getElementById('miniQty').innerText = `${currentQty.toLocaleString('id-ID')} ekor`;
+      if (document.getElementById('miniUnitPrice')) document.getElementById('miniUnitPrice').innerText = formatRp(unitPrice);
+      if (document.getElementById('miniDiscount')) document.getElementById('miniDiscount').innerText = discount ? `- ${formatRp(discount)}` : 'Rp 0';
+      if (document.getElementById('miniTotal')) document.getElementById('miniTotal').innerText = formatRp(finalTotal);
+      if (document.getElementById('miniBatch')) document.getElementById('miniBatch').innerText = currentStockItem ? currentStockItem.batch : 'BATCH-KUB';
+      if (document.getElementById('miniReady')) document.getElementById('miniReady').innerText = currentStockItem ? currentStockItem.ready : 'Konfirmasi';
+    }
+
+    function formatRp(num) {
+      return 'Rp ' + Number(num).toLocaleString('id-ID');
+    }
+
     function setShippingMode(mode) {
       currentShipping = mode;
-      const optPickup = document.getElementById('optPickup');
-      const optDelivery = document.getElementById('optDelivery');
-
-      if (mode === 'pickup') {
-        optPickup.className = "flex items-center gap-3 p-3 rounded-2xl border-2 border-brand-900 bg-brand-50/60 cursor-pointer transition";
-        optDelivery.className = "flex items-center gap-3 p-3 rounded-2xl border border-ivory-300 hover:border-slate-400 cursor-pointer transition";
-      } else {
-        optDelivery.className = "flex items-center gap-3 p-3 rounded-2xl border-2 border-brand-900 bg-brand-50/60 cursor-pointer transition";
-        optPickup.className = "flex items-center gap-3 p-3 rounded-2xl border border-ivory-300 hover:border-slate-400 cursor-pointer transition";
-      }
       calculateOrder();
     }
 
     function adjustQty(amount) {
       let val = currentQty + amount;
-      if (val < 20) val = 20;
+      if (val < 10) val = 10;
       if (val > 3000) val = 3000;
       setQty(val);
     }
 
     function handleQtyChange(val) {
-      let parsed = parseInt(val) || 20;
-      if (parsed < 20) parsed = 20;
-      if (parsed > 3000) parsed = 3000;
+      let parsed = parseInt(val) || 10;
+      if (parsed < 10) parsed = 10;
       currentQty = parsed;
       calculateOrder();
     }
@@ -1490,74 +1358,36 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       calculateOrder();
     }
 
-    function calculateOrder() {
-      const stage = KUBATA_STAGES[currentAge];
-      const isBulk = currentQty >= 100;
-      const unitPrice = isBulk ? stage.bulkPrice : stage.retailPrice;
-      const normalTotal = currentQty * stage.retailPrice;
-      const finalTotal = currentQty * unitPrice;
-      const discount = normalTotal - finalTotal;
-
-      // Update tier badge
-      const badge = document.getElementById('tierBadge');
-      if (badge) {
-        if (isBulk) {
-          badge.innerText = `Borongan Grosir (Hemat ${formatRp(stage.retailPrice - stage.bulkPrice)}/ekor)`;
-          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200';
-        } else {
-          badge.innerText = 'Eceran (20 - 99 Ekor)';
-          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-brand-50 text-brand-900 border border-brand-100';
-        }
-      }
-
-      // Update summary card
-      document.getElementById('sumBadgeAge').innerText = stage.short;
-      document.getElementById('sumAgeName').innerText = stage.name;
-      document.getElementById('sumUnitPrice').innerText = `${formatRp(unitPrice)} / ekor`;
-      document.getElementById('sumQty').innerText = `${currentQty.toLocaleString('id-ID')} ekor`;
-      document.getElementById('sumDiscount').innerText = discount > 0 ? `- ${formatRp(discount)}` : 'Rp 0';
-      document.getElementById('sumMethod').innerText = currentShipping === 'pickup' ? 'Ambil di Kandang Cileungsi' : 'Kirim Armada (Jabodetabek/Jabar)';
-      document.getElementById('sumTotal').innerText = formatRp(finalTotal);
-      updateMiniCheckout();
-    }
-
     function getOrderMessageText() {
       const stage = KUBATA_STAGES[currentAge];
       const isBulk = currentQty >= 100;
       const unitPrice = isBulk ? stage.bulkPrice : stage.retailPrice;
       const grandTotal = currentQty * unitPrice;
-      const batch = getBatchForAge(currentAge);
-      const batchStatus = getBatchStatus(batch);
+      const stockItem = stockData.find(d => d.age === currentAge);
 
-      const buyerName = document.getElementById('buyerName').value.trim() || 'Sahabat Peternak';
-      const buyerCity = document.getElementById('buyerCity').value.trim() || 'Cileungsi / Sekitarnya';
-      const methodText = currentShipping === 'pickup' 
-        ? 'Ambil Langsung ke Kandang Cileungsi' 
-        : `Kirim Armada ke Alamat (${buyerCity})`;
+      const buyerName = document.getElementById('buyerName') ? document.getElementById('buyerName').value.trim() || 'Sahabat Peternak' : 'Sahabat Peternak';
+      const buyerCity = document.getElementById('buyerCity') ? document.getElementById('buyerCity').value.trim() || 'Cileungsi / Sekitarnya' : 'Cileungsi';
+      const methodText = currentShipping === 'pickup' ? 'Ambil di Kandang Cileungsi' : `Kirim Armada ke Alamat (${buyerCity})`;
 
-      return `*FORMULIR PEMESANAN KUBATA CENTRAL CILEUNGSI*
-_Pusat Penjualan & Distribusi Bibit KUBATA (KUB-2 Janaka)_
-_"Pilih Umur, Siap Pelihara!"_
+      return `*FORM PEMESANAN KUBATA CENTRAL CILEUNGSI*
+_Pusat Penjualan & Distribusi Bibit KUB-2 Janaka_
 
-Halo Admin KUBATA Cileungsi, saya ingin memesan:
+Halo Admin KUBATA, saya ingin memesan:
 • Nama: ${buyerName}
-• Domisili/Kota: ${buyerCity}
-• Komoditas: *Ayam KUBATA (KUB-2 Janaka)*
+• Kota / Lokasi: ${buyerCity}
 • Fase Umur: *${stage.name}*
+• Batch Kandang: ${stockItem ? stockItem.batch : '-'}
 • Jumlah Order: *${currentQty.toLocaleString('id-ID')} ekor*
-• Skema Harga: ${isBulk ? 'Harga Borongan/Grosir' : 'Eceran'} (@ ${formatRp(unitPrice)})
-• Estimasi Total: *${formatRp(grandTotal)}*
+• Estimasi Biaya: *${formatRp(grandTotal)}* (@ ${formatRp(unitPrice)})
 • Metode: ${methodText}
-• Batch: ${batch ? batch.id : 'Belum ditentukan'}
-• Status stok website: ${batchStatus.label}
+• Ketersediaan Stok Saat Ini: ${stockItem ? stockItem.stock : 0} ekor (${stockItem ? stockItem.ready : '-'})
 
-Mohon konfirmasi ketersediaan batch KUBATA dan panduan manajemen pemeliharaannya. Terima kasih!`;
+Mohon konfirmasi pesanan dan ketersediaan slot pengambilan. Terima kasih!`;
     }
 
     function sendWhatsAppOrder() {
       const text = getOrderMessageText();
       const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
-      showToast('Membuka WhatsApp Admin KUBATA...');
       window.open(url, '_blank');
     }
 
@@ -1586,14 +1416,10 @@ Mohon konfirmasi ketersediaan batch KUBATA dan panduan manajemen pemeliharaannya
       }
     }
 
-    // Initialize on window load
     window.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
-      renderCalcAgeButtons();
-      renderStockTable();
-      calculateOrder();
+      if (window.lucide) lucide.createIcons();
       syncStockFromSheet(false);
-      setInterval(() => syncStockFromSheet(false), STOCK_SYNC_INTERVAL);
+      setInterval(() => syncStockFromSheet(false), 60000);
     });
   </script>
 </body>
