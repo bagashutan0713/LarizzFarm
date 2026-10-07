@@ -1137,14 +1137,21 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
     const WA_NUMBER = '6281234567890';
 
     // =========================
-    // STOK BATCH — GOOGLE SHEET PUBLIK
+    // STOK — GOOGLE SHEET (RANGE KHUSUS STOK SIAP JUAL)
+    // Sheet sumber: tab gid 461405527
+    // Struktur yang dipakai: B22:F26
+    // B=No, C=Kategori Umur DOC, D=Harga, E=HPP, F=Stok Siap Jual
     // =========================
-    const STOCK_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTpdDkUAGtmk1HggvLcpM_aNq87lkW22JCojm_rUExOJIVtk4DKD_6SVoWwxtL0nfY1ShCSOAjcUy4j/pub?gid=461405527&single=true&output=csv';
+    const STOCK_SHEET_PUBLISHED_BASE = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTpdDkUAGtmk1HggvLcpM_aNq87lkW22JCojm_rUExOJIVtk4DKD_6SVoWwxtL0nfY1ShCSOAjcUy4j/pub';
+    const STOCK_SHEET_ID = '1QxbF-IqZahYgtUIkx85HvjDIw1XNQaXA7JQil6YXbfc';
+    const STOCK_SHEET_GID = '461405527';
+    const STOCK_SHEET_RANGE = 'B22:F26';
     const STOCK_SYNC_INTERVAL = 60000;
     let stockSourceRows = [];
     let stockSyncOk = false;
+    let stockAvailability = [];
 
-    // Fallback lokal. Tidak ada angka stok fiktif.
+    // Fallback lokal untuk checkout. Angka stok tidak dibuat-buat.
     const KUBATA_BATCHES = [
       { id:'KUB-01', age:'doc', stock:0, ready:'—', preorder:false },
       { id:'KUB-02', age:'7',   stock:0, ready:'—', preorder:false },
@@ -1198,66 +1205,108 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
     }
 
     function parseStockNumber(value) {
-      const n = String(value ?? '').replace(/[^0-9-]/g, '');
-      return n ? Math.max(0, parseInt(n, 10)) : 0;
+      // Mendukung format: 408, 408 ekor, 1.099, Rp 1.000, dll.
+      const raw = String(value ?? '').trim();
+      if (!raw) return 0;
+      const cleaned = raw.replace(/[^0-9.,-]/g, '');
+      if (!cleaned) return 0;
+      // Untuk stok Indonesia, titik biasanya pemisah ribuan.
+      const normalized = cleaned.replace(/\./g, '').replace(/,/g, '');
+      const n = parseInt(normalized, 10);
+      return Number.isFinite(n) ? Math.max(0, n) : 0;
     }
 
     function detectAgeKey(row) {
       const raw = [
-        findSheetValue(row, ['umur','umur ayam','usia','fase umur','age']),
+        findSheetValue(row, ['kategori umur doc','kategori umur','umur doc','umur','umur ayam','usia','fase umur','age']),
         findSheetValue(row, ['nama produk','produk','jenis ayam','komoditas','item'])
       ].join(' ');
       const t = normalizeSheetText(raw);
-      if (/\bdoc\b/.test(t) || /\b(0|0 hari)\b/.test(t)) return 'doc';
-      if (/\b(7|7 hari|1 minggu|1 mg)\b/.test(t)) return '7';
-      if (/\b(14|14 hari|2 minggu|2 mg)\b/.test(t)) return '14';
-      if (/\b(21|21 hari|3 minggu|3 mg)\b/.test(t)) return '21';
-      if (/\b(30|30 hari|4 minggu|4 mg)\b/.test(t)) return '30';
+      if (/\bdoc\b/.test(t) || /\b0\s*hari\b/.test(t)) return 'doc';
+      if (/\b3\s*hari\b/.test(t)) return '3';
+      if (/\b7\s*hari\b/.test(t) || /\b1\s*minggu\b/.test(t)) return '7';
+      if (/\b14\s*hari\b/.test(t) || /\b2\s*minggu\b/.test(t)) return '14';
+      if (/\b21\s*hari\b/.test(t) || /\b3\s*minggu\b/.test(t)) return '21';
+      if (/\b30\s*hari\b/.test(t) || /\b4\s*minggu\b/.test(t)) return '30';
       return '';
     }
 
-    function mapSheetRowsToBatches(rows) {
+    function mapSheetRowsToAvailability(rows) {
+      const order = ['3','7','14','21'];
       const mapped = {};
       rows.forEach(row => {
         const age = detectAgeKey(row);
-        if (!age) return;
-        const stock = parseStockNumber(findSheetValue(row, ['stok tersedia','stok doc','stok','qty tersedia','jumlah stok','saldo stok','sisa stok','available']));
+        if (!age || age === 'doc' || age === '30') return;
+        const stock = parseStockNumber(findSheetValue(row, [
+          'stok siap jual (ekor)', 'stok siap jual', 'stok tersedia', 'stok doc', 'stok',
+          'qty tersedia', 'jumlah stok', 'saldo stok', 'sisa stok', 'available'
+        ]));
         const ready = findSheetValue(row, ['jadwal ready','ready','tanggal ready','tgl ready','siap','jadwal']);
-        const statusRaw = normalizeSheetText(findSheetValue(row, ['status','status stok','ketersediaan']));
-        const id = findSheetValue(row, ['batch','kode batch','kode','id batch']) || `KUB-${age}`;
-        const preorder = /pre.?order|pesan|booking/.test(statusRaw) && !/ready/.test(statusRaw);
-        if (!mapped[age]) mapped[age] = { id:String(id).trim(), age, stock:0, ready:ready || '—', preorder };
+        const id = findSheetValue(row, ['batch','kode batch','kode','id batch']);
+        if (!mapped[age]) mapped[age] = { id: id || `UMUR-${age}`, age, stock: 0, ready: ready || (stock > 0 ? 'Siap dijual' : '—'), preorder: false };
         mapped[age].stock += stock;
         if (ready) mapped[age].ready = ready;
-        mapped[age].preorder = mapped[age].preorder || preorder;
       });
-      return Object.keys(KUBATA_STAGES).map(age => mapped[age] || { id:`KUB-${age}`, age, stock:0, ready:'—', preorder:false });
+      return order.map(age => mapped[age] || { id:`UMUR-${age}`, age, stock:0, ready:'—', preorder:false });
+    }
+
+    function mapAvailabilityToCheckout() {
+      // Hanya usia yang memang tersedia di kalkulator yang disinkronkan.
+      stockAvailability.forEach(item => {
+        const batch = KUBATA_BATCHES.find(b => b.age === item.age);
+        if (batch) {
+          batch.stock = item.stock;
+          batch.ready = item.ready;
+          batch.preorder = item.stock <= 0;
+          if (item.id) batch.id = item.id;
+        }
+      });
+    }
+
+    async function fetchStockCSV() {
+      const urls = [
+        // Published Sheet: langsung ambil baris stok yang benar.
+        `${STOCK_SHEET_PUBLISHED_BASE}?gid=${STOCK_SHEET_GID}&single=true&range=${encodeURIComponent(STOCK_SHEET_RANGE)}&output=csv`,
+        // Fallback Google Visualization API dari spreadsheet ID asli.
+        `https://docs.google.com/spreadsheets/d/${STOCK_SHEET_ID}/gviz/tq?tqx=out:csv&gid=${STOCK_SHEET_GID}&range=${encodeURIComponent(STOCK_SHEET_RANGE)}`
+      ];
+      let lastError = null;
+      for (const url of urls) {
+        try {
+          const response = await fetch(url + (url.includes('?') ? '&' : '?') + `cacheBust=${Date.now()}`, {cache:'no-store'});
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const csv = await response.text();
+          if (!csv || !/kategori|stok/i.test(csv)) throw new Error('CSV bukan range stok yang diharapkan');
+          return csv;
+        } catch (err) {
+          lastError = err;
+        }
+      }
+      throw lastError || new Error('Semua sumber Sheet gagal dibaca');
     }
 
     async function syncStockFromSheet(showToastMessage = false) {
       const badge = document.getElementById('stockLastUpdated');
       if (badge) { badge.className = 'k2-badge k2-pre'; badge.textContent = 'Sinkronisasi…'; }
       try {
-        const response = await fetch(STOCK_SHEET_CSV_URL + `&cacheBust=${Date.now()}`, {cache:'no-store'});
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const csv = await response.text();
+        const csv = await fetchStockCSV();
         const rows = parseCSV(csv);
-        if (!rows.length) throw new Error('Sheet kosong atau CSV tidak terbaca');
+        if (!rows.length) throw new Error('Range stok kosong atau CSV tidak terbaca');
         stockSourceRows = rows;
-        const mapped = mapSheetRowsToBatches(rows);
-        mapped.forEach((batch, i) => KUBATA_BATCHES[i] = batch);
+        stockAvailability = mapSheetRowsToAvailability(rows);
+        mapAvailabilityToCheckout();
         stockSyncOk = true;
         STOCK_UPDATED = new Date().toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
         if (badge) { badge.className = 'k2-badge k2-ready'; badge.textContent = `● Tersinkron ${STOCK_UPDATED}`; }
         renderStockTable();
         updateMiniCheckout();
-        if (showToastMessage) showToast(`Stok tersinkron (${rows.length} baris)`);
+        if (showToastMessage) showToast(`Stok berhasil tersinkron (${rows.length} kategori)`);
       } catch (err) {
         stockSyncOk = false;
         if (badge) { badge.className = 'k2-badge k2-pre'; badge.textContent = '⚠ Sheet belum terbaca'; }
         renderStockTable();
         updateMiniCheckout();
-        if (showToastMessage) showToast('Sheet belum bisa dibaca. Pastikan Sheet dipublish ke web.');
+        if (showToastMessage) showToast('Sheet belum bisa dibaca. Pastikan tab stok sudah dipublish ke web.');
         console.warn('KUBATA stock sync:', err);
       }
     }
@@ -1277,18 +1326,29 @@ body{background:radial-gradient(circle at 15% 5%,rgba(212,166,74,.09),transparen
       const body = document.getElementById('stockTableBody');
       if (!body) return;
       body.innerHTML = '';
-      KUBATA_BATCHES.forEach(batch => {
+      const rows = stockAvailability.length ? stockAvailability : [
+        {id:'UMUR-3', age:'3', stock:0, ready:'—', preorder:false},
+        {id:'UMUR-7', age:'7', stock:0, ready:'—', preorder:false},
+        {id:'UMUR-14', age:'14', stock:0, ready:'—', preorder:false},
+        {id:'UMUR-21', age:'21', stock:0, ready:'—', preorder:false}
+      ];
+      rows.forEach(batch => {
         const stage = KUBATA_STAGES[batch.age];
         const status = getBatchStatus(batch);
+        const label = batch.age === '3' ? '3 Hari' : (stage ? stage.label : `${batch.age} Hari`);
+        const stockText = batch.stock > 0 ? `${batch.stock.toLocaleString('id-ID')} ekor` : '0 ekor';
+        const canSelect = !!stage;
+        const action = canSelect
+          ? `<button type="button" onclick="selectBatch('${batch.age}')" class="text-gold-300 font-bold text-xs hover:underline">Pilih</button>`
+          : `<span class="text-slate-400 text-xs">—</span>`;
         const tr = document.createElement('tr');
-        const stockText = batch.stock > 0 ? `${batch.stock.toLocaleString('id-ID')} ekor` : 'Hubungi admin';
         tr.innerHTML = `
           <td>${batch.id}</td>
-          <td>${stage ? stage.label : '—'}</td>
+          <td>${label}</td>
           <td>${stockText}</td>
           <td>${batch.ready || '—'}</td>
           <td><span class="k2-badge ${status.cls}">● ${status.label}</span></td>
-          <td><button type="button" onclick="selectBatch('${batch.age}')" class="text-gold-300 font-bold text-xs hover:underline">Pilih</button></td>`;
+          <td>${action}</td>`;
         body.appendChild(tr);
       });
       const updated = document.getElementById('stockLastUpdated');
