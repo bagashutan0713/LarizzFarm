@@ -91,6 +91,8 @@
     .k2-table th{color:#cbd5e1;background:rgba(255,255,255,.035);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
     .k2-table td{color:#e2e8f0}.k2-table tr:last-child td{border-bottom:0}
     .k2-checkout{position:sticky;top:86px}
+    .k2-input{width:100%;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 13px;color:#fff;outline:0}
+    .k2-input:focus{border-color:rgba(212,166,74,.7);box-shadow:0 0 0 3px rgba(212,166,74,.1)}
     .k2-faq button{width:100%;text-align:left;padding:17px 18px;color:#fff;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);border-radius:14px;font-weight:700}
     .k2-faq p{display:none;padding:0 18px 17px;color:#94a3b8;font-size:13px;line-height:1.7}
     .k2-faq.open p{display:block}.k2-faq.open button{border-radius:14px 14px 0 0;border-bottom-color:transparent}
@@ -126,9 +128,9 @@
           <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
           <span>Order KUBATA</span>
         </a>
-        <a href="https://wa.me/628115430713?text=Halo%20Admin%20KUBATA%20Central%20Cileungsi,%20saya%20tertarik%20dengan%20bibit%20Ayam%20KUB-2%20Janaka%20(KUBATA).%20Mohon%20info%20jadwal%20batch%20ready." target="_blank" rel="noopener" class="text-ivory-300 hover:text-white transition flex items-center gap-1 text-[11px]">
+        <a href="https://wa.me/6285780089249?text=Halo%20Admin%20KUBATA%20Central%20Cileungsi,%20saya%20tertarik%20dengan%20bibit%20Ayam%20KUB-2%20Janaka%20(KUBATA).%20Mohon%20info%20jadwal%20batch%20ready." target="_blank" rel="noopener" class="text-ivory-300 hover:text-white transition flex items-center gap-1 text-[11px]">
           <i data-lucide="phone" class="w-3 h-3 text-gold-400"></i>
-          <span>0811-5430-713</span>
+          <span>0857-8008-9249</span>
         </a>
       </div>
     </div>
@@ -544,10 +546,10 @@
 
   <!-- ORDER SEKARANG: KALKULATOR TIERING -->
   <section id="kalkulator" class="py-16 sm:py-20 bg-ivory-100 border-b border-ivory-300">
-    <div class="max-w-5xl mx-auto px-4">
+    <div class="max-w-4xl mx-auto px-4">
       
       <div class="text-center max-w-xl mx-auto mb-10">
-        <span class="text-[10px] font-bold uppercase tracking-widest text-gold-600 bg-gold-100 px-3.5 py-1 rounded-full border border-gold-300 shadow-sm">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-gold-600 bg-gold-100 px-3 py-1 rounded-full border border-gold-300">
           Formulir Pemesanan Resmi KUBATA
         </span>
         <h3 class="text-2xl sm:text-3xl font-extrabold text-brand-900 mt-2 font-serif">
@@ -564,30 +566,30 @@
           <!-- Input Controls (7 Cols) -->
           <div class="lg:col-span-7 space-y-6">
             
-            <!-- Step 1: Pilihan Umur (6 Tombol Otomatis) -->
+            <!-- Step 1: Age Selection (6 Buttons) -->
             <div>
               <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
                 1. Pilih Tingkat Umur KUBATA:
               </label>
               <div class="grid grid-cols-3 sm:grid-cols-6 gap-2" id="calcAgeButtons">
-                <!-- Diisi otomatis oleh JavaScript -->
+                <!-- Diisi via JavaScript -->
               </div>
             </div>
 
-            <!-- Step 2: Kuantitas Pemesanan -->
+            <!-- Step 2: Quantity Selection -->
             <div>
               <div class="flex items-center justify-between mb-2">
                 <label for="calcQtyInput" class="text-xs font-bold uppercase tracking-wider text-slate-500">
                   2. Jumlah Pemesanan (Ekor):
                 </label>
-                <span id="tierBadge" class="text-[10px] font-bold px-2.5 py-0.5 rounded bg-brand-50 text-brand-900 border border-brand-100">
+                <span id="tierBadge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-brand-50 text-brand-900 border border-brand-100">
                   Tier 100 Ekor
                 </span>
               </div>
 
               <!-- Stepper -->
               <div class="flex items-center gap-3">
-                <button type="button" onclick="adjustQty(-10)" class="w-12 h-12 rounded-xl bg-ivory-200 hover:bg-ivory-300 text-brand-900 font-bold text-lg flex items-center justify-center transition border border-ivory-300 select-none">-</button>
+                <button type="button" onclick="adjustQty(-10)" class="w-12 h-12 rounded-xl bg-ivory-200 hover:bg-ivory-300 text-brand-900 font-bold text-lg flex items-center justify-center transition border border-ivory-300">-</button>
                 <input 
                   type="number" 
                   id="calcQtyInput" 
@@ -598,20 +600,20 @@
                   oninput="handleQtyChange(this.value)" 
                   class="flex-1 text-center font-bold text-2xl py-2 px-3 rounded-xl border border-ivory-300 focus:border-brand-700 outline-none text-brand-900 bg-ivory-50"
                 />
-                <button type="button" onclick="adjustQty(10)" class="w-12 h-12 rounded-xl bg-ivory-200 hover:bg-ivory-300 text-brand-900 font-bold text-lg flex items-center justify-center transition border border-ivory-300 select-none">+</button>
+                <button type="button" onclick="adjustQty(10)" class="w-12 h-12 rounded-xl bg-ivory-200 hover:bg-ivory-300 text-brand-900 font-bold text-lg flex items-center justify-center transition border border-ivory-300">+</button>
               </div>
 
               <!-- Presets Sesuai Skema Tier -->
               <div class="flex items-center gap-1.5 mt-2.5 flex-wrap">
-                <span class="text-[11px] text-slate-400 mr-1">Preset Tier:</span>
-                <button type="button" onclick="setQty(20)" class="px-2.5 py-1 rounded-lg bg-ivory-100 hover:bg-ivory-200 text-xs font-semibold border border-ivory-300">20 Ekor (Eceran)</button>
+                <span class="text-[11px] text-slate-400 mr-1">Tier:</span>
+                <button type="button" onclick="setQty(20)" class="px-2.5 py-1 rounded-lg bg-ivory-100 hover:bg-ivory-200 text-xs font-semibold border border-ivory-300">20 (&lt;50 Ekor)</button>
                 <button type="button" onclick="setQty(50)" class="px-2.5 py-1 rounded-lg bg-ivory-100 hover:bg-ivory-200 text-xs font-semibold border border-ivory-300">50 Ekor</button>
-                <button type="button" onclick="setQty(100)" class="px-2.5 py-1 rounded-lg bg-gold-100 text-brand-950 text-xs font-bold border border-gold-300">100 Ekor (Grosir)</button>
-                <button type="button" onclick="setQty(500)" class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-950 text-xs font-bold border border-emerald-300">500 Ekor (Termurah)</button>
+                <button type="button" onclick="setQty(100)" class="px-2.5 py-1 rounded-lg bg-gold-100 text-brand-950 text-xs font-bold border border-gold-300">100 (Grosir)</button>
+                <button type="button" onclick="setQty(500)" class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-950 text-xs font-bold border border-emerald-300">500 (Termurah)</button>
               </div>
             </div>
 
-            <!-- Step 3: Metode Pengiriman -->
+            <!-- Step 3: Shipping Method -->
             <div>
               <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
                 3. Metode Pengambilan / Pengiriman:
@@ -634,24 +636,38 @@
               </div>
             </div>
 
-            <!-- Step 4: Data Pemesan -->
+            <!-- Step 4: Buyer Details -->
             <div class="space-y-2">
               <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">
                 4. Data Pemesan (Opsional):
               </label>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                <input type="text" id="buyerName" placeholder="Nama Pemesan / Nama Farm" class="w-full text-xs font-medium py-2.5 px-3.5 rounded-xl border border-ivory-300 bg-ivory-50 focus:bg-white focus:border-brand-700 outline-none">
-                <input type="text" id="buyerCity" placeholder="Kota / Kecamatan Domisili" class="w-full text-xs font-medium py-2.5 px-3.5 rounded-xl border border-ivory-300 bg-ivory-50 focus:bg-white focus:border-brand-700 outline-none">
+                <input 
+                  type="text" 
+                  id="buyerName" 
+                  placeholder="Nama Lengkap / Nama Farm" 
+                  class="w-full text-xs font-medium py-2.5 px-3.5 rounded-xl border border-ivory-300 bg-ivory-50 focus:bg-white focus:border-brand-700 outline-none"
+                >
+                <input 
+                  type="text" 
+                  id="buyerCity" 
+                  placeholder="Kota / Kecamatan Domisili" 
+                  class="w-full text-xs font-medium py-2.5 px-3.5 rounded-xl border border-ivory-300 bg-ivory-50 focus:bg-white focus:border-brand-700 outline-none"
+                >
               </div>
             </div>
+
           </div>
 
           <!-- Order Summary Card (5 Cols) -->
-          <div class="lg:col-span-5 bg-ivory-100 rounded-3xl p-6 border border-ivory-300 flex flex-col justify-between shadow-sm">
+          <div class="lg:col-span-5 bg-ivory-100 rounded-3xl p-6 border border-ivory-300 flex flex-col justify-between">
             <div class="space-y-3 text-xs">
+              
               <div class="flex items-center justify-between pb-3 border-b border-ivory-300">
                 <span class="font-bold uppercase tracking-wider text-slate-500">Ringkasan Biaya</span>
-                <span id="sumBadgeAge" class="font-bold px-2 py-0.5 rounded bg-brand-900 text-gold-300 text-[11px]">14 Hari</span>
+                <span id="sumBadgeAge" class="font-bold px-2 py-0.5 rounded bg-brand-900 text-gold-300 text-[11px]">
+                  14 Hari
+                </span>
               </div>
 
               <div class="flex justify-between text-slate-600">
@@ -683,70 +699,68 @@
                 <span class="text-[11px] font-semibold text-slate-500 uppercase block">Total Perkiraan Biaya:</span>
                 <p id="sumTotal" class="text-3xl font-extrabold text-brand-900 font-serif mt-0.5">Rp 1.600.000</p>
                 <p class="text-[10px] text-slate-500 mt-1 leading-relaxed">
-                  *Sudah termasuk boks berventilasi standar peternakan dan konsultasi pemeliharaan sampai masa produksi.
+                  *Sudah termasuk boks berventilasi standar peternakan dan konsultasi pemeliharaan.
                 </p>
               </div>
+
             </div>
 
+            <!-- Action Buttons -->
             <div class="mt-6 pt-4 border-t border-ivory-300 space-y-2">
-              <button type="button" onclick="sendWhatsAppOrder()" class="w-full py-3.5 bg-brand-900 hover:bg-brand-950 text-white font-bold text-xs rounded-xl shadow-luxe border border-gold-400/40 flex items-center justify-center gap-2 transition">
+              <button 
+                type="button" 
+                onclick="sendWhatsAppOrder()" 
+                class="w-full py-3.5 bg-brand-900 hover:bg-brand-950 text-white font-bold text-xs rounded-xl shadow-luxe border border-gold-400/40 flex items-center justify-center gap-2 transition"
+              >
                 <i data-lucide="message-circle" class="w-4 h-4 text-gold-300"></i>
                 <span>Pesan KUBATA Lewat WhatsApp</span>
               </button>
-              <button type="button" onclick="copyOrderFormat()" class="w-full py-2 bg-white hover:bg-ivory-200 text-slate-700 font-semibold text-xs rounded-xl border border-ivory-300 transition">
+              <button 
+                type="button" 
+                onclick="copyOrderFormat()" 
+                class="w-full py-2 bg-white hover:bg-ivory-200 text-slate-700 font-semibold text-xs rounded-xl border border-ivory-300 transition"
+              >
                 Salin Format Pemesanan
               </button>
             </div>
+
           </div>
 
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- LIVE SHEET STOCK SECTION -->
+  <!-- KUBATA PROFESSIONAL 2.0 (STOK SHEET LIVE) -->
   <section id="stok-jadwal" class="k2-section py-16 sm:py-20">
     <div class="max-w-6xl mx-auto px-4">
       <div class="max-w-2xl mb-8">
         <div class="k2-eyebrow">Ketersediaan</div>
         <h2 class="k2-title mt-2">Stok Batch & Jadwal Ready</h2>
-        <p class="k2-muted mt-3">Disinkronkan langsung dari Google Sheet kontrol stok kandang Cileungsi.</p>
+        <p class="k2-muted mt-3">Informasi disinkronkan langsung dari Google Sheet kontrol stok kandang Cileungsi.</p>
       </div>
-      
       <div class="k2-card overflow-x-auto">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
           <div>
-            <b class="text-white text-base">Ketersediaan Batch Kandang</b>
-            <p class="k2-muted mt-1">Stok dan status batch otomatis terupdate secara berkala.</p>
+            <b class="text-white">Ketersediaan Batch Kandang</b>
+            <p class="k2-muted mt-1">Stok dan jadwal ready disinkronkan dari Google Sheet stok DOC kandang.</p>
           </div>
           <div class="flex items-center gap-2">
             <span id="stockLastUpdated" class="k2-badge k2-pre">Menghubungkan Sheet…</span>
-            <button type="button" onclick="syncStockFromSheet(true)" class="px-3 py-1.5 rounded-xl text-xs font-bold border border-white/10 text-white hover:bg-white/5 transition">↻ Refresh</button>
+            <button type="button" onclick="syncStockFromSheet(true)" class="px-3 py-2 rounded-xl text-xs font-bold border border-white/10 text-white hover:bg-white/5">↻ Refresh</button>
           </div>
         </div>
-        
         <table class="k2-table">
-          <thead>
-            <tr>
-              <th>Batch</th>
-              <th>Umur</th>
-              <th>Stok</th>
-              <th>Ready</th>
-              <th>Status</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody id="stockTableBody">
-            <!-- Data tabel diinjeksi via script -->
-          </tbody>
+          <thead><tr><th>Batch</th><th>Umur</th><th>Stok</th><th>Ready</th><th>Status</th><th>Aksi</th></tr></thead>
+          <tbody id="stockTableBody"></tbody>
         </table>
       </div>
-
       <div class="k2-grid mt-6">
-        <div class="k2-card"><div class="text-2xl mb-1">🐣</div><b class="text-white">Pilih Umur</b><p class="k2-muted mt-1">Sesuaikan umur bibit dengan kesiapan kandang Anda.</p></div>
-        <div class="k2-card"><div class="text-2xl mb-1">📅</div><b class="text-white">Pesan Jadwal</b><p class="k2-muted mt-1">Pre-order memastikan ketersediaan batch tepat waktu.</p></div>
-        <div class="k2-card"><div class="text-2xl mb-1">📦</div><b class="text-white">Pickup / Kirim</b><p class="k2-muted mt-1">Bebas jemput ke kandang atau armada khusus Jabodetabek.</p></div>
-        <div class="k2-card"><div class="text-2xl mb-1">💬</div><b class="text-white">Konfirmasi WA</b><p class="k2-muted mt-1">Admin memvalidasi ketersediaan sebelum pembayaran.</p></div>
+        <div class="k2-card"><div class="text-2xl">🐣</div><b class="text-white">Pilih Umur</b><p class="k2-muted mt-1">Sesuaikan umur bibit dengan kemampuan pemeliharaan.</p></div>
+        <div class="k2-card"><div class="text-2xl">📅</div><b class="text-white">Pesan Jadwal</b><p class="k2-muted mt-1">Pre-order membantu menyiapkan batch sesuai kebutuhan.</p></div>
+        <div class="k2-card"><div class="text-2xl">📦</div><b class="text-white">Pickup / Kirim</b><p class="k2-muted mt-1">Metode pengambilan dikonfirmasi saat order.</p></div>
+        <div class="k2-card"><div class="text-2xl">💬</div><b class="text-white">Konfirmasi WA</b><p class="k2-muted mt-1">Admin memvalidasi stok dan jadwal sebelum transaksi.</p></div>
       </div>
     </div>
   </section>
@@ -755,64 +769,42 @@
   <section id="checkout-mini" class="k2-section py-16 sm:py-20 border-t border-white/5">
     <div class="max-w-6xl mx-auto px-4">
       <div class="grid lg:grid-cols-12 gap-8 items-start">
-        
         <div class="lg:col-span-7">
           <div class="k2-eyebrow">Mini Checkout</div>
           <h2 class="k2-title mt-2">Siapkan Pesanan dalam 1 Menit</h2>
-          <p class="k2-muted mt-3 mb-6 leading-relaxed">
-            Pilih umur bibit, tentukan jumlah ekor, dan langsung kirim ringkasan pesanan ke WhatsApp admin untuk konfirmasi stok dan slot jadwal.
-          </p>
+          <p class="k2-muted mt-3 mb-6">Gunakan kalkulator harga yang sudah tersedia di halaman ini. Bagian ini menjadi ringkasan sebelum pelanggan diarahkan ke WhatsApp.</p>
           <div class="k2-grid">
-            <div class="k2-card"><div class="text-2xl mb-2 text-gold-300 font-bold">01</div><b class="text-white">Pilih Umur</b><p class="k2-muted mt-1">3 hari s/d &gt;30 hari.</p></div>
-            <div class="k2-card"><div class="text-2xl mb-2 text-gold-300 font-bold">02</div><b class="text-white">Jumlah Ekor</b><p class="k2-muted mt-1">Makin hemat di tier 50, 100, &amp; ≥500.</p></div>
-            <div class="k2-card"><div class="text-2xl mb-2 text-gold-300 font-bold">03</div><b class="text-white">Data Lokasi</b><p class="k2-muted mt-1">Untuk estimasi jemput / kirim armada.</p></div>
-            <div class="k2-card"><div class="text-2xl mb-2 text-gold-300 font-bold">04</div><b class="text-white">Kirim ke WA</b><p class="k2-muted mt-1">Format pesanan terbuat rapi otomatis.</p></div>
+            <div class="k2-card"><div class="text-2xl mb-3">01</div><b class="text-white">Pilih fase umur</b><p class="k2-muted mt-1">3 hari sampai &gt;30 hari.</p></div>
+            <div class="k2-card"><div class="text-2xl mb-3">02</div><b class="text-white">Tentukan jumlah</b><p class="k2-muted mt-1">Harga makin hemat di 50, 100, dan ≥500 ekor.</p></div>
+            <div class="k2-card"><div class="text-2xl mb-3">03</div><b class="text-white">Isi data</b><p class="k2-muted mt-1">Nama dan kota membantu admin menyiapkan pesanan.</p></div>
+            <div class="k2-card"><div class="text-2xl mb-3">04</div><b class="text-white">Kirim ke WA</b><p class="k2-muted mt-1">Ringkasan order otomatis dibawa ke WhatsApp admin.</p></div>
           </div>
         </div>
-
         <div class="lg:col-span-5 k2-card k2-checkout">
           <div class="flex items-center justify-between gap-3">
-            <div>
-              <div class="k2-eyebrow">Live Checkout</div>
-              <h3 class="text-white text-xl font-bold mt-1">Pesanan KUBATA</h3>
-            </div>
+            <div><div class="k2-eyebrow">Live Checkout</div><h3 class="text-white text-xl font-bold mt-1">Pesanan KUBATA</h3></div>
             <span id="miniCheckoutStatus" class="k2-badge k2-ready">● Siap Cek</span>
           </div>
-
           <div class="mt-5 space-y-3 text-sm">
             <div class="flex justify-between gap-4"><span class="text-slate-400">Produk</span><b id="miniProduct" class="text-white">KUB-2 Janaka</b></div>
             <div class="flex justify-between gap-4"><span class="text-slate-400">Umur</span><b id="miniAge" class="text-white">14 Hari</b></div>
             <div class="flex justify-between gap-4"><span class="text-slate-400">Jumlah</span><b id="miniQty" class="text-white">100 ekor</b></div>
-            <div class="flex justify-between gap-4"><span class="text-slate-400">Harga Satuan</span><b id="miniUnitPrice" class="text-white">Rp 16.000</b></div>
+            <div class="flex justify-between gap-4"><span class="text-slate-400">Harga/ekor</span><b id="miniUnitPrice" class="text-white">Rp 16.000</b></div>
             <div class="flex justify-between gap-4"><span class="text-slate-400">Metode</span><b id="miniMethod" class="text-white text-right">Ambil di Kandang</b></div>
           </div>
-
-          <div class="mt-4 p-3 rounded-xl bg-white/5 border border-white/10 space-y-2">
-            <div class="flex justify-between gap-3 text-xs">
-              <span class="text-slate-400">Batch Kandang</span>
-              <b id="miniBatch" class="text-white">BATCH-2026-003</b>
-            </div>
-            <div class="flex justify-between gap-3 text-xs">
-              <span class="text-slate-400">Status Ready</span>
-              <b id="miniReady" class="text-emerald-300 text-right">Ready Siap Kirim</b>
-            </div>
+          <div class="mt-3 p-3 rounded-xl bg-white/5 border border-white/10">
+            <div class="flex justify-between gap-3 text-xs"><span class="text-slate-400">Batch</span><b id="miniBatch" class="text-white">BATCH-2026-003</b></div>
+            <div class="flex justify-between gap-3 text-xs mt-2"><span class="text-slate-400">Jadwal ready</span><b id="miniReady" class="text-white text-right">Ready Siap Kirim</b></div>
           </div>
-
-          <div class="border-t border-white/10 my-4"></div>
-
+          <div class="border-t border-white/10 my-5"></div>
           <div class="flex items-end justify-between gap-4">
-            <span class="k2-muted">Estimasi Total Biaya</span>
-            <strong id="miniTotal" class="text-2xl text-white font-bold">Rp 1.600.000</strong>
+            <span class="k2-muted">Estimasi total</span>
+            <strong id="miniTotal" class="text-2xl text-white">Rp 1.600.000</strong>
           </div>
-
-          <a href="#kalkulator" class="block mt-5 text-center rounded-xl py-3 font-extrabold transition hover:opacity-90" style="background:var(--k-gold);color:#111827">
-            Ubah Kuantitas / Umur
-          </a>
-          <button type="button" onclick="sendWhatsAppOrder()" class="w-full mt-2 rounded-xl py-3 font-extrabold border border-white/10 text-white hover:bg-white/5 transition flex items-center justify-center gap-2">
-            <span>Lanjut ke WhatsApp</span>
-          </button>
+          <p id="miniNote" class="k2-muted mt-4">Pilih umur dan jumlah pada kalkulator. Ringkasan ini akan mengikuti pilihan secara realtime.</p>
+          <a href="#kalkulator" class="block mt-5 text-center rounded-xl py-3 font-extrabold" style="background:var(--k-gold);color:#111827">Edit Pesanan</a>
+          <button type="button" onclick="sendWhatsAppOrder()" class="w-full mt-2 rounded-xl py-3 font-extrabold border border-white/10 text-white">Lanjut ke WhatsApp</button>
         </div>
-
       </div>
     </div>
   </section>
@@ -916,7 +908,7 @@
           </p>
           <p class="text-slate-400 flex items-center gap-2">
             <i data-lucide="message-square" class="w-4 h-4 text-gold-400 shrink-0"></i>
-            <span>WhatsApp Admin / Konsultasi: +62 811-5430-713</span>
+            <span>WhatsApp Admin / Konsultasi: +62 857-8008-9249</span>
           </p>
           <p class="text-slate-400 flex items-center gap-2">
             <i data-lucide="clock" class="w-4 h-4 text-gold-400 shrink-0"></i>
@@ -936,7 +928,7 @@
 
   <!-- FLOATING WHATSAPP CTA -->
   <a 
-    href="https://wa.me/628115430713?text=Halo%20Admin%20KUBATA%20Cileungsi,%20saya%20ingin%20tanya%20bibit%20Ayam%20KUBATA%20(KUB-2%20Janaka)."
+    href="https://wa.me/6285780089249?text=Halo%20Admin%20KUBATA%20Cileungsi,%20saya%20ingin%20tanya%20bibit%20Ayam%20KUBATA%20(KUB-2%20Janaka)."
     target="_blank" 
     rel="noopener"
     class="fixed bottom-6 right-6 z-50 bg-emerald-600 hover:bg-emerald-700 text-white p-3.5 rounded-full shadow-2xl flex items-center gap-2 transition transform hover:scale-105 border-2 border-white"
@@ -1027,7 +1019,7 @@
     let currentAge = '14'; // Default 14 Hari (Rekomendasi Pemula, Stok Ready 268)
     let currentQty = 100; // Default 100 ekor
     let currentShipping = 'pickup';
-    const WA_NUMBER = '628115430713'; // Nomor WhatsApp Admin Resmi
+    const WA_NUMBER = '6285780089249'; // Nomor WhatsApp Admin Resmi
 
     // KONEKSI GOOGLE SHEET KANDANG (Range B23:F28)
     const PUBLISHED_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTpdDkUAGtmk1HggvLcpM_aNq87lkW22JCojm_rUExOJIVtk4DKD_6SVoWwxtL0nfY1ShCSOAjcUy4j/pub?gid=461405527&single=true&range=B23:F28&output=csv';
@@ -1198,7 +1190,6 @@
       if (!KUBATA_STAGES[ageKey]) return;
       currentAge = ageKey;
 
-      // Update Highlight Kartu Umur di Katalog
       ['3', '7', '14', '21', '28', '30'].forEach(key => {
         const card = document.getElementById('card-' + key);
         if (!card) return;
@@ -1222,7 +1213,6 @@
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // TAMPILAN TOMBOL KALKULATOR: HARGA TIER & STOK DIPISAH DENGAN JELAS
     function renderCalcAgeButtons() {
       const container = document.getElementById('calcAgeButtons');
       if (!container) return;
@@ -1263,7 +1253,6 @@
       const tierLabel = getTierLabel(currentQty);
       const stockItem = stockData.find(d => d.age === currentAge);
 
-      // Update badge tier di input kuantitas
       const badge = document.getElementById('tierBadge');
       if (badge) {
         badge.innerText = tierLabel;
@@ -1276,7 +1265,6 @@
         }
       }
 
-      // Update ringkasan biaya kalkulator
       if (document.getElementById('sumBadgeAge')) document.getElementById('sumBadgeAge').innerText = stage.short;
       if (document.getElementById('sumAgeName')) document.getElementById('sumAgeName').innerText = stage.name;
       if (document.getElementById('sumTierName')) document.getElementById('sumTierName').innerText = tierLabel;
@@ -1285,7 +1273,6 @@
       if (document.getElementById('sumMethod')) document.getElementById('sumMethod').innerText = currentShipping === 'pickup' ? 'Ambil di Kandang Cileungsi' : 'Kirim Armada';
       if (document.getElementById('sumTotal')) document.getElementById('sumTotal').innerText = formatRp(finalTotal);
 
-      // Update Mini Live Checkout
       if (document.getElementById('miniAge')) document.getElementById('miniAge').innerText = stage.label;
       if (document.getElementById('miniQty')) document.getElementById('miniQty').innerText = `${currentQty.toLocaleString('id-ID')} ekor`;
       if (document.getElementById('miniUnitPrice')) document.getElementById('miniUnitPrice').innerText = formatRp(unitPrice);
@@ -1353,17 +1340,17 @@ _Pusat Penjualan & Distribusi Bibit KUBATA (KUB-2 Janaka)_
 _"Pilih Umur, Siap Pelihara!"_
 
 Halo Admin KUBATA Cileungsi, saya ingin memesan:
-• Nama: ${buyerName}
-• Domisili/Kota: ${buyerCity}
-• Komoditas: *Ayam KUBATA (KUB-2 Janaka)*
-• Fase Umur: *${stage.name}*
-• Batch Kandang: ${stockItem ? stockItem.batch : '-'}
-• Jumlah Order: *${currentQty.toLocaleString('id-ID')} ekor*
-• Skema Tier: *${tierLabel}*
-• Harga Satuan: *${formatRp(unitPrice)} / ekor*
-• Estimasi Total Biaya: *${formatRp(grandTotal)}*
-• Metode: ${methodText}
-• Status Stok Website: ${stockItem ? stockItem.stock : 0} ekor (${stockItem ? stockItem.ready : '-'})
+- Nama: ${buyerName}
+- Domisili/Kota: ${buyerCity}
+- Komoditas: *Ayam KUBATA (KUB-2 Janaka)*
+- Fase Umur: *${stage.name}*
+- Batch Kandang: ${stockItem ? stockItem.batch : '-'}
+- Jumlah Order: *${currentQty.toLocaleString('id-ID')} ekor*
+- Skema Tier: *${tierLabel}*
+- Harga Satuan: *${formatRp(unitPrice)} / ekor*
+- Estimasi Total Biaya: *${formatRp(grandTotal)}*
+- Metode: ${methodText}
+- Status Stok Website: ${stockItem ? stockItem.stock : 0} ekor (${stockItem ? stockItem.ready : '-'})
 
 Mohon konfirmasi ketersediaan batch KUBATA dan jadwal pengambilannya. Terima kasih!`;
     }
